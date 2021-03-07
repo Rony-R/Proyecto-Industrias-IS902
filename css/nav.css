@@ -35,7 +35,7 @@ a:hover {
 }
 
 .logoImg {
-  width: 50px;
+  width: 60px;
   height: 50px;
 }
 
@@ -123,8 +123,8 @@ a:hover {
   .button a {
     padding: 7px 15px;
     border-radius: 50em;
-    background-color: teal;
-    border: 1px solid #006d6d;
+    background-color: #e67103;
+    border: 1px solid #f33939f1;
   }
 
   .button.log a {
@@ -133,11 +133,13 @@ a:hover {
 
   .button a:hover {
     transition: all 0.25s;
+    color: white;
   }
 
   .button:not(.log) a:hover {
-    background: #006d6d;
-    border-color: "005959";
+    background: #f7841a;
+    border-color: #f54b4bf1;
+    color: white;
   }
 }
 
@@ -175,4 +177,44 @@ a:hover {
 
 .col-md-4 {
   padding: 20px;
+}
+
+/*Footer Styles*/
+
+.logoFoot {
+  width: 160px;
+  height: 160px;
+}
+
+.creatorImg {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+}
+
+.imagen {
+  float: left;
+  width: 25%;
+  margin: 2%;
+}
+.texto {
+  float: left;
+  width: 25%;
+  margin: 2%;
+}
+.clear {
+  clear: both;
+}
+
+footer {
+  background-color: #161e2c;
+  padding: 20px 35px;
+}
+
+.footRow {
+  background-color: #202329;
+}
+
+.txt-just {
+  text-align: justify;
 }
