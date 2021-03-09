@@ -18,14 +18,14 @@
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <title>NavBar</title>
+    <title>Información Publicacion</title>
   </head>
   <body>
     <nav>
       <ul class="menu">
         <li class="logo">
           <a href="#">
-            <img class="logoImg" src="./img/logos/businessman.svg" alt="" />
+            <img class="logoImg" src="./img/logos/logo1.png" alt="" />
           </a>
         </li>
         <li class="item"><a href="#">Home</a></li>
@@ -43,7 +43,7 @@
     <main class="container-fluid mt-2 mb-4">
       <div class="row">
         <div class="col-4">
-          <div class="card"> <!--Este card es para ver la información de la persona que creo la publicación-->
+          <div class="card border-primary"> <!--Este card es para ver la información de la persona que creo la publicación-->
             <div class="card-header text-center">
               <h5 class="card-subtitle">Rafael Bautista</h5> 
             </div>
@@ -67,22 +67,50 @@
           </div>
         </div>
         <div class="col-8">
-          <div class="card">
+          <div class="card border-primary">
             <div class="card-header">
               <h5 class="card-title">Sistema de Facturación</h5> <!-- Aqui se asignaria el nombre del proyecto -->
-              <h6 class="card-subtitle text-muted">Rafael Bautista</h6> <!-- Aqui se asignaria el nombre de la empresa o del freelancer -->
             </div>
             <div class="card-body">
-  
+              <p>Aqui ira una información X que el usuario tiene que detallar acerca de la información del proyecto necesaria para poder recibir ayuda o compartir el como entender el codigo</p>
+              <div class="row"> <!-- Con este Row se ordena la manera de presentar las posibles imagenes que incluya la publicación -->
+                <div class="col-3"><img src="img/logos/logo1.png" class="img-thumbnail img-fluid" alt=""></div>
+                <div class="col-3"><img src="img/logos/logo1.png" class="img-thumbnail img-fluid" alt=""></div>
+                <div class="col-3"><img src="img/logos/logo1.png" class="img-thumbnail img-fluid" alt=""></div>
+                <div class="col-3"><img src="img/logos/logo1.png" class="img-thumbnail img-fluid" alt=""></div>
+              </div>
+            </div>
+            <div class="card-footer" style="background-color: white;">
+              <div class="row">
+                <div class="col-1">
+                  <img src="img/profile-examples/goku.jpg" class="img-fluid rounded-circle" alt=""> <!-- Aquí iria la imagen de perfil del usuario que inicio sesión -->
+                </div>
+                <div class="col-9 mt-1">
+                  <span class="textarea form-control" id="txta-comentario" role="textbox" contenteditable>
+                </div>
+                <div class="col-2 mt-1">
+                  <button class="btn btn-outline-primary">Comentar</button>
+                </div>
+              </div>
             </div>
             <div class="card-footer">
-              <div class="row">
-                <div class="col-12">
-                  <div class="row">
-                    <div class="col-3">
-                      <img src="" alt=""> <!-- Aquí iria la imagen de perfil del usuario que inicio sesión -->
-                    </div>
-                  </div>
+              <div class="row mb-1">
+                <div class="col-1">
+                  <img src="img/profile-examples/goku.jpg" class="img-fluid rounded-circle" alt="">
+                </div>
+                <div class="col-11">
+                  <span class="card-subtitle text-primary fw-bold">Goku</span>
+                  <p class="card-text">Aqui ira un comentario X con distintas lineas, distintos parrafos, con mucha información que comentar acerca de la publicación realizada</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row mb-1">
+                <div class="col-1">
+                  <img src="img/profile-examples/goku.jpg" class="img-fluid rounded-circle" alt="">
+                </div>
+                <div class="col-11">
+                  <span class="card-subtitle text-primary fw-bold">Goku</span>
+                  <p class="card-text">Aqui ira un comentario X con distintas lineas, distintos parrafos, con mucha información que comentar acerca de la publicación realizada</p>
                 </div>
               </div>
             </div>
