@@ -2,16 +2,16 @@
     include("../class/class-conexion.php");
 
     switch($_GET["accion"]){
-        case "'accion'":
+        case "obtener-comentario-publicacion":
         break;
 
-        case "'accion'":
+        case "agregar-comentario-publicacion":
         break;
 
-        case "'accion'":
+        case "accion":
         break;
 
-        case "'accion'":
+        case "accion":
         break;
     }
 
