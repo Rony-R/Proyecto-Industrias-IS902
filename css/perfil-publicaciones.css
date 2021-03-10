@@ -138,7 +138,7 @@ a {
   display: inline-block;
   width: 100%;
   height: 100%;
-  padding: 8px 20px;
+  padding: 12px 20px;
   color: #838688;
 }
 .menu-lateral .fas {
@@ -208,7 +208,7 @@ fieldset span {
 }
 .btn-accion{
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 .btn-publicacion {
   display: inline-block;
@@ -241,6 +241,27 @@ fieldset p {
 /* ---------------------------------------Footer------------------------------------------- */
 .footer {
   grid-area: footer;
-  /* background: yellowgreen; */
+  background: #111;
+}
+.grid-footer{
+  display: grid;
+  width: 90%;
+  height: 100%;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows:1, 1fr;
+  gap: 10px;
+  overflow: hidden;
+  align-items: center;
+}
+
+.grid-footer>h4{
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #eee;
+}
+h4>a{
+  color: #eee;
 }
 /* ---------------------------------------Fin Footer------------------------------------------- */
