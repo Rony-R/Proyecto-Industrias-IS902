@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/38614da2b6.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/perfil-pagos.css">
+  <title>Perfil</title>
+</head>
+<body class="grid-container">
+  <nav class="navbar">
+    <ul class="grid-navbar">
+      <li class="nav-item1">
+        <a href="#"><img class="logo" src="./img/logos/logo1.png" alt="logo" /></a>
+      </li>
+      <li class="nav-item2">
+        <input type="text" name="txt-search" id="txt-search" placeholder="Buscar">
+        <button class="btn-search"><i class="fas fa-search"></i></button>
+      </li>
+      <li class="nav-item3">
+        <a href="#"><i class="fab fa-empire"></i></a>
+      </li>
+      <li class="nav-item4">
+        <a href="#"><img class="img-perfil" src="./img/Empressas/Empresa x/logo.jpg" alt=""></a>
+      </li>
+    </ul>
+  </nav>
+  <aside class="sidebar">
+    <div class="menu-lateral">
+      <ul>
+        <li></i><a href="perfil-publicaciones.html"><i class="fas fa-house-user"></i>Pagina principal</a></li>
+        <li><a href="perfil-info-personal.html"><i class="fas fa-clipboard-list"></i>Información personal</a></li>
+        <li><a href="perfil-configuracion.html"><i class="fas fa-user-cog"></i>Configuracion</a></li>
+        <li><a href="perfil-pagos.html"><i class="fas fa-credit-card"></i>Pagos</a></li>
+        <div class="line"></div>
+        <li><a href="#"><i class="fas fa-info-circle"></i>Informacion</a></li>
+      </ul>
+    </div>
+  </aside>
+  <!-- Informacion Personal de la empresa -->
+  <article class="main">
+    <div class="grid-main">
+      <div class="items">
+        <h1>Pagos y suscripciones</h1>
+        <img class="img-publicaciones" src="./img/Mobile_pay_re_sjb8.svg" alt="">
+      </div>
+      <div class="info-basica">
+        <fieldset>
+          <legend><h3>Formas de pago</h3></legend>
+          <div class="card-formas-pago">
+            <p>Paga tus servicios obtenido por los estudiantes de ingenieria en sistemas, por medio de pagos en linea de forma segura y confiable.</p>
+            <img src="./img/online_payments_luau.svg" alt="">
+          </div>
+          <div class="form-forma-pago">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#modal-forma-pagos">
+              Administra tus formas de pagos
+            </a>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend><h3>Pagos Realizados</h3></legend>
+          <img class="img-transfer" src="./img/transfer_money_rywa.svg" alt="">
+          <div class="pago">
+            <h6>09/03/2021</h6>
+            <h6>Titulo publicacion</h6>
+            <h6>pago total: $100</h6>
+            <a href="#">Ver detalles</a>
+          </div>
+          <div class="pago">
+            <h6>09/03/2021</h6>
+            <h6>Titulo publicacion</h6>
+            <h6>pago total: $100</h6>
+            <a href="#">Ver detalles</a>
+          </div>
+          <div class="pago">
+            <h6>09/03/2021</h6>
+            <h6>Titulo publicacion</h6>
+            <h6>pago total: $100</h6>
+            <a href="#">Ver detalles</a>
+          </div>
+        </fieldset>
+      </div>
+    <!-- Fin Informacion Personal de la empresa -->
+  </article>
+  <footer class="footer">
+    <div class="grid-footer">
+      <h4>© 2020 Copyright: 
+      <a class="text-light" href="https://www.unah.edu.hn/"> UNAH - www.unah.edu.hn</a></h4>
+    </div>
+  </footer>
+  <!-- Ventana modal formas de pago -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="modal-forma-pagos" tabindex="-1" aria-labelledby="modal-forma-pagosLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-forma-pagosLabel">Forma de pagos</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-5 card-forma">
+              <img src="./img/Visa.png" alt="">
+              <h4>Visa</h4>
+              <h5>Visa••••8793</h5>
+              <h5>Vence 01/01/2022</h5>
+            </div>
+            <div class="col-md-5 card-forma">
+              <img src="./img/MasterCard_Logo.svg.png" alt="">
+              <h4>MasterCard</h4>
+              <h5>MasterCard••••8793</h5>
+              <h5>Vence 01/01/2022</h5>
+            </div>
+            <div class="col-md-5 card-forma add">
+              <a href="#">
+                <h4>Agregar tarjeta</h4>
+                <i class="fas fa-plus-square"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Fin Ventana modal formas de pago -->
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+  </body>
+  </html>
