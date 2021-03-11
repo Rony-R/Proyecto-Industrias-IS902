@@ -49,4 +49,15 @@ $(document).ready(function () {
             console.log(e);
         }
     });*/ 
+
+    $('#btn-login').click(function () {  
+        var parametros = "Correo=" + $('#txt-correo').val() +"&"+"Password="+$("#txt-password").val();
+
+        if($("txt-correo").val() == "" || $("#txt-password").val() == ""){
+            alert("Correo o Contraseña Incorrecta");
+        }
+        else{
+            alert(parametros);
+        }
+    });
 });
