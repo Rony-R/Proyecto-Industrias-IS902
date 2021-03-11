@@ -44,8 +44,6 @@ var validarCampoVacio = function (id) {
 };
 
 $("#btnPublicar").click(function () {
-  //alert("Hola");
-
   var v1 = validarCampoVacio("nombProyecto");
   var v2 = validarCampoVacio("descProyecto");
   var v3 = validarCampoVacio("correo");
@@ -54,10 +52,23 @@ $("#btnPublicar").click(function () {
 
   var v6 = validarEmail("correo");
 
-  console.log("Nombre: " + v1);
-  console.log("Descripcion: " + v2);
-  console.log("Correo: " + v3);
-  console.log("Telefono: " + v4);
-  console.log("Presupuesto: " + v5);
-  console.log("Validar Email: " + v6);
+  if (!v6) {
+    $("#validacion-correo").html("Ingresa un Correo Valido: ejemplo@gmail.com");
+  } else {
+    if (v1 && v2 && v3 && v4 && v5 && v6) {
+      var data = `nombre=${$("#nombProyecto").val()}&descripcion=${$(
+        "#descProyecto"
+      ).val()}&correo=${$("#correo").val()}&telefono=${$(
+        "#telefono"
+      ).val()}&presupuesto=${$("#slcPresupuesto").val()}`;
+
+      //Captura de las imagenes:
+      var ruta = "img/";
+      var nombre;
+
+      console.log("La data es: " + data);
+    } else {
+      alert("Todos los campos son obligatorios a excepcion de las imagenes.");
+    }
+  }
 });
