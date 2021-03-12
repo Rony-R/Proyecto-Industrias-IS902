@@ -220,11 +220,11 @@ fieldset span {
 }
 .btn-publicacion.eliminar:hover {
   background: #eeeeee;
-  color: green;
+  color: crimson;
 }
 .btn-publicacion.editar:hover {
   background: #eeeeee;
-  color: crimson;
+  color: green;
 }
 .fas.fa-trash-alt,
 .fas.fa-pencil-alt {
