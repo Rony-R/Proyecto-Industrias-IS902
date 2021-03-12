@@ -196,6 +196,18 @@ fieldset {
   border-radius: 7px;
   margin-top: 20px;
 }
+fieldset.scheduler-border {
+  border: 1px groove #ddd !important;
+  padding: 0 1.4em 1.4em 1.4em !important;
+  margin: 0 0 1.5em 0 !important;
+  -webkit-box-shadow:  0px 0px 0px 0px #000;
+          box-shadow:  0px 0px 0px 0px #000;
+}
+legend.scheduler-border {
+  width:inherit; /* Or auto */
+  padding:0 10px; /* To give a bit of padding on the left and right */
+  border-bottom:none;
+}
 /* Desde aqui cambia con respecto al contenido del main */
 
 .card-formas-pago {
@@ -222,32 +234,13 @@ fieldset {
   padding-top: 10px;
   color: #838688;
 }
-.card-forma{
-  border: 1px solid #838688;
-  border-radius: 5px;
-  margin: 5px;
-  height: 200px;
-}
-.card-forma.add{
-  border: 1px dashed #838688;
-  text-align: center;
-  padding: 20px;
-}
-.add>a{
-  display: inline-block;
-  width: 100%;
-  height: 100%;
-  color: steelblue;
-}
-.fas.fa-plus-square{
-  font-size: 100px;
-}
-.card-forma>img{
-  width: 150px;
-}
+
 .pago{
-  border-bottom: 1px solid #dadce0;
-  margin-bottom: 10px;
+  border-top: 1px solid #dadce0;
+  padding: 10px 0;
+}
+.pago>h5, .pago>h4{
+  padding-bottom: 5px;
 }
 .img-transfer{
   display: block;
@@ -282,3 +275,115 @@ h4 > a {
   color: #eee;
 }
 /* ---------------------------------------Fin Footer------------------------------------------- */
+/* ---------------------------------------Modal------------------------------------------- */
+.card-forma{
+  display: block;
+  border: 1px solid #838688;
+  border-radius: 5px;
+  margin: 5px auto;
+  height: 200px;
+  width: 300px;
+  text-align: center;
+  padding: 20px;
+}
+.card-forma.add{
+  border: 1px dashed #838688;
+  text-align: center;
+  padding: 20px;
+}
+.add>a{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  color: steelblue;
+}
+.fas.fa-plus-square{
+  font-size: 100px;
+}
+.card-forma>img{
+  width: 150px;
+}
+.btn-accion{
+  display: flex;
+  justify-content: flex-end;
+}
+.btn-publicacion {
+  display: inline-block;
+  width: 200px;
+  height: 40px;
+  text-align: center;
+  padding: 10px 0;
+  color: #838688;
+}
+.btn-publicacion.eliminar:hover {
+  background: #eeeeee;
+  color: crimson;
+}
+.btn-publicacion.editar:hover {
+  background: #eeeeee;
+  color: green;
+}
+.modalDialog {
+	position: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+	z-index: 99999;
+	opacity:0;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
+}
+.modalDialog:target {
+	opacity:1;
+	pointer-events: auto;
+}
+.modalDialog > div {
+  display: block;
+	width: 400px;
+	position: relative;
+	margin: 10% auto;
+	padding: 5px 20px 13px 20px;
+	border-radius: 10px;
+	background: #fff;
+  -webkit-transition: opacity 400ms ease-in;
+  -moz-transition: opacity 400ms ease-in;
+  transition: opacity 400ms ease-in;
+}
+.close {
+	background: #606061;
+	color: #FFFFFF;
+	line-height: 25px;
+	position: absolute;
+	right: -12px;
+	text-align: center;
+	top: -10px;
+	width: 24px;
+	text-decoration: none;
+	font-weight: bold;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+	-moz-box-shadow: 1px 1px 3px #000;
+	-webkit-box-shadow: 1px 1px 3px #000;
+	box-shadow: 1px 1px 3px #000;
+}
+.close:hover { background: #00d9ff; }
+
+.detalle-pago{
+  padding: 20px;
+}
+.detalle-pago> h4 {
+  padding-bottom: 10px;
+}
+.detalle-pago> h5{
+  padding-bottom: 5px;
+}
+.detalle-pago> p{
+  font-size: 0.8rem;
+}
+/* ---------------------------------------Fin Modal------------------------------------------- */
