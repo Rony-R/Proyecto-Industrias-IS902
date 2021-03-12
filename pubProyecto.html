@@ -50,9 +50,9 @@
           <h1>Comenzemos a publicar tu proyecto</h1>
           <form
             class="form-child"
-            action=""
-            type="POST"
-            enctype="multipart/formdata"
+            action="./ajax/procesarProyecto.php"
+            method="POST"
+            enctype="multipart/form-data"
           >
             <div class="form-row">
               <div class="col-lg-8 col-md-8 col-sm-12">
@@ -92,6 +92,7 @@
                 <label for="">Información de Contacto</label>
                 <input
                   id="correo"
+                  name="correo"
                   type="text"
                   class="form-control"
                   placeholder="Correo Electrónico"
@@ -107,6 +108,7 @@
               <div class="col-lg-8 col-md-8 col-sm-12">
                 <input
                   id="telefono"
+                  name="telefono"
                   type="text"
                   class="form-control"
                   placeholder="Número de Telefono"
@@ -123,6 +125,7 @@
 
                 <select
                   id="slcPresupuesto"
+                  name="slcPresupuesto"
                   class="form-select input-pad"
                   aria-label="Default select example"
                 >
@@ -148,10 +151,11 @@
 
             <div class="form-row">
               <div class="col-lg-8 col-md-8 col-sm-12">
-                <label for="imagenes">Imagenes</label>
+                <label for="inpt-img">Imagenes</label>
                 <input
+                  id="file"
                   type="file"
-                  name="imagenes"
+                  name="file[]"
                   class="form-control"
                   multiple
                 />
@@ -165,7 +169,8 @@
               <div class="col-lg-8 col-md-8">
                 <button
                   id="btnPublicar"
-                  type="button"
+                  type="submit"
+                  name="submit"
                   class="btn btn-lg btn-primary"
                 >
                   Publicar

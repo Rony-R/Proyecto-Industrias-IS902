@@ -62,9 +62,35 @@ $("#btnPublicar").click(function () {
         "#telefono"
       ).val()}&presupuesto=${$("#slcPresupuesto").val()}`;
 
-      //Captura de las imagenes:
-      var ruta = "img/";
-      var nombre;
+      //Lista de las imagenes:
+
+      // const fileSelector = $("#file-selector").val();
+      // console.log(fileSelector);
+
+      var fileInput = document.getElementById("inpt-img");
+
+      var files = fileInput.files;
+
+      var file;
+
+      for (var i = 0; i < files.length; i++) {
+        //file = files.item(i);
+        file = files[i];
+        console.log(file);
+      }
+
+      // $.ajax({
+      //   url: "ajax/api.php?accion=publicarProyecto",
+      //   method: "POST",
+      //   data: data,
+      //   dataType: "text",
+      //   success: function (respuesta) {
+      //     console.log("Success" + respuesta);
+      //   },
+      //   error: function (e, text, error) {
+      //     console.log("Ocurrio un error:" + error + " " + text);
+      //   },
+      // });
 
       console.log("La data es: " + data);
     } else {
