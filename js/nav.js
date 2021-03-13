@@ -102,3 +102,7 @@ $("#btnPublicar").click(function (e) {
     }
   }
 });
+
+$("#guardar-publicacion").click(function () {
+  alert("Guardando Publicacion!");
+});

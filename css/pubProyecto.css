@@ -20,6 +20,14 @@ h1 {
   padding: 0px 10px;
 }
 
+.card-title {
+  font-weight: bold !important;
+}
+
+.lb-rev {
+  margin-right: 5px !important;
+}
+
 .form-child {
   padding: 10px 5%;
   /* display: flex;
