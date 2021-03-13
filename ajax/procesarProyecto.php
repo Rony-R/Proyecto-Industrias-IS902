@@ -30,7 +30,7 @@
             <img class="logoImg" src="../img/logos/logo2.png" alt="" />
           </a>
         </li>
-        <li class="item"><a href="#">Home</a></li>
+        <li class="item"><a href="index.html">Home</a></li>
         <li class="item"><a href="#">Registrarse</a></li>
         <li class="item button log"><a href="#">Iniciar Sesión</a></li>
         <li class="item button">
