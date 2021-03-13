@@ -43,7 +43,9 @@ var validarCampoVacio = function (id) {
   }
 };
 
-$("#btnPublicar").click(function () {
+$("#btnPublicar").click(function (e) {
+  //e.preventDefault();
+
   var v1 = validarCampoVacio("nombProyecto");
   var v2 = validarCampoVacio("descProyecto");
   var v3 = validarCampoVacio("correo");
@@ -62,12 +64,14 @@ $("#btnPublicar").click(function () {
         "#telefono"
       ).val()}&presupuesto=${$("#slcPresupuesto").val()}`;
 
+      $("#modalDatos").modal();
+
       //Lista de las imagenes:
 
       // const fileSelector = $("#file-selector").val();
       // console.log(fileSelector);
 
-      var fileInput = document.getElementById("inpt-img");
+      var fileInput = document.getElementById("file");
 
       var files = fileInput.files;
 

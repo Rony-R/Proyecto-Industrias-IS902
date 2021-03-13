@@ -20,9 +20,6 @@ h1 {
   padding: 0px 10px;
 }
 
-.form-dad {
-}
-
 .form-child {
   padding: 10px 5%;
   /* display: flex;
@@ -35,4 +32,18 @@ h1 {
 .disclaimer-p {
   margin-top: 15px;
   margin-bottom: 0px;
+}
+
+.btn-rev1 {
+  margin-top: 5px;
+  margin-right: 10px;
+  margin-left: 0px;
+  margin-bottom: 5px;
+}
+
+.btn-rev2 {
+  margin-top: 5px;
+  margin-right: 0px;
+  margin-left: 10px;
+  margin-bottom: 5px;
 }

@@ -18,6 +18,12 @@
 
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
 
     <title>Publica tu Proyecto</title>
   </head>
@@ -40,6 +46,42 @@
         </li>
       </ul>
     </nav>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="modalDatos"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Revisión de los Datos
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">...</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="container">
       <div class="row">
@@ -151,7 +193,7 @@
 
             <div class="form-row">
               <div class="col-lg-8 col-md-8 col-sm-12">
-                <label for="inpt-img">Imagenes</label>
+                <label for="file">Imagenes</label>
                 <input
                   id="file"
                   type="file"
@@ -172,6 +214,8 @@
                   type="submit"
                   name="submit"
                   class="btn btn-lg btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalDatos"
                 >
                   Publicar
                 </button>
