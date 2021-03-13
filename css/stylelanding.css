@@ -1,0 +1,77 @@
+html, body, header, #intro {
+    height: 100%;
+}
+
+#intro {
+    background: url("https://i.imgur.com/5kXLwm1.jpg")no-repeat center center fixed;
+    background-size: cover;
+}
+
+
+.heading-eyebrow{
+    font-size: 24px;
+    letter-spacing: .67px;
+    line-height: 27px;
+    font-style: italic;
+    font-family: Canela Web;
+    font-weight: 400;
+    margin-bottom: 100px;
+}
+
+.heading-title{
+    font-size: 48px;
+    letter-spacing: 6px;
+    line-height: 52px;
+    font-family: ;
+    white-space: nowrap;
+    margin-top: 10px;
+    font-style: normal;
+}
+
+.text-panel-gallery{
+    text-align: center;
+    font-family: Neue Helvetica,Helvetica,sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 1.5rem;
+    letter-spacing: .16667em;
+    line-height: 1.29167em;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    margin-bottom: 60px;
+    margin-right: 100px;
+}
+
+.text-panel{
+    padding: 0 100px;
+    font-family: Monotype Garamond,Garamond,serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.125rem;
+    letter-spacing: .02778em;
+    line-height: 1.5em;
+    text-align: center;
+    vertical-align: middle;
+
+} 
+
+.panel-heading{font-family: Neue Helvetica,Helvetica,sans-serif;
+font-weight: 700;
+font-style: normal;
+font-size: 1rem;
+letter-spacing: .25em;
+line-height: 1.3125em;
+text-transform: uppercase
+}
+
+
+.black-filter, .rgba-black-strong::after {
+    background-color: rgba(0,0,0,.7);
+}
+
+.view {
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+}
+
