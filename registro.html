@@ -44,13 +44,16 @@
           <h1>Creación de Cuenta</h1>
           
           <div class="row">
-              <div class="col-4">
+            <form class="form-child" action="" type="POST" enctype="multipart/formdata">
+              <div class="col-4" style="margin-left: 10px;">
                 <label for="tipoRegistro">Tipo de Cuenta</label>
                 <select class="form-control" onchange="cambiar()" name="tipoRegistro" id="tipoRegistro">
                     <option value="1" selected>Personal</option>
                     <option value="2" >Empresarial</option>
                 </select>
               </div>
+            </form>
+              
           </div>
 
 
@@ -108,7 +111,7 @@
                     <div class="form-row">
                     <div class="col-lg-8 col-md-8">
                         <button id="btnPersonallForm" type="button" class="btn btn-lg btn-primary" onclick="validarPersona()">
-                        Crear Cuenta Personal
+                        Crear Cuenta
                         </button>
                     </div>
                     </div>
@@ -172,7 +175,7 @@
                     <div class="form-row">
                     <div class="col-lg-8 col-md-8">
                         <button id="btnEmpresaForm" type="button" class="btn btn-lg btn-primary" onclick="validarEmpresa()">
-                        Crear Cuenta Empresarial
+                        Crear Cuenta
                         </button>
                     </div>
                     </div>
