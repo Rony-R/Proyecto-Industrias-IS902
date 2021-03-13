@@ -73,8 +73,8 @@
                     else if ($size > $max_size){
                         $resultado = "El tamaño supera el máximo permitido: 1MB.";
                     }
-                    else if ($type != 'image/jpg' && $type != 'image/png' && $type != 'image/gif') {
-                        $resultado = "Los unicos archivos permitidos son: .jpg|.png|.gif";
+                    else if ($type != 'image/jpg' && $type != 'image/png' && $type != 'image/gif' && $type != 'image/jpeg') {
+                        $resultado = "Los unicos archivos permitidos son: .jpg|.png|.gif|.jpeg";
                     }
     
                     else{
@@ -127,7 +127,7 @@
                                     echo '<li class="list-group-item">'.$imgNames[$i].'</li>';
                                 }
                             echo '</ul>';
-                            echo '<a href="../pubProyecto.html" class="btn btn-danger btn-rev1">Cancelar</a>';
+                            echo '<a href="../pubProyecto.html" class="btn btn-secondary btn-rev1">Cancelar</a>';
                             echo '<button id="guardar-publicacion" type="button" class="btn btn-primary btn-rev2">Guardar</button>';
                         echo '</div>';
                     echo '</div>';
