@@ -1,148 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"> -->
-  <script src="https://kit.fontawesome.com/38614da2b6.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="css/perfil-pagos.css">
-  <title>Perfil</title>
-</head>
-<body class="grid-container">
-  <nav class="navbar">
-    <ul class="grid-navbar">
-      <li class="nav-item1">
-        <a href="#"><img class="logo" src="./img/logos/logo1.png" alt="logo" /></a>
-      </li>
-      <li class="nav-item2">
-        <input type="text" name="txt-search" id="txt-search" placeholder="Buscar">
-        <button class="btn-search"><i class="fas fa-search"></i></button>
-      </li>
-      <li class="nav-item3">
-        <a href="#"><i class="fab fa-empire"></i></a>
-      </li>
-      <li class="nav-item4">
-        <a href="#"><img class="img-perfil" src="./img/Empressas/Empresa x/logo.jpg" alt=""></a>
-      </li>
-    </ul>
-  </nav>
-  <aside class="sidebar">
-    <div class="menu-lateral">
-      <ul>
-        <li></i><a href="perfil-publicaciones.html"><i class="fas fa-house-user"></i><div class="cont-nav">Pagina principal</div></a></li>
-        <li><a href="perfil-info-personal.html"><i class="fas fa-clipboard-list"></i><div class="cont-nav">Información personal</div></a></li>
-        <li><a href="perfil-configuracion.html"><i class="fas fa-user-cog"></i><div class="cont-nav">Configuracion</div></a></li>
-        <li><a href="perfil-pagos.html"><i class="fas fa-credit-card"></i><div class="cont-nav">Pagos</div></a></li>
-        <div class="line"></div>
-        <li><a href="#"><i class="fas fa-info-circle"></i><div class="cont-nav">Informacion</div></a></li>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/38614da2b6.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./css/perfil-maquetado.css">
+    <link rel="stylesheet" href="css/perfil-pagos.css" />
+    <title>Perfil</title>
+  </head>
+  <body class="grid-container">
+    <nav class="navbar">
+      <ul class="grid-navbar">
+        <li class="nav-item1">
+          <a href="#"
+            ><img class="logo" src="./img/logos/logo1.png" alt="logo"
+          /></a>
+        </li>
+        <li class="nav-item2"><div class="nombre-empresa">Empresa x</div></li>
+        <li class="nav-item4">
+          <a href="#"
+            ><img
+              class="img-perfil"
+              src="./img/Empressas/Empresa x/logo.jpg"
+              alt=""
+          /></a>
+        </li>
       </ul>
-    </div>
-  </aside>
-  <!-- Informacion Personal de la empresa -->
-  <article class="main">
-    <div class="grid-main">
-      <div class="items">
-        <h1>Pagos y suscripciones</h1>
-        <img class="img-publicaciones" src="./img/perfil/Mobile_pay_re_sjb8.svg" alt="">
-      </div>
-      <div class="info-basica">
-        <fieldset>
-          <legend class="scheduler-border"><h3>Formas de pago</h3></legend>
-          <div class="card-formas-pago">
-            <p>Paga tus servicios obtenido por los estudiantes de ingenieria en sistemas, por medio de pagos en linea de forma segura y confiable.</p>
-            <img src="./img/perfil/online_payments_luau.svg" alt="">
-          </div>
-          <div class="form-forma-pago">
-            <a href="#openModal" >
-              Administra tus formas de pagos
+    </nav>
+    <aside class="sidebar">
+      <div class="menu-lateral">
+        <ul>
+          <li>
+            <a href="publicaciones.html"
+              ><i class="fas fa-house-user"></i>
+              <div class="cont-nav">Pagina principal</div>
             </a>
-          </div>
-        </fieldset>
-        <fieldset>
-          <legend><h3>Pagos Realizados</h3></legend>
-          <img class="img-transfer" src="./img/perfil/transfer_money_rywa.svg" alt="">
-          <div class="pago">
-            <h5>09/03/2021</h5>
-            <h4>Titulo proyecto</h4>
-            <h5>pago total: $100</h5>
-            <h5>Freelancer: Peter Parker</h5>
-            <a href="#mdl-detalle-pago">Ver detalles</a>
-          </div>
-          <div class="pago">
-            <h5>09/03/2021</h5>
-            <h4>Titulo proyecto</h4>
-            <h5>pago total: $100</h5>
-            <h5>Freelancer: Peter Parker</h5>
-            <a href="#mdl-detalle-pago">Ver detalles</a>
-          </div>
-          <div class="pago">
-            <h5>09/03/2021</h5>
-            <h4>Titulo proyecto</h4>
-            <h5>pago total: $100</h5>
-            <h5>Freelancer: Peter Parker</h5>
-            <a href="#mdl-detalle-pago">Ver detalles</a>
-          </div>
-        </fieldset>
+          </li>
+          <li>
+            <a href="perfil-info-personal.html"
+              ><i class="fas fa-clipboard-list"></i>
+              <div class="cont-nav">Información personal</div></a
+            >
+          </li>
+          <li>
+            <a href="perfil-publicaciones.html"
+              ><i class="fas fa-user-cog"></i>
+              <div class="cont-nav">Publicaciones Propias</div></a
+            >
+          </li>
+          <li>
+            <a href="perfil-pagos.html"
+              ><i class="fas fa-credit-card"></i>
+              <div class="cont-nav">Pagos</div></a
+            >
+          </li>
+          <div class="line"></div>
+          <li>
+            <a href="#"
+              ><i class="fas fa-info-circle"></i>
+              <div class="cont-nav">Informacion</div></a
+            >
+          </li>
+        </ul>
       </div>
-    <!-- Fin Informacion Personal de la empresa -->
-  </article>
-  <footer class="footer">
-    <div class="grid-footer">
-      <h4>© 2020 Copyright: 
-      <a class="text-light" href="https://www.unah.edu.hn/"> UNAH - www.unah.edu.hn</a></h4>
-    </div>
-  </footer>
-  <!-- Ventana modal formas de pago -->
-  <div id="openModal" class="modalDialog">
-    <div>
-      <a href="#close" title="Close" class="close">X</a>
+    </aside>
+    <!-- Informacion Personal de la empresa -->
+    <article class="main">
+      <div class="grid-main">
+        <div class="items">
+          <h1>Pagos y suscripciones</h1>
+          <img
+            class="img-publicaciones"
+            src="./img/perfil/Mobile_pay_re_sjb8.svg"
+            alt=""
+          />
+        </div>
+        <div class="info-basica">
+          <fieldset>
+            <legend class="scheduler-border"><h3>Formas de pago</h3></legend>
+            <div class="card-formas-pago">
+              <p>
+                Paga tus servicios obtenido por los estudiantes de ingenieria en
+                sistemas, por medio de pagos en linea de forma segura y
+                confiable.
+              </p>
+              <img src="./img/perfil/online_payments_luau.svg" alt="" />
+            </div>
+            <div class="form-forma-pago">
+              <a href="#openModal"> Administra tus formas de pagos </a>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend><h3>Pagos Realizados</h3></legend>
+            <img
+              class="img-transfer"
+              src="./img/perfil/transfer_money_rywa.svg"
+              alt=""
+            />
+            <div class="pago">
+              <h5>09/03/2021</h5>
+              <h4>Titulo proyecto</h4>
+              <h5>pago total: $100</h5>
+              <h5>Freelancer: Peter Parker</h5>
+              <a href="#mdl-detalle-pago">Ver detalles</a>
+            </div>
+            <div class="pago">
+              <h5>09/03/2021</h5>
+              <h4>Titulo proyecto</h4>
+              <h5>pago total: $100</h5>
+              <h5>Freelancer: Peter Parker</h5>
+              <a href="#mdl-detalle-pago">Ver detalles</a>
+            </div>
+            <div class="pago">
+              <h5>09/03/2021</h5>
+              <h4>Titulo proyecto</h4>
+              <h5>pago total: $100</h5>
+              <h5>Freelancer: Peter Parker</h5>
+              <a href="#mdl-detalle-pago">Ver detalles</a>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+      <!-- Fin Informacion pagos -->
+    </article>
+    <footer class="footer">
+      <div class="grid-footer">
+        <img class="logo-footer" src="./img/logos/logo2.png" alt="" />
+        <h3 class="developers">Desarrolladores</h3>
+        <div class="developer developer1">
+          <img src="./img/logos/prof.jpeg" alt="" />
+          <h4>Andres Lizardo</h4>
+        </div>
+        <div class="developer developer2">
+          <img src="./img/logos/prof.jpeg" alt="" />
+          <h4>Rafael Bautista</h4>
+        </div>
+        <div class="developer developer3">
+          <img src="./img/logos/prof.jpeg" alt="" />
+          <h4>Jheral Blanco</h4>
+        </div>
+        <div class="developer developer4">
+          <img src="./img/logos/prof.jpeg" alt="" />
+          <h4>Rony Rodriguez</h4>
+        </div>
+        <div class="developer developer5">
+          <img src="./img/logos/prof.jpeg" alt="" />
+          <h4>Josue Lanza</h4>
+        </div>
+        <div class="copy">
+          <h4>
+            © 2020 Copyright:
+            <a class="text-light" href="https://www.unah.edu.hn/">
+              UNAH - www.unah.edu.hn</a
+            >
+          </h4>
+        </div>
+      </div>
+    </footer>
+    <!-- Ventana modal formas de pago -->
+    <div id="openModal" class="modalDialog">
+      <div>
+        <a href="#close" title="Close" class="close">X</a>
         <div class="card-forma">
-          <img src="./img/perfil/Visa.png" alt="">
+          <img src="./img/perfil/Visa.png" alt="" />
           <h4>Visa</h4>
           <h5>Visa••••8793</h5>
           <h5>Vence 01/01/2022</h5>
           <div class="btn-accion">
-            <a class="btn-publicacion eliminar" href="#"><i class="fas fa-trash-alt"></i>Eliminar</a>
-            <a class="btn-publicacion editar" href="#"><i class="fas fa-pencil-alt"></i>Editar</a>
+            <a class="btn-publicacion eliminar" href="#"
+              ><i class="fas fa-trash-alt"></i>Eliminar</a
+            >
+            <a class="btn-publicacion editar" href="#"
+              ><i class="fas fa-pencil-alt"></i>Editar</a
+            >
           </div>
         </div>
         <div class="card-forma">
-          <img src="./img/perfil/MasterCard_Logo.svg.png" alt="">
+          <img src="./img/perfil/MasterCard_Logo.svg.png" alt="" />
           <h4>Visa</h4>
           <h5>Visa••••8793</h5>
           <h5>Vence 01/01/2022</h5>
           <div class="btn-accion">
-            <a class="btn-publicacion eliminar" href="#"><i class="fas fa-trash-alt"></i>Eliminar</a>
-            <a class="btn-publicacion editar" href="#"><i class="fas fa-pencil-alt"></i>Editar</a>
+            <a class="btn-publicacion eliminar" href="#"
+              ><i class="fas fa-trash-alt"></i>Eliminar</a
+            >
+            <a class="btn-publicacion editar" href="#"
+              ><i class="fas fa-pencil-alt"></i>Editar</a
+            >
           </div>
         </div>
-        
+
         <div class="card-forma add">
           <a href="#">
             <h4>Agregar tarjeta</h4>
             <i class="fas fa-plus-square"></i>
           </a>
         </div>
+      </div>
     </div>
-  </div>
 
-  <div id="mdl-detalle-pago" class="modalDialog">
-    <div>
-      <a href="#close" title="Close" class="close">X</a>
+    <div id="mdl-detalle-pago" class="modalDialog">
+      <div>
+        <a href="#close" title="Close" class="close">X</a>
         <div class="detalle-pago">
           <h4>Titulo del proyecto</h4>
           <h5>Fecha de pago: 09/03/2021</h5>
           <h5>Pago realizado: $100</h5>
           <h5>Freelancer: Peter Parker</h5>
           <h5>Fecha de entrega de proyecto: 08/03/2021</h5>
-          <p><h5>descripcion del proyecto:</h5>  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic accusamus suscipit vitae, recusandae dicta eos molestias voluptates debitis laboriosam repellendus corrupti unde, iusto sapiente possimus ratione libero itaque omnis doloremque?</p>
-
+          <h5>descripcion del proyecto:</h5>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic
+            accusamus suscipit vitae, recusandae dicta eos molestias voluptates
+            debitis laboriosam repellendus corrupti unde, iusto sapiente
+            possimus ratione libero itaque omnis doloremque?
+          </p>
         </div>
+      </div>
     </div>
-  </div>
-  <!-- Fin Ventana modal formas de pago -->
+    <!-- Fin Ventana modal formas de pago -->
 
-  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script> -->
   </body>
-  </html>
+</html>
