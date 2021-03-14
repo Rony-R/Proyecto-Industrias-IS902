@@ -9,7 +9,7 @@ body {
 }
 
 nav {
-  background-color: #222;
+  background-color: #161e2c;
 }
 
 ul {
@@ -179,6 +179,13 @@ a:hover {
   padding: 20px;
 }
 
+.container,
+.container-lg,
+.container-md,
+.container-sm {
+  max-width: 95% !important;
+}
+
 /*Footer Styles*/
 
 .logoFoot {
@@ -208,7 +215,7 @@ a:hover {
 
 footer {
   background-color: #161e2c;
-  padding: 20px 35px;
+  padding: 20px 30px;
 }
 
 .footRow {
@@ -217,4 +224,9 @@ footer {
 
 .txt-just {
   text-align: justify;
+}
+
+footer .col-md-4,
+.col-md-2 {
+  padding: 0px !important;
 }
