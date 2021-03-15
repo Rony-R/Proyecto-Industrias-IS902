@@ -14,7 +14,7 @@
     />
 
     <link rel="stylesheet" href="css/nav.css" />
-    <link rel="stylesheet" href="css/pubProyecto.css" />
+    <link rel="stylesheet" href="css/pubProyecto2.css" />
 
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -24,6 +24,14 @@
       integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
       crossorigin="anonymous"
     ></script>
+
+    <!--Font Awesome-->
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
 
     <title>Publica tu Proyecto</title>
   </head>
@@ -47,181 +55,119 @@
       </ul>
     </nav>
 
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="modalDatos"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">
-              Revisión de los Datos
-            </h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div id="modal-pub-info" class="modal-body"></div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
+    <div class="row mb-3">
+      <div class="col-lg-5 col-md-5 col-sm-12">
+        <div class="img">
+          <img class="img-fluid" src="./img/logos/progra.svg" alt="" />
         </div>
       </div>
-    </div>
+      <div class="col-lg-7 col-md-7 col-sm-12">
+        <div class="container">
+          <div class="form-container">
+            <form
+              class=""
+              action="./ajax/procesarProyecto.php"
+              method="POST"
+              enctype="multipart/form-data"
+            >
+              <h2>Comenzemos a Publicar tu Proyecto</h2>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4">
-          <img src="./img/logos/progra.svg" class="img-fluid" alt="" />
-        </div>
-        <div class="form-dad col-lg-8">
-          <h1>Comenzemos a publicar tu proyecto</h1>
-          <form
-            class="form-child"
-            action="./ajax/procesarProyecto.php"
-            method="POST"
-            enctype="multipart/form-data"
-          >
-            <div class="form-row">
-              <div class="col-lg-8 col-md-8 col-sm-12">
-                <label for="nombProyecto">Nombre del Proyecto</label>
-                <input
-                  id="nombProyecto"
-                  name="nombProyecto"
-                  type="text"
-                  class="form-control input-pad"
-                  placeholder="Nombre"
-                />
-                <div class="invalid-feedback">
-                  No puedes dejar este campo vacio.
+              <div class="input-div">
+                <div class="i">
+                  <i class="fas fa-file-code"></i>
+                </div>
+                <div>
+                  <input
+                    id="nombProyecto"
+                    name="nombProyecto"
+                    type="text"
+                    class="input"
+                    placeholder="Nombre del Proyecto"
+                  />
                 </div>
               </div>
-            </div>
 
-            <div class="form-row">
-              <div class="col-lg-8 col-md-8 col-sm-12">
-                <label for="">Descripción del Proyecto</label>
-                <textarea
-                  id="descProyecto"
-                  name="descProyecto"
-                  cols="30"
-                  rows="5"
-                  class="form-control input-pad"
-                  placeholder="Añade una descripción del proyecto; para que lo necesitas, se detallista y específico."
-                ></textarea>
-                <div class="invalid-feedback">
-                  No puedes dejar este campo vacio.
+              <div class="input-div">
+                <div class="i">
+                  <i class="fas fa-align-justify"></i>
+                </div>
+                <div>
+                  <textarea
+                    id="descProyecto"
+                    name="descProyecto"
+                    cols="30"
+                    rows="10"
+                    class="input"
+                    placeholder="Descripción del Proyecto"
+                  ></textarea>
                 </div>
               </div>
-            </div>
 
-            <div class="form-row">
-              <div class="col-lg-8 col-md-8 col-sm-12">
-                <label for="">Información de Contacto</label>
-                <input
-                  id="correo"
-                  name="correo"
-                  type="text"
-                  class="form-control"
-                  placeholder="Correo Electrónico"
-                  onkeydown="validarEmail('correo');"
-                />
-                <div id="validacion-correo" class="invalid-feedback">
-                  No puedes dejar este campo vacio.
+              <div class="input-div">
+                <div class="i">
+                  <i class="fas fa-dollar-sign"></i>
+                </div>
+                <div>
+                  <select
+                    id="slcPresupuesto"
+                    name="slcPresupuesto"
+                    class="input"
+                    aria-label="Default select example"
+                  >
+                    <option value="0" selected>Rango de Presupuesto</option>
+                    <option value="1">$1,500 - $3,000</option>
+                    <option value="2">$3,000 - $5,000</option>
+                    <option value="3">$5,000 - $10,000</option>
+                    <option value="4">$10,000 - $20,000</option>
+                    <option value="5">Más de $20,000</option>
+                  </select>
                 </div>
               </div>
-            </div>
 
-            <div class="form-row">
-              <div class="col-lg-8 col-md-8 col-sm-12">
-                <input
-                  id="telefono"
-                  name="telefono"
-                  type="text"
-                  class="form-control"
-                  placeholder="Número de Telefono"
-                />
-                <div class="invalid-feedback">
-                  No puedes dejar este campo vacio.
+              <div class="input-div">
+                <div class="i">
+                  <i class="fas fa-laptop-code"></i>
+                </div>
+                <div>
+                  <select
+                    id="slcTipoProyecto"
+                    name="slcTipoProyecto"
+                    class="input"
+                    aria-label="Default select example"
+                  >
+                    <option value="0" selected>Tipo de Proyecto</option>
+                    <option value="1">Desarrollo Web</option>
+                    <option value="2">Desarrollo Móvil</option>
+                    <option value="3">Redes</option>
+                  </select>
                 </div>
               </div>
-            </div>
 
-            <div class="form-row">
-              <div class="col-lg-8 col-md-8 col-sm-12">
-                <label for="presupuesto">Presupuesto</label>
-
-                <select
-                  id="slcPresupuesto"
-                  name="slcPresupuesto"
-                  class="form-select input-pad"
-                  aria-label="Default select example"
-                >
-                  <option value="0" selected>Rango de Monto</option>
-                  <option value="1">$1,500 - $3,000</option>
-                  <option value="2">$3,000 - $5,000</option>
-                  <option value="3">$5,000 - $10,000</option>
-                  <option value="4">$10,000 - $20,000</option>
-                  <option value="5">Más de $20,000</option>
-                </select>
-                <div class="invalid-feedback">
-                  No puedes dejar este campo vacio.
+              <div class="input-div">
+                <div class="i">
+                  <i class="fas fa-images"></i>
                 </div>
-
-                <div class="disclaimer-p">
-                  <p>
-                    Este presupuesto esta sujeto a cambios dependiendo de la
-                    magnitud proyecto y de la(s) persona(s) que lo realizen.
-                  </p>
+                <div>
+                  <input
+                    id="file"
+                    type="file"
+                    name="file[]"
+                    class="input"
+                    multiple
+                  />
                 </div>
               </div>
-            </div>
 
-            <div class="form-row">
-              <div class="col-lg-8 col-md-8 col-sm-12">
-                <label for="file">Imagenes</label>
-                <input
-                  id="file"
-                  type="file"
-                  name="file[]"
-                  class="form-control"
-                  multiple
-                />
-                <div class="invalid-feedback">
-                  No puedes dejar este campo vacio.
-                </div>
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="col-lg-8 col-md-8">
-                <button
-                  id="btnPublicar"
-                  type="submit"
-                  name="submit"
-                  class="btn btn-lg btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#modalDatos"
-                >
-                  Publicar
-                </button>
-              </div>
-            </div>
-          </form>
+              <button
+                id="btnPublicar"
+                type="submit"
+                name="submit"
+                class="btn btnPub"
+              >
+                Publicar
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
