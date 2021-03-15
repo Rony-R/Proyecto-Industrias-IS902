@@ -42,14 +42,13 @@ header,
   text-transform: uppercase;
   box-sizing: border-box;
   margin-bottom: 60px;
-  margin-right: 100px;
+  text-align: center;
 }
 
 .text-panel {
-  padding: 0 100px;
+  padding: 0 50px;
   font-family: Monotype Garamond, Garamond, serif;
   font-weight: 400;
-
   letter-spacing: 0.02778em;
   line-height: 1.5em;
   text-align: center;
