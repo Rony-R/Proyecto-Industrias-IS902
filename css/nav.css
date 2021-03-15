@@ -22,7 +22,7 @@ a {
 }
 
 a:hover {
-  color: rgb(19, 214, 19);
+  color: #33b5e5;
 }
 
 .menu li {
@@ -123,8 +123,8 @@ a:hover {
   .button a {
     padding: 7px 15px;
     border-radius: 50em;
-    background-color: #e67103;
-    border: 1px solid #f33939f1;
+    background-color: rgba(164, 46, 223, 0.527);
+    border: 1px solid #33b5e5;
   }
 
   .button.log a {
@@ -134,11 +134,12 @@ a:hover {
   .button a:hover {
     transition: all 0.25s;
     color: white;
+    background: rgba(176, 69, 230, 0.884);
   }
 
   .button:not(.log) a:hover {
-    background: #f7841a;
-    border-color: #f54b4bf1;
+    background: rgba(176, 69, 230, 0.884);
+    border-color: #33b5e5;
     color: white;
   }
 }
