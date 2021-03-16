@@ -4,8 +4,12 @@
 
 switch ($_GET["accion"]) {
   case "1":
-    $hola = 
-    echo ("Hola mundo");
+    $json = array();
+    $json[] = array(
+      'nombre' => 'Jheral Blanco'
+    );
+    $jsonHola = json_encode($json);
+    echo $jsonHola;
     break;
   
   default:

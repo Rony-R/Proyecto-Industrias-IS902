@@ -5,6 +5,7 @@ let  obtenerTecnologias = () =>{
     dataType: 'json',
     success:function(response){
       console.log(response);
+      
     },
     error:function(e){
         console.log(e);
