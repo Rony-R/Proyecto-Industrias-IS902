@@ -1,0 +1,57 @@
+label {
+  margin-top: 10px;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+input {
+  margin-bottom: 10px;
+}
+
+p {
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+}
+
+.col-md-4 {
+  padding: 0px 10px;
+}
+
+.card-title {
+  font-weight: bold !important;
+}
+
+.lb-rev {
+  margin-right: 5px !important;
+}
+
+.form-child {
+  padding: 10px 5%;
+  /* display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center; */
+}
+
+.disclaimer-p {
+  margin-top: 15px;
+  margin-bottom: 0px;
+}
+
+.btn-rev1 {
+  margin-top: 5px;
+  margin-right: 10px;
+  margin-left: 0px;
+  margin-bottom: 5px;
+}
+
+.btn-rev2 {
+  margin-top: 5px;
+  margin-right: 0px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
