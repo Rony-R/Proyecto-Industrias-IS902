@@ -17,17 +17,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="../css/nav.css" />
-    <link rel="stylesheet" href="../css/pubProyecto.css" />
+    <link rel="stylesheet" href="../css/pubProyecto2.css" />
 
     <title>Publicando el Proyecto...</title>
 </head>
-<body>
+<body id="grad">
     
     <nav>
       <ul class="menu">
         <li class="logo">
           <a href="#">
-            <img class="logoImg" src="../img/logos/logo2.png" alt="" />
+            <img class="logoImg" src="../img/logos/logo1.png" alt="" />
           </a>
         </li>
         <li class="item"><a href="index.html">Home</a></li>
@@ -46,11 +46,10 @@
 
         $v1 = ( empty($_POST['nombProyecto']) ) ? NULL : $_POST['nombProyecto'];
         $v2 = ( empty($_POST['descProyecto']) ) ? NULL : $_POST['descProyecto'];
-        $v3 = ( empty($_POST['correo']) ) ? NULL : $_POST['correo'];
-        $v4 = ( empty($_POST['telefono']) ) ? NULL : $_POST['telefono'];
+        $v3 = ( empty($_POST['slcTipoProyecto']) ) ? NULL : $_POST['slcTipoProyecto'];
         $v5 = ( empty($_POST['slcPresupuesto']) ) ? NULL : $_POST['slcPresupuesto'];
 
-        if($v1 && $v2 && $v3 && $v4 && $v5){
+        if($v1 && $v2 && $v3 && $v5){
 
             if(isset($_POST['submit'])){
 
@@ -95,8 +94,8 @@
                             echo '<ul class="list-group list-group-flush">';
                                 echo '<li class="list-group-item"><label class="font-weight-bold lb-rev">Nombre del Proyecto:</label>'.$_POST["nombProyecto"].'</li>';
                                 echo '<li class="list-group-item"><label class="font-weight-bold lb-rev">Descripción:</label>'.$_POST["descProyecto"].'</li>';
-                                echo '<li class="list-group-item"><label class="font-weight-bold lb-rev">Correo Electrónico:</label>'.$_POST["correo"].'</li>';
-                                echo '<li class="list-group-item"><label class="font-weight-bold lb-rev">Telefono:</label>'.$_POST["telefono"].'</li>';
+                                echo '<li class="list-group-item"><label class="font-weight-bold lb-rev">Tipo Proyecto:</label>'.$_POST["slcTipoProyecto"].'</li>';
+
                                 switch($_POST["slcPresupuesto"]){
                                     case 1:
                                         echo '<li class="list-group-item"><label class="font-weight-bold">Presupuesto: </label> $1,500 - $3,000</li>';
@@ -127,26 +126,26 @@
                                     echo '<li class="list-group-item">'.$imgNames[$i].'</li>';
                                 }
                             echo '</ul>';
-                            echo '<a href="../pubProyecto.html" class="btn btn-secondary btn-rev1">Cancelar</a>';
-                            echo '<button id="guardar-publicacion" type="button" class="btn btn-primary btn-rev2">Guardar</button>';
+                            echo '<a href="../pubProyecto.html" class="btn btn-rev1">Cancelar</a>';
+                            echo '<button id="guardar-publicacion" type="button" class="btn btn-rev2">Guardar</button>';
                         echo '</div>';
                     echo '</div>';
                 echo '</div>';
     
             }                   
         }
-        else{
-            echo'<div class="row justify-content-center">';
-                echo '<div class="card mb-3" style="width: 20rem; border:solid 2px;">';
-                    echo '<img src="../img/logos/warning.jfif" class="card-img-top mt-3" alt="...">';
-                    echo '<div class="card-body">';
-                        echo '<h5 class="card-title text-center">Advertencia!</h5>';
-                        echo '<p class="card-text text-justify">Todos los campos son obligatorios a excepción de las imagenes, asegurate de llenar todo.</p>';
-                        echo '<a href="../pubProyecto.html" class="btn btn-primary mt-3">Regresar</a>';
-                    echo '</div>';
-                echo '</div>';
-            echo '</div>';
-        }
+        // else{
+        //     echo'<div class="row justify-content-center">';
+        //         echo '<div class="card mb-3" style="width: 20rem; border:solid 2px;">';
+        //             echo '<img src="../img/logos/warning.jfif" class="card-img-top mt-3" alt="...">';
+        //             echo '<div class="card-body">';
+        //                 echo '<h5 class="card-title text-center">Advertencia!</h5>';
+        //                 echo '<p class="card-text text-justify">Todos los campos son obligatorios a excepción de las imagenes, asegurate de llenar todo.</p>';
+        //                 echo '<a href="../pubProyecto.html" class="btn btn-primary mt-3">Regresar</a>';
+        //             echo '</div>';
+        //         echo '</div>';
+        //     echo '</div>';
+        // }
 
     ?>
         <script src="../js/nav.js" type="text/javascript"></script>

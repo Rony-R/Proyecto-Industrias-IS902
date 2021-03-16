@@ -44,7 +44,7 @@ form h2 {
 
 .input-div {
   display: grid;
-  grid-template-columns: 7% 93%;
+  grid-template-columns: 7% 70% 23%;
   margin: 25px 0;
   padding: 5px 0;
   border-bottom: 2px solid #33b5e5;
@@ -79,6 +79,10 @@ form h2 {
   color: #555;
 }
 
+.invalid-feedback {
+  margin-left: 50%;
+}
+
 .btnPub {
   display: block;
   width: 100%;
@@ -102,6 +106,58 @@ form h2 {
 .btnPub:hover {
   color: whitesmoke;
   background-position: right;
+}
+
+.btn-rev1 {
+  margin-top: 5px;
+  margin-right: 10px;
+  margin-left: 0px;
+  margin-bottom: 5px;
+  color: white;
+  background-color: #161e2c;
+  border: 1px solid #33b5e5;
+  padding: 7px 15px;
+  border-radius: 50em;
+}
+
+.btn-rev2 {
+  margin-top: 5px;
+  margin-right: 0px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  color: white;
+
+  background-color: rgba(164, 46, 223, 0.89);
+  border: 1px solid #33b5e5;
+  padding: 7px 15px;
+  border-radius: 50em;
+  width: 150px;
+}
+
+.btn-rev1:hover {
+  color: white;
+  background-color: #161e2cf1;
+  border: 2px solid #25baf0;
+}
+
+.btn-rev2:hover {
+  color: white;
+  background-color: rgba(164, 46, 223, 0.527);
+  border: 2px solid #25baf0;
+}
+
+.card-title {
+  font-weight: bold !important;
+}
+
+.lb-rev {
+  margin-right: 5px !important;
+}
+
+label {
+  margin-top: 10px;
+  margin-bottom: 8px;
+  font-weight: bold;
 }
 
 @media Screen and (max-width: 1310px) {
@@ -131,5 +187,13 @@ form h2 {
     text-align: center;
     padding-left: 5%;
     padding-right: 5%;
+  }
+}
+
+@media Screen and (max-width: 1030px) {
+  .invalid-feedback {
+    margin-left: 0;
+    margin-top: 32px;
+    text-align: left;
   }
 }

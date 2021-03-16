@@ -31,75 +31,78 @@ var validarCampoVacio = function (id) {
       return true;
     }
   } else {
-    if ($("#" + id).val() == "") {
-      $("#" + id).removeClass("is-valid");
-      $("#" + id).addClass("is-invalid");
-      return false;
+    if (id == "slcTipoProyecto") {
+      if ($("#" + id).val() == "0") {
+        $("#" + id).removeClass("is-valid");
+        $("#" + id).addClass("is-invalid");
+        return false;
+      } else {
+        $("#" + id).removeClass("is-invalid");
+        $("#" + id).addClass("is-valid");
+        return true;
+      }
     } else {
-      $("#" + id).removeClass("is-invalid");
-      $("#" + id).addClass("is-valid");
-      return true;
+      if ($("#" + id).val() == "") {
+        $("#" + id).removeClass("is-valid");
+        $("#" + id).addClass("is-invalid");
+        return false;
+      } else {
+        $("#" + id).removeClass("is-invalid");
+        $("#" + id).addClass("is-valid");
+        return true;
+      }
     }
   }
 };
 
 $("#btnPublicar").click(function (e) {
-  //e.preventDefault();
-
   var v1 = validarCampoVacio("nombProyecto");
   var v2 = validarCampoVacio("descProyecto");
-  var v3 = validarCampoVacio("correo");
-  var v4 = validarCampoVacio("telefono");
+  var v3 = validarCampoVacio("slcTipoProyecto");
   var v5 = validarCampoVacio("slcPresupuesto");
 
-  var v6 = validarEmail("correo");
-
-  if (!v6) {
-    $("#validacion-correo").html("Ingresa un Correo Valido: ejemplo@gmail.com");
+  if (!v1 || !v2 || !v3 || !v5) {
+    e.preventDefault();
   } else {
-    if (v1 && v2 && v3 && v4 && v5 && v6) {
-      var data = `nombre=${$("#nombProyecto").val()}&descripcion=${$(
-        "#descProyecto"
-      ).val()}&correo=${$("#correo").val()}&telefono=${$(
-        "#telefono"
-      ).val()}&presupuesto=${$("#slcPresupuesto").val()}`;
+    var data = `nombre=${$("#nombProyecto").val()}&descripcion=${$(
+      "#descProyecto"
+    ).val()}&tipoProyecto=${$("#slcTipoProyecto").val()}&presupuesto=${$(
+      "#slcPresupuesto"
+    ).val()}`;
 
-      $("#modalDatos").modal();
+    //$("#modalDatos").modal();
 
-      //Lista de las imagenes:
+    //Lista de las imagenes:
 
-      // const fileSelector = $("#file-selector").val();
-      // console.log(fileSelector);
+    // const fileSelector = $("#file-selector").val();
+    // console.log(fileSelector);
 
-      var fileInput = document.getElementById("file");
+    var fileInput = document.getElementById("file");
 
-      var files = fileInput.files;
+    var files = fileInput.files;
 
-      var file;
+    var file;
 
-      for (var i = 0; i < files.length; i++) {
-        //file = files.item(i);
-        file = files[i];
-        console.log(file);
-      }
-
-      // $.ajax({
-      //   url: "ajax/api.php?accion=publicarProyecto",
-      //   method: "POST",
-      //   data: data,
-      //   dataType: "text",
-      //   success: function (respuesta) {
-      //     console.log("Success" + respuesta);
-      //   },
-      //   error: function (e, text, error) {
-      //     console.log("Ocurrio un error:" + error + " " + text);
-      //   },
-      // });
-
-      console.log("La data es: " + data);
-    } else {
-      alert("Todos los campos son obligatorios a excepcion de las imagenes.");
+    for (var i = 0; i < files.length; i++) {
+      //file = files.item(i);
+      file = files[i];
+      console.log(file);
     }
+
+    // $.ajax({
+    //   url: "ajax/api.php?accion=publicarProyecto",
+    //   method: "POST",
+    //   data: data,
+    //   dataType: "text",
+    //   success: function (respuesta) {
+    //     console.log("Success" + respuesta);
+    //   },
+    //   error: function (e, text, error) {
+    //     console.log("Ocurrio un error:" + error + " " + text);
+    //   },
+    // });
+
+    console.log("La data es: " + data);
   }
 });
 

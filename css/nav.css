@@ -39,6 +39,15 @@ a:hover {
   height: 50px;
 }
 
+#grad {
+  background-image: linear-gradient(
+    to right,
+    rgba(176, 69, 230, 0.425),
+    rgba(176, 69, 230, 0.74),
+    rgba(176, 69, 230, 0.952)
+  );
+}
+
 /*Mobile menu*/
 
 .menu {
