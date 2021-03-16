@@ -8,7 +8,7 @@
       src="https://kit.fontawesome.com/38614da2b6.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="./css/perfil-maquetado.css">
+    <link rel="stylesheet" href="./css/perfil-maquetado.css" />
     <link rel="stylesheet" href="css/perfil-info-personal.css" />
     <title>Perfil</title>
   </head>
@@ -163,7 +163,7 @@
     </article>
     <footer class="footer">
       <div class="grid-footer">
-        <img class="logo-footer" src="./img/logos/logo2.png" alt="" />
+        <img class="logo-footer" src="./img/logos/logo1.png" alt="" />
         <h3 class="developers">Desarrolladores</h3>
         <div class="developer developer1">
           <img src="./img/logos/prof.jpeg" alt="" />
@@ -195,5 +195,11 @@
         </div>
       </div>
     </footer>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="./js/controlador-perfil.js"></script>
   </body>
 </html>
