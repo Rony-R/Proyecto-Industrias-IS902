@@ -61,9 +61,32 @@ INSERT INTO TBL_TECNOLOGIAS (id_tecnologia, tecnologia) VALUES (null, 'Go');
 INSERT INTO TBL_TECNOLOGIAS (id_tecnologia, tecnologia) VALUES (null, '');
 INSERT INTO TBL_TECNOLOGIAS (id_tecnologia, tecnologia) VALUES (null, '');
 
--- INSERTS TBL_
+-- INSERTS TBL_USUARIO
+-- Freenlancers
+INSERT INTO `tbl_usuario` 
+  (`id_usuario`, `id_tipo_usuario`, `id_pais`, `nombre`, `apellido`, `direccion`, `correo`, `telefono`, `contrasenia`, `ruta_img_perfil`, `nombre_img_perfil`) 
+  VALUES 
+  (NULL, '1', '4', 'Peter', 'Parker', 'Honduras, Francisco Morazán, Tegucigalpa, 11101, UNAH CU', 'peter.parker@gmail.com', '8888-8888', 'asd.456', 'usuarios/', '1.jpg'), 
+  (NULL, '1', '4', 'Bruce', 'Wayne', 'Honduras, Francisco Morazán, Tegucigalpa, 11101, UNAH CU', 'bruce.wayne@unah.hn', '9999-9999', 'asd.456', 'usuarios/', '2.jpg');
 
--- INSERTS TBL_
+-- Empresas
+INSERT INTO `tbl_usuario` 
+  (`id_usuario`, `id_tipo_usuario`, `id_pais`, `nombre`, `apellido`, `direccion`, `correo`, `telefono`, `contrasenia`, `ruta_img_perfil`, `nombre_img_perfil`) 
+  VALUES 
+  (NULL, '2', '4', 'Patos Inc.', NULL, 'Honduras, Francisco Morazan, Tegucigalpa, 11101, UNAH CU', 'info@patosinc.com', '2222-2222', 'asd.456', 'empresas/1/', '1.png');
+  
+-- INSERTS TBL_TEC_X_USUARIO
+INSERT INTO `tbl_tec_x_usuario` 
+  (`id_usuario`, `id_tecnologia`) 
+  VALUES 
+  ('1', '18'), 
+  ('1', '14'), 
+  ('1', '12'), 
+  ('1', '2'), 
+  ('2', '12'), 
+  ('2', '7'), 
+  ('2', '4'), 
+  ('2', '24');
 
 -- INSERTS TBL_
 
