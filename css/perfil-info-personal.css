@@ -1,13 +1,13 @@
 /* ---------------------------------------Main------------------------------------------- */
 .card-info {
-  border: 1px solid #dadce0;
+  border: 1px solid #a6c;
   border-radius: 7px;
 }
 fieldset {
   padding: 20px;
 }
 .form-info {
-  border-bottom: 1px solid #dadce0;
+  border-bottom: 1px solid #a6c;
 }
 .form-info.img {
   display: block;
@@ -28,35 +28,40 @@ fieldset {
   color: #505253;
   height: 100%;
   width: 100%;
+
 }
 .form-info > a > label {
   display: inline-block;
   width: 30%;
-  margin-bottom: 5px;
+  height: 100%;
 }
 .form-info > a > h4 {
   display: inline-block;
-  width: 67%;
-  margin-bottom: 5px;
+  width: 65%;
+  overflow: hidden;
 }
-.form-info > a > fas {
+.form-info > a > ul {
   display: inline-block;
+  width: 65%;
+}
+.form-info > a > ul > li{
+  font-weight: 1.33rem;
+}
+.form-info > a > .fas{
+  /* display: inline-block; */
   width: 2%;
-  margin-bottom: 5px;
+  /* color: #33b5e5; */
+  color: #a6c;
 }
 /* ---------------------------------------Fin Main------------------------------------------- */
 /* ---------------------------------------Responsive--------------------------------------- */
 @media (max-width: 575.98px) {
 }
-
 @media (min-width: 576px) and (max-width: 767.98px) {
-  
 }
 @media (min-width: 768px) and (max-width: 991.98px) {
 }
-
 @media (min-width: 992px) and (max-width: 1199.98px) {
 }
-
 @media (min-width: 1210px) {
 }

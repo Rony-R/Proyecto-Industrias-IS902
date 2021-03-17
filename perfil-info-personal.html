@@ -20,10 +20,12 @@
             ><img class="logo" src="./img/logos/logo1.png" alt="logo"
           /></a>
         </li>
-        <li class="nav-item2"><div class="nombre-empresa">Empresa x</div></li>
+        <li class="nav-item2">
+          <div id="navNombre" class="nombre-empresa">Empresa x</div>
+        </li>
         <li class="nav-item4">
           <a href="#"
-            ><img
+            ><img id="navImgPerfil"
               class="img-perfil"
               src="./img/Empressas/Empresa x/logo.jpg"
               alt=""
@@ -46,13 +48,13 @@
               <div class="cont-nav">Información personal</div></a
             >
           </li>
-          <li>
+          <li id="navPublicaciones">
             <a href="perfil-publicaciones.html"
               ><i class="fas fa-user-cog"></i>
               <div class="cont-nav">Publicaciones Propias</div></a
             >
           </li>
-          <li>
+          <li id="navPagos">
             <a href="perfil-pagos.html"
               ><i class="fas fa-credit-card"></i>
               <div class="cont-nav">Pagos</div></a
@@ -88,6 +90,7 @@
             <legend><h3>Información básica</h3></legend>
             <div class="form-info img">
               <img
+                id="imagenPerfil"
                 class="foto-perfil"
                 src="./img/Empressas/Empresa x/logo.jpg"
                 alt="foto de perfil"
@@ -96,35 +99,28 @@
             <div class="form-info">
               <a href="#">
                 <label class="titulo-label">Nombre:</label>
-                <h4>Empresa X</h4>
+                <h4 id="nombre">Empresa X</h4>
+                <i class="fas fa-chevron-right"></i>
+              </a>
+            </div>
+            <div id="divApellido" class="form-info">
+              <a href="#">
+                <label class="titulo-label">Apellido:</label>
+                <h4 id="apellido">Empresa X</h4>
                 <i class="fas fa-chevron-right"></i>
               </a>
             </div>
             <div class="form-info">
               <a href="#">
-                <label>Fecha de inicio:</label>
-                <h4>10 de agosto de 2001</h4>
-                <i class="fas fa-chevron-right"></i>
-              </a>
-            </div>
-            <div class="form-info">
-              <a href="#">
-                <label>Sector:</label>
-                <h4>Salud, ...</h4>
-                <i class="fas fa-chevron-right"></i>
-              </a>
-            </div>
-            <div class="form-info">
-              <a href="#">
-                <label>Categoría:</label>
-                <h4>Fármacos, ...</h4>
+                <label>Pais:</label>
+                <h4 id="pais">Honduras</h4>
                 <i class="fas fa-chevron-right"></i>
               </a>
             </div>
             <div class="form-info">
               <a href="#">
                 <label>Contraseña:</label>
-                <h4>••••••••</h4>
+                <h4 id="contrasenia">••••••••</h4>
                 <i class="fas fa-chevron-right"></i>
               </a>
             </div>
@@ -136,23 +132,42 @@
             <div class="form-info">
               <a href="#">
                 <label class="titulo-label">Correo Electrónico:</label>
-                <h4>empresax.info@empresax.com</h4>
+                <h4 id="correo">empresax.info@empresax.com</h4>
                 <i class="fas fa-chevron-right"></i>
               </a>
             </div>
             <div class="form-info">
               <a href="#">
                 <label>Teléfono:</label>
-                <h4>+(504) 9999-9999</h4>
+                <h4 id="telefono">+(504) 9999-9999</h4>
                 <i class="fas fa-chevron-right"></i>
               </a>
             </div>
             <div class="form-info">
               <a href="#">
                 <label>Dirección:</label>
-                <h4>
+                <h4 id="direccion">
                   Honduras, Francisco Morazan, Tegucigalpa, 11101, UNAH CU
                 </h4>
+                <i class="fas fa-chevron-right"></i>
+              </a>
+            </div>
+          </fieldset>
+        </div>
+        <div class="info-basica" id="cardExperienciaLaboral">
+          <fieldset class="card-info">
+            <legend><h3>Experiencia laboral</h3></legend>
+            <div class="form-info">
+              <a href="#">
+                <label class="titulo-label">Habilidades:</label>
+                <h4 id="hTec"></h4>
+                <i class="fas fa-chevron-right"></i>
+              </a>
+            </div>
+            <div class="form-info">
+              <a href="#">
+                <label>Proyectos en DevFinder:</label>
+                <h4>5 proyectos</h4>
                 <i class="fas fa-chevron-right"></i>
               </a>
             </div>
