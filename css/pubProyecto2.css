@@ -85,19 +85,20 @@ form h2 {
 
 .btnPub {
   display: block;
-  width: 100%;
+  width: 50%;
   height: 50px;
   border-radius: 25px;
-  margin: 1rem 0;
+  margin: 1rem auto;
   font-size: 1.2rem;
   outline: none;
   border: none;
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     to right,
     rgba(176, 69, 230, 0.425),
     rgba(176, 69, 230, 0.74),
     rgba(176, 69, 230, 0.952)
-  );
+  ); */
+  background-image: linear-gradient(to right, #681e99, #106abe, #34c257);
   color: white;
   background-size: 200%;
   transition: 0.5s;
