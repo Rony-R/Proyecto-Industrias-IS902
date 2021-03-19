@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 $(document).ready(function () {
     $('#btn-comentarios').click(function () { 
 
@@ -62,7 +61,7 @@ $(document).ready(function () {
         }
     });
 });
-=======
+
 $(".toggle").click(function () {
   if ($(".item").hasClass("active")) {
     $(".item").removeClass("active");
@@ -208,4 +207,3 @@ function validarEmpresa() {
   }
   
 };
->>>>>>> b05351c419edad4074f920b55433aad493715aa9
