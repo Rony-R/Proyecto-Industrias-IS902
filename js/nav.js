@@ -1,3 +1,41 @@
+$(document).ready(function () {
+  $.ajax({
+    url: "ajax/api.php?accion='traerPresupuestos'",
+    success: function (respuesta) {
+      for (var i = 0; i < respuesta.lenght; i++) {
+        $("#slcPresupuesto").append(
+          '<option value="' +
+            respuesta[i].id_presupuesto +
+            '">' +
+            respuesta[i].presupuesto +
+            "</option>"
+        );
+      }
+    },
+    error: function () {
+      console.log("Ocurrio un error al traes los presupuestos!");
+    },
+  });
+
+  $.ajax({
+    url: "ajax/api.php?accion='traerTipoProyectos'",
+    success: function (respuesta) {
+      for (var i = 0; i < respuesta.lenght; i++) {
+        $("#slcTipoProyecto").append(
+          '<option value="' +
+            respuesta[i].id_categortia +
+            '">' +
+            respuesta[i].categortia +
+            "</option>"
+        );
+      }
+    },
+    error: function () {
+      console.log("Ocurrio un error al traes los tipos de proyectos!");
+    },
+  });
+});
+
 $(".toggle").click(function () {
   if ($(".item").hasClass("active")) {
     $(".item").removeClass("active");

@@ -29,6 +29,11 @@ INSERT INTO TBL_CATEGORIA_PROYECTO (id_categoria, categoria) VALUES (null, 'Proy
 INSERT INTO TBL_CATEGORIA_PROYECTO (id_categoria, categoria) VALUES (null, 'Bases de Datos');
 INSERT INTO TBL_CATEGORIA_PROYECTO (id_categoria, categoria) VALUES (null, 'Infraestructura de Red');
 INSERT INTO TBL_CATEGORIA_PROYECTO (id_categoria, categoria) VALUES (null, 'Desarrollo Móvil');
+INSERT INTO TBL_CATEGORIA_PROYECTO (id_categoria, categoria) VALUES (null, 'Desarrollo IOS');
+INSERT INTO TBL_CATEGORIA_PROYECTO (id_categoria, categoria) VALUES (null, 'Front End Developer');
+INSERT INTO TBL_CATEGORIA_PROYECTO (id_categoria, categoria) VALUES (null, 'Back End Developer');
+INSERT INTO TBL_CATEGORIA_PROYECTO (id_categoria, categoria) VALUES (null, 'IoT');
+INSERT INTO TBL_CATEGORIA_PROYECTO (id_categoria, categoria) VALUES (null, 'Inteligencia Artificial');
 INSERT INTO TBL_CATEGORIA_PROYECTO (id_categoria, categoria) VALUES (null, '');
 INSERT INTO TBL_CATEGORIA_PROYECTO (id_categoria, categoria) VALUES (null, '');
 
