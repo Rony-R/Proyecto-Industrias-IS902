@@ -1,3 +1,7 @@
+--Usuario para la BD:
+CREATE USER 'manager'@'localhost' IDENTIFIED BY 'asd.456';
+GRANT ALL PRIVILEGES ON * . * TO 'manager'@'localhost';
+
 
 -- INSERTS TBL_PAISES 
 INSERT INTO TBL_PAISES (id_pais, pais) VALUES (null, 'Belice');

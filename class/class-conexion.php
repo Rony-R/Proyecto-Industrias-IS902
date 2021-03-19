@@ -2,8 +2,8 @@
 	class Conexion{
 		private $host = "localhost";
 		private $usuario = "root";
-		private $password = "";
-		private $baseDatos = "db_name";
+		private $password = "asd.456";
+		private $baseDatos = "db_devFinder";
 		private $puerto = 3306;
 		private $link;
 

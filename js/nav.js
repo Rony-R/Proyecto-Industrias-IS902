@@ -1,8 +1,9 @@
 $(document).ready(function () {
   $.ajax({
     url: "ajax/api.php?accion='traerPresupuestos'",
+    dataType: "json",
     success: function (respuesta) {
-      for (var i = 0; i < respuesta.lenght; i++) {
+      for (var i = 0; i < respuesta.length; i++) {
         $("#slcPresupuesto").append(
           '<option value="' +
             respuesta[i].id_presupuesto +
@@ -12,26 +13,31 @@ $(document).ready(function () {
         );
       }
     },
-    error: function () {
+    error: function (e, text, error) {
       console.log("Ocurrio un error al traes los presupuestos!");
+      console.log("Texto: " + text);
+      console.log("Error: " + error);
     },
   });
 
   $.ajax({
     url: "ajax/api.php?accion='traerTipoProyectos'",
+    dataType: "json",
     success: function (respuesta) {
-      for (var i = 0; i < respuesta.lenght; i++) {
+      for (var i = 0; i < respuesta.length; i++) {
         $("#slcTipoProyecto").append(
           '<option value="' +
-            respuesta[i].id_categortia +
+            respuesta[i].id_categoria +
             '">' +
-            respuesta[i].categortia +
+            respuesta[i].categoria +
             "</option>"
         );
       }
     },
-    error: function () {
-      console.log("Ocurrio un error al traes los tipos de proyectos!");
+    error: function (e, text, error) {
+      console.log("Ocurrio un error al traes los presupuestos!");
+      console.log("Texto: " + text);
+      console.log("Error: " + error);
     },
   });
 });
