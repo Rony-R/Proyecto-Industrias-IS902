@@ -133,15 +133,43 @@ switch ($_GET["accion"]) {
     );
     $resQuery = $conexion->ejecutarConsulta($sql);
     
-    $conexion->cerrarConexion();
+    
     if($resQuery){
-      echo "Registro actualizado con exito";
+      $query = sprintf(
+        "DELETE 
+        FROM tbl_tec_x_usuario
+        WHERE id_usuario = '%s'",
+        stripslashes($idUsuario)
+      );
+      $resQuery2 = $conexion->ejecutarConsulta($query);
+      if ($resQuery2) {
+        foreach ($tecnologias as $tec) {
+          $query2 = sprintf(
+            "INSERT INTO tbl_tec_x_usuario
+            (id_usuario, id_tecnologia) 
+            VALUES
+            ('%s','%s')",
+            stripslashes($idUsuario),
+            stripslashes($tec)
+          );
+          $resQuery3 = $conexion->ejecutarConsulta($query2);
+          if ($resQuery3) {
+            echo "1";
+          } else {
+            echo "0"; // error al actualizar usuario
+            exit;
+          }
+        }
+      }else {
+        echo "0"; // error al actualizar usuario
+        exit;
+      }
     }else{
-      echo "Error al actualizar el registro";
+      echo "0"; // error al actualizar usuario
       exit;
     }
     // echo count($tecnologias);
-
+    $conexion->cerrarConexion();
     break;
   default:
     echo ("nulllllllll");
