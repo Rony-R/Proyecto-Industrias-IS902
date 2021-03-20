@@ -26,20 +26,80 @@ $(document).ready(function () {
     });
 
 
+    //Ajax con el que se mandaria a llamar la información del usuario que inserto la publicación
+
+    $.ajax({
+      type: "GET",
+      url: "ajax/api.php?accion=ver-informacion-usuario-publicacion",
+      dataType: "json",
+      success: function (response) {
+        for(var i=0;i<response.length;i++){
+                $('#div-usuario-publicacion').append('<div class="card border-primary">'+
+                    '<div class="card-header text-center">'+
+                      '<h5 class="card-subtitle">'+response[i].nombre+' '+response[i].apellido+'</h5>'+ 
+                    '</div>'+
+                    '<div class="card-body text-center">'+
+                      '<img src="img/profile-examples/goku.jpg" class="img-fluid rounded-circle" alt="">'+
+                    '</div>'+
+                    '<div class="card-footer">'+
+                      '<table class="table table-borderless">'+
+                        '<tbody>'+
+                          '<tr>'+
+                            '<td>País:</td>'+
+                            '<td>'+response[i].pais+'</td>'+
+                          '</tr>'+
+                          '<tr>'+
+                            '<td>Correo:</td>'+
+                            '<td>'+response[i].correo+'</td>'+
+                          '</tr>'+
+                          '<tr>'+
+                            '<td>Teléfono:</td>'+
+                            '<td>'+response[i].telefono+'</td>'+
+                          '</tr>'+
+                        '</tbody>'+
+                      '</table>'+
+                    '</div>'+
+                '</div>');
+            }
+      },
+      error:function(e){
+        console.log(e);
+      }
+    });
+
+
+    //Ajax con el que se generaria la información de la publicación
+
+    $.ajax({
+      type: "GET",
+      url: "ajax/api.php?accion=ver-informacion-publicacion",
+      dataType: "json",
+      success: function (response) {
+        for(var i=0;i<response.length;i++){
+            $('#div-card-title').append('<h5 class="card-title">'+response[i].nombre_proyecto+'</h5>');
+            $('#div-card-info').append('<p>'+response[i].descripcion+'</p>');
+        }          
+      },
+      error:function(e){
+        console.log(e);
+      }
+    });
+
     //Ajax con el que se mandaria a llamar la información de los comentarios y se imprimiria en la pagina
-    /*$.ajax({
-        url: "ajax/api.php?accion=obtener-comentario-publicacion",
+    $.ajax({
+        url: "ajax/api.php?accion=ver-comentario-publicacion",
         type: "GET",
         dataType: 'json',
         success:function(response){
             for(var i=0;i<response.length;i++){
-                $('#div-comentarios').append('<div class="row mb-1">'+
+                $('#div-comentarios').append('<div class="row mb-1 mt-1">'+
                 '<div class="col-1">'+
                   '<img src="img/profile-examples/goku.jpg" class="img-fluid rounded-circle" alt="">'+
                 '</div>'+
                 '<div class="col-11">'+
-                  '<span class="card-subtitle text-primary fw-bold">Goku</span>'+
-                  '<p class="card-text">Aqui ira un comentario X con distintas lineas, distintos parrafos, con mucha información que comentar acerca de la publicación realizada</p>'+
+                  '<span class="card-subtitle fw-bold" style="color: #681e99;">'+response[i].nombre+' '+response[i].apellido+' </span>'+
+                  '<span class="card-subtitle text-primary text-muted">'+response[i].fecha_comentario+'</span>'+
+                  '<p class="card-text">'+response[i].comentario+'</p>'+
                 '</div>'+
               '</div>'+
               '<hr>');
@@ -48,7 +108,7 @@ $(document).ready(function () {
         error:function(e){
             console.log(e);
         }
-    });*/ 
+    });
 
     $('#btn-login').click(function () {  
         var parametros = "Correo=" + $('#txt-correo').val() +"&"+"Password="+$("#txt-password").val();

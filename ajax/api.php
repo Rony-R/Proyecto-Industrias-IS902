@@ -1,5 +1,7 @@
 <?php
     include("../class/class-conexion.php");
+    include("../class/class-comentario.php");
+    include("../class/class-publicacion.php");
 
     $conexion = new Conexion();
 
@@ -27,17 +29,23 @@
 
         break;
 
-        case "'accion'":
+        case "ver-comentario-publicacion":
+            $verComPub = new Comentario(null,null,null,null,null);
+            echo $verComPub->verComentarioPublicación($conexion);
         break;
 
-        case "'accion'":
+        case "ver-informacion-publicacion":
+            $verInfoPub = new Publicacion(null,null,null,null,null,null,null);
+            echo $verInfoPub->verPublicacionEspecifica($conexion);
         break;
 
-        case "'accion'":
+        case "ver-informacion-usuario-publicacion":
+            $verInfoUserPub = new Publicacion(null,null,null,null,null,null,null);
+            echo $verInfoUserPub->verInformacionUsuarioPublicacion($conexion);
         break;
 
-        case "'accion'":
-        break;
+        /*case "'accion'":
+        break;*/
 
     }
 
