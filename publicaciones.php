@@ -1,3 +1,27 @@
+<?php 
+    session_start();
+    if (!isset($_SESSION["usr"]) || !isset($_SESSION["psw"]))
+        header("Location: login.php");
+    include("class/class-conexion.php");
+    $conexion = new Conexion();
+     $sql = sprintf( 
+        "SELECT id_usuario, nombre, apellido, correo, contrasenia FROM tbl_usuario WHERE correo = '%s' and contrasenia = '%s' and id_usuario = %s",
+        $_SESSION["usr"],
+        $_SESSION["psw"],
+        $_SESSION["idUsr"]);
+    //echo $sql;
+    //exit;
+    $resultado = $conexion->ejecutarConsulta($sql);
+    $respuesta = array();
+    if ($conexion->cantidadRegistros($resultado)<=0){
+           header("Location: login.php");
+    }
+
+    $registro = $conexion->obtenerFila($resultado);
+
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -44,6 +68,7 @@
         <li class="toggle">
           <span class="bars"></span>
         </li>
+        <li class="item button log"><a href="ajax/logout.php">Cerrar Sesión</a></li>
       </ul>
     </nav>
 

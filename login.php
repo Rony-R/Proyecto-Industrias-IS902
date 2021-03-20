@@ -16,7 +16,7 @@
 			<img src="img/logos/typing.svg">
 		</div>
 		<div class="login-content">
-			<form action="index.html">
+			<form action="ajax/login.php" method="POST">
 				<img src="img/logos/logo1.png">
 				<h2 class="title">Bienvenido</h2>
            		<div class="input-div one">
