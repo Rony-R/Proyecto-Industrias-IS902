@@ -127,7 +127,7 @@
                                 }
                             echo '</ul>';
                             echo '<a href="../pubProyecto.html" class="btn btn-rev1">Cancelar</a>';
-                            echo '<button id="guardar-publicacion" type="button" class="btn btn-rev2">Guardar</button>';
+                            echo '<button id="guardar-publicacion" onclick="guardarPublicacion(Hoola amigos)" type="button" class="btn btn-rev2">Guardar</button>';
                         echo '</div>';
                     echo '</div>';
                 echo '</div>';

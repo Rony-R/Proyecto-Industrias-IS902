@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  //Funcion para traer los presupuestos de la BD
   $.ajax({
     url: "ajax/api.php?accion='traerPresupuestos'",
     dataType: "json",
@@ -20,6 +21,7 @@ $(document).ready(function () {
     },
   });
 
+  //Funcion para traer los tipos de proyectos de la BD.
   $.ajax({
     url: "ajax/api.php?accion='traerTipoProyectos'",
     dataType: "json",
@@ -31,6 +33,42 @@ $(document).ready(function () {
             '">' +
             respuesta[i].categoria +
             "</option>"
+        );
+      }
+    },
+    error: function (e, text, error) {
+      console.log("Ocurrio un error al traes los presupuestos!");
+      console.log("Texto: " + text);
+      console.log("Error: " + error);
+    },
+  });
+
+  //Funcion para traer las publicaciones de la BD.
+  $.ajax({
+    url: "ajax/api.php?accion='traerPublicaciones'",
+    dataType: "json",
+    success: function (respuesta) {
+      console.log("Publicaciones: " + respuesta);
+      for (var i = 0; i < respuesta.length; i++) {
+        $("#row-pubs").append(
+          '<div id="' +
+            respuesta[i].id_publicacion +
+            '" class="col-md-3 col-sm-6 mb-4">' +
+            '<div class="card">' +
+            '<img src="img/logos/code.svg" class="card-img-top" alt="..." />' +
+            '<div class="card-body">' +
+            '<h5 class="card-title">' +
+            respuesta[i].nombre_proyecto +
+            "</h5>" +
+            '<p class="card-text txt-just">' +
+            respuesta[i].descripcion +
+            "</p>" +
+            '<a href="info-publicacion.php?idPublicacion=' +
+            respuesta[i].id_publicacion +
+            '" class="btn-ver-pub">Ver Publicación</a>' +
+            "</div>" +
+            "</div>" +
+            "</div>"
         );
       }
     },
@@ -150,6 +188,10 @@ $("#btnPublicar").click(function (e) {
   }
 });
 
-$("#guardar-publicacion").click(function () {
-  alert("Guardando Publicacion!");
-});
+// $("#guardar-publicacion").click(function () {
+//   alert("Guardando Publicacion!");
+// });
+
+function guardarPublicacion(data) {
+  alert("La data es: " + data);
+}
