@@ -117,7 +117,30 @@ $(document).ready(function () {
             alert("Correo o Contraseña Incorrecta");
         }
         else{
-            alert(parametros);
+          $.ajax({
+            url:"ajax/login.php",
+            method:"POST",
+            data: parametros,
+            dataType:"json",
+            success:function(respuesta){
+                console.log(respuesta);
+                function redireccionarPagina(){
+                  if(respuesta.codigoResultado==0){
+                    window.location.href = "publicaciones.php";
+                    $("#txt-correo").val("");
+                    $("#txt-contrasenia").val("");
+                  }
+                  else{
+                    alert("Correo o contraseña incorrecta");
+                    window.location.reload();
+                  }
+                }
+                window.setTimeout( redireccionarPagina, 2000);
+            },
+            error:function(e){
+                console.log(e);
+            }
+        });
         }
     });
 });
