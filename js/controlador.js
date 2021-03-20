@@ -25,13 +25,43 @@ $(document).ready(function () {
         }
     });
 
+    $.ajax({
+      type: "GET",
+      url: "ajax/api.php?accion=ver-lista-publicaciones",
+      dataType: "JSON",
+      success: function (response) {
+        for(var i=0;i<response.length;i++){
+          $('#div-publicaciones').append('<div class="col-md-3 col-sm-6 mb-4">'+
+          '<div class="card">'+
+            '<img src="img/logos/code.svg" class="card-img-top" alt="..." />'+
+            '<div class="card-body">'+
+              '<h5 class="card-title">'+response[i].nombre_proyecto+'</h5>'+
+              '<p class="card-text txt-just">'+
+                response[i].descripcion+
+              '</p>'+
+              '<a href="info-publicacion.php?publicacion='+response[i].id_publicacion+'" class="btn btn-primary">Ver Publicación</a>'+
+            '</div>'+
+          '</div>'+
+        '</div>')
+        }
+      },
+      error: function(e){
+        console.log(e);
+      }
+    });
+
 
     //Ajax con el que se mandaria a llamar la información del usuario que inserto la publicación
+
+    var params = new URLSearchParams(location.search);
+    var publicacion = params.get('publicacion');
+    var parametros = "publicacion=" + publicacion;
 
     $.ajax({
       type: "GET",
       url: "ajax/api.php?accion=ver-informacion-usuario-publicacion",
       dataType: "json",
+      data:parametros,
       success: function (response) {
         for(var i=0;i<response.length;i++){
                 $('#div-usuario-publicacion').append('<div class="card border-primary">'+
@@ -68,16 +98,17 @@ $(document).ready(function () {
     });
 
 
-    //Ajax con el que se generaria la información de la publicación
-
     $.ajax({
       type: "GET",
       url: "ajax/api.php?accion=ver-informacion-publicacion",
+      data:parametros,
       dataType: "json",
       success: function (response) {
         for(var i=0;i<response.length;i++){
             $('#div-card-title').append('<h5 class="card-title">'+response[i].nombre_proyecto+'</h5>');
-            $('#div-card-info').append('<p>'+response[i].descripcion+'</p>');
+            $('#div-card-info').append('<p>'+response[i].descripcion+'</p>'+
+            '<span class="text-muted">Categoria: '+response[i].categoria+'</span><br>'+
+            '<span class="text-muted">Presupuesto: '+response[i].presupuesto+'</span>');
         }          
       },
       error:function(e){
@@ -85,10 +116,16 @@ $(document).ready(function () {
       }
     });
 
+
+
+    
+
     //Ajax con el que se mandaria a llamar la información de los comentarios y se imprimiria en la pagina
+
     $.ajax({
         url: "ajax/api.php?accion=ver-comentario-publicacion",
         type: "GET",
+        data: parametros,
         dataType: 'json',
         success:function(response){
             for(var i=0;i<response.length;i++){

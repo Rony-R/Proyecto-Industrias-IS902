@@ -76,107 +76,13 @@
       <h3 class="text-center">Contenido Principal</h3>
 
       <div class="container">
-        <div class="row mt-2 mb-2">
-          <div class="col-md-3 col-sm-6 mb-4">
-            <div class="card">
-              <img src="img/logos/code.svg" class="card-img-top" alt="..." />
-              <div class="card-body">
-                <h5 class="card-title">Título de la Publicación</h5>
-                <p class="card-text txt-just">
-                  Descripción de la publicación. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, alias eaque modi eius ipsam laboriosam vel at perferendis. Voluptatibus, ex deleniti similique laborum voluptatem atque molestiae distinctio dolor eligendi perspiciatis?
-                </p>
-                <a href="#" class="btn btn-primary">Ver Publicación</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6 mb-4">
-            <div class="card"m">
-              <img src="img/logos/code.svg" class="card-img-top" alt="..." />
-              <div class="card-body">
-                <h5 class="card-title">Título de la Publicación</h5>
-                <p class="card-text txt-just">
-                  Descripción de la publicación. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, alias eaque modi eius ipsam laboriosam vel at perferendis. Voluptatibus, ex deleniti similique laborum voluptatem atque molestiae distinctio dolor eligendi perspiciatis?
-                </p>
-                <a href="#" class="btn btn-primary">Ver Publicación</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6 mb-4">
-            <div class="card"m">
-              <img src="img/logos/code.svg" class="card-img-top" alt="..." />
-              <div class="card-body">
-                <h5 class="card-title">Título de la Publicación</h5>
-                <p class="card-text txt-just">
-                  Descripción de la publicación. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, alias eaque modi eius ipsam laboriosam vel at perferendis. Voluptatibus, ex deleniti similique laborum voluptatem atque molestiae distinctio dolor eligendi perspiciatis?
-                </p>
-                <a href="#" class="btn btn-primary">Ver Publicación</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6 mb-4">
-            <div class="card">
-              <img src="img/logos/code.svg" class="card-img-top" alt="..." />
-              <div class="card-body">
-                <h5 class="card-title">Título de la Publicación</h5>
-                <p class="card-text txt-just">
-                  Descripción de la publicación. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, alias eaque modi eius ipsam laboriosam vel at perferendis. Voluptatibus, ex deleniti similique laborum voluptatem atque molestiae distinctio dolor eligendi perspiciatis?
-                </p>
-                <a href="#" class="btn btn-primary">Ver Publicación</a>
-              </div>
-            </div>
-          </div>
+        <div class="row mt-2 mb-2" id="div-publicaciones">
+          
+          
+          
         </div>
 
-        <div class="row mt-2 mb-2">
-          <div class="col-md-3 col-sm-6 mb-5">
-            <div class="card">
-              <img src="img/logos/code.svg" class="card-img-top" alt="..." />
-              <div class="card-body">
-                <h5 class="card-title">Título de la Publicación</h5>
-                <p class="card-text txt-just">
-                  Descripción de la publicación. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, alias eaque modi eius ipsam laboriosam vel at perferendis. Voluptatibus, ex deleniti similique laborum voluptatem atque molestiae distinctio dolor eligendi perspiciatis?
-                </p>
-                <a href="#" class="btn btn-primary">Ver Publicación</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6 mb-5">
-            <div class="card"m">
-              <img src="img/logos/code.svg" class="card-img-top" alt="..." />
-              <div class="card-body">
-                <h5 class="card-title">Título de la Publicación</h5>
-                <p class="card-text txt-just">
-                  Descripción de la publicación. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, alias eaque modi eius ipsam laboriosam vel at perferendis. Voluptatibus, ex deleniti similique laborum voluptatem atque molestiae distinctio dolor eligendi perspiciatis?
-                </p>
-                <a href="#" class="btn btn-primary">Ver Publicación</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6 mb-5">
-            <div class="card"m">
-              <img src="img/logos/code.svg" class="card-img-top" alt="..." />
-              <div class="card-body">
-                <h5 class="card-title">Título de la Publicación</h5>
-                <p class="card-text txt-just">
-                  Descripción de la publicación. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, alias eaque modi eius ipsam laboriosam vel at perferendis. Voluptatibus, ex deleniti similique laborum voluptatem atque molestiae distinctio dolor eligendi perspiciatis?
-                </p>
-                <a href="#" class="btn btn-primary">Ver Publicación</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6 mb-5">
-            <div class="card">
-              <img src="img/logos/code.svg" class="card-img-top" alt="..." />
-              <div class="card-body">
-                <h5 class="card-title">Título de la Publicación</h5>
-                <p class="card-text txt-just">
-                  Descripción de la publicación. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, alias eaque modi eius ipsam laboriosam vel at perferendis. Voluptatibus, ex deleniti similique laborum voluptatem atque molestiae distinctio dolor eligendi perspiciatis?
-                </p>
-                <a href="#" class="btn btn-primary">Ver Publicación</a>
-              </div>
-            </div>
-          </div>
-        </div>
+        
       </div>
     </main>
 
@@ -230,5 +136,6 @@
     </footer>
 
     <script src="js/nav.js" type="text/javascript"></script>
+    <script src="js/controlador.js" type="text/javascript"></script>
   </body>
 </html>

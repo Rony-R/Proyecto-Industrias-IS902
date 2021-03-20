@@ -58,19 +58,19 @@
 		}
 
         public function verComentarioPublicación($conexion){
-            $sql = "SELECT 
+            $sql = sprintf(	"SELECT 
                 c.id_comentario, 
                 u.nombre,
                 u.apellido,
                 u.ruta_img_perfil,
                 u.nombre_img_perfil, 
                 c.comentario,
-				DATE_FORMAT(c.fecha_comentario, '%d-%m-%Y') as fecha_comentario
+				c.fecha_comentario
                 FROM tbl_comentarios as c
                 INNER JOIN tbl_usuario as u
                 ON c.id_usuario = u.id_usuario 
-                WHERE c.id_publicacion=1";/*,
-            $conexion->antiInyeccion($this->id_publicacion));*/
+                WHERE c.id_publicacion= %s",
+				$conexion->antiInyeccion($this->id_publicacion));
 
             $resultado = $conexion->ejecutarConsulta($sql);
             $listaSucursales = array();

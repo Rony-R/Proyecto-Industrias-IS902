@@ -30,17 +30,22 @@
         break;
 
         case "ver-comentario-publicacion":
-            $verComPub = new Comentario(null,null,null,null,null);
+            $verComPub = new Comentario(null,null,$_GET["publicacion"],null,null);
             echo $verComPub->verComentarioPublicación($conexion);
         break;
 
         case "ver-informacion-publicacion":
-            $verInfoPub = new Publicacion(null,null,null,null,null,null,null);
+            $verInfoPub = new Publicacion($_GET["publicacion"],null,null,null,null,null,null);
             echo $verInfoPub->verPublicacionEspecifica($conexion);
         break;
 
+        case "ver-lista-publicaciones":
+            $verPubs = new Publicacion(null,null,null,null,null,null,null);
+            echo $verPubs->verPublicaciones($conexion);
+        break;
+
         case "ver-informacion-usuario-publicacion":
-            $verInfoUserPub = new Publicacion(null,null,null,null,null,null,null);
+            $verInfoUserPub = new Publicacion($_GET["publicacion"],null,null,null,null,null,null);
             echo $verInfoUserPub->verInformacionUsuarioPublicacion($conexion);
         break;
 

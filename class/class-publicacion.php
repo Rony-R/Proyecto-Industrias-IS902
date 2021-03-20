@@ -1,5 +1,6 @@
 <?php
 
+	
 	class Publicacion{
 
 		private $id_publicacion;
@@ -78,13 +79,21 @@
 		}
 
         public function verPublicacionEspecifica($conexion){
-            $sql = "SELECT id_publicacion, 
-                        id_presupuesto, 
+            $sql = sprintf("SELECT id_publicacion,
                         id_usuario, 
-                        id_categoria, 
+                        c.categoria, 
                         id_estado, 
                         nombre_proyecto, 
-                        descripcion FROM tbl_publicacion WHERE id_publicacion=1";
+                        descripcion,
+						pr.presupuesto 
+						FROM tbl_publicacion as p
+						INNER JOIN tbl_categoria_proyecto as c
+						ON c.id_categoria = p.id_categoria
+						INNER JOIN tbl_presupuesto AS pr
+						ON pr.id_presupuesto = p.id_presupuesto 
+						WHERE id_publicacion=%s",
+						$conexion->antiInyeccion($this->id_publicacion));
+					
             $resultado = $conexion->ejecutarConsulta($sql);
             $listaSucursales = array();
             while($fila = $conexion->obtenerFila($resultado)){
@@ -96,21 +105,40 @@
             return $final;
         }
 
+		public function verPublicaciones($conexion){
+			$sql = "SELECT id_publicacion,
+					nombre_proyecto,
+					descripcion
+					FROM
+					tbl_publicacion";
+			
+			$resultado = $conexion->ejecutarConsulta($sql);
+            $listaSucursales = array();
+            while($fila = $conexion->obtenerFila($resultado)){
+                $listaSucursales[] = $fila;
+            }
+
+            $final = json_encode($listaSucursales);
+
+            return $final;
+		}
+
         public function verInformacionUsuarioPublicacion($conexion){
-            $sql = "SELECT id_publicacion, 
+            $sql = sprintf("SELECT id_publicacion, 
                         u.nombre,
                         u.apellido,
                         u.ruta_img_perfil,
                         u.nombre_img_perfil,
                         u.correo,
                         u.telefono,
-                        ps.pais 
+                        ps.pais
                         FROM tbl_publicacion AS p
                         INNER JOIN tbl_usuario AS u
                         ON p.id_usuario = u.id_usuario
                         INNER JOIN tbl_paises AS ps
                         ON u.id_pais = ps.id_pais
-                        WHERE id_publicacion=1";
+                        WHERE id_publicacion=%s",
+						$conexion->antiInyeccion($this->id_publicacion));
             $resultado = $conexion->ejecutarConsulta($sql);
             $listaSucursales = array();
             while($fila = $conexion->obtenerFila($resultado)){
