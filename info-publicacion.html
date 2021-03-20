@@ -13,6 +13,8 @@
       crossorigin="anonymous"
     />
 
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/nav.css" />
 
     <!-- JQuery -->
@@ -42,8 +44,8 @@
 
     <main class="container-fluid mt-2 mb-4">
       <div class="row">
-        <div class="col-4">
-          <div class="card border-primary"> <!--Este card es para ver la información de la persona que creo la publicación-->
+        <div class="col-4" id="div-usuario-publicacion">
+          <!--<div class="card border-primary"> Este card es para ver la información de la persona que creo la publicación
             <div class="card-header text-center">
               <h5 class="card-subtitle">Rafael Bautista</h5> 
             </div>
@@ -64,15 +66,17 @@
                 </tbody>
               </table>
             </div>
-          </div>
+          </div>-->
         </div>
         <div class="col-8">
           <div class="card border-primary">
-            <div class="card-header">
-              <h5 class="card-title">Sistema de Facturación</h5> <!-- Aqui se asignaria el nombre del proyecto -->
+            <div class="card-header" id="div-card-title">
+              <!-- <h5 class="card-title">Sistema de Facturación</h5> Aqui se asignaria el nombre del proyecto -->
             </div>
-            <div class="card-body">
-              <p>Aqui ira una información X que el usuario tiene que detallar acerca de la información del proyecto necesaria para poder recibir ayuda o compartir el como entender el codigo</p>
+            <div class="card-body" id="div-card-info">
+              <!--<p>Aqui ira una información X que el usuario tiene que detallar acerca de la información del proyecto necesaria para poder recibir ayuda o compartir el como entender el codigo</p>-->
+            </div>
+            <div class="card-body" id="div-pub-imagenes">
               <div class="row"> <!-- Con este Row se ordena la manera de presentar las posibles imagenes que incluya la publicación -->
                 <div class="col-3"><img src="img/logos/logo1.png" class="img-thumbnail img-fluid" alt=""></div>
                 <div class="col-3"><img src="img/logos/logo1.png" class="img-thumbnail img-fluid" alt=""></div>
@@ -93,8 +97,8 @@
                 </div>
               </div>
             </div>
-            <div class="card-footer">
-              <div class="row mb-1">
+            <div class="card-footer" id="div-comentarios">
+              <!--<div class="row mb-1">
                 <div class="col-1">
                   <img src="img/profile-examples/goku.jpg" class="img-fluid rounded-circle" alt="">
                 </div>
@@ -112,7 +116,7 @@
                   <span class="card-subtitle text-primary fw-bold">Goku</span>
                   <p class="card-text">Aqui ira un comentario X con distintas lineas, distintos parrafos, con mucha información que comentar acerca de la publicación realizada</p>
                 </div>
-              </div>
+              </div>-->
             </div>
           </div>
         </div>
