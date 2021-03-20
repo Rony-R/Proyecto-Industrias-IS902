@@ -19,7 +19,7 @@
         break;
         
         case "'traerTipoProyectos'":
-            $sql = "SELECT * FROM TBL_CATEGORIA_PROYECTO;;";
+            $sql = "SELECT * FROM TBL_CATEGORIA_PROYECTO;";
             $resultado = $conexion->ejecutarConsulta($sql);
             $categorias = array();
             while($fila = $conexion->obtenerFila($resultado)){
@@ -27,6 +27,17 @@
             }
             echo (json_encode($categorias));
 
+        break;
+
+        case "'traerPublicaciones'":
+            $sql = "SELECT * FROM TBL_PUBLICACION;";
+            $resultado = $conexion->ejecutarConsulta($sql);
+            $publicaciones = array();
+            while($fila = $conexion->obtenerFila($resultado)){
+                $publicaciones[] = $fila;
+            }
+            echo (json_encode($publicaciones));
+            //echo (json_encode($publicaciones[2]));
         break;
 
         case "ver-comentario-publicacion":
