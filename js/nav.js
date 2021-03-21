@@ -53,8 +53,8 @@ $(document).ready(function () {
         $("#row-pubs").append(
           '<div id="' +
             respuesta[i].id_publicacion +
-            '" class="col-md-3 col-sm-6 mb-4">' +
-            '<div class="card">' +
+            '" class="col-lg-3 col-md-4 col-sm-12 mb-4">' +
+            '<div class="card card-pub">' +
             '<img src="img/logos/code.svg" class="card-img-top" alt="..." />' +
             '<div class="card-body">' +
             '<h5 class="card-title">' +

@@ -1,29 +1,33 @@
 <?php
+
   $publicacion = $_GET["publicacion"];
+
 ?>
 
 <?php 
-    // session_start();
-    // if (!isset($_SESSION["usr"]) || !isset($_SESSION["psw"]))
-    //     header("Location: login.php");
-    // include("class/class-conexion.php");
-    // $conexion = new Conexion();
-    //  $sql = sprintf( 
-    //     "SELECT id_usuario, nombre, apellido, correo, contrasenia FROM tbl_usuario WHERE correo = '%s' and contrasenia = '%s' and id_usuario = %s",
-    //     $_SESSION["usr"],
-    //     $_SESSION["psw"],
-    //     $_SESSION["idUsr"]);
-    // //echo $sql;
-    // //exit;
-    // $resultado = $conexion->ejecutarConsulta($sql);
-    // $respuesta = array();
-    // if ($conexion->cantidadRegistros($resultado)<=0){
-    //        header("Location: login.php");
-    // }
+    session_start();
 
-    // $registro = $conexion->obtenerFila($resultado);
+    if (!isset($_SESSION["usr"]) || !isset($_SESSION["psw"]))
+        header("Location: login.php");
 
+    include("class/class-conexion.php");
     
+    $conexion = new Conexion();
+     $sql = sprintf( 
+        "SELECT id_usuario, nombre, apellido, correo, contrasenia FROM tbl_usuario WHERE correo = '%s' and contrasenia = '%s' and id_usuario = %s",
+        $_SESSION["usr"],
+        $_SESSION["psw"],
+        $_SESSION["idUsr"]);
+    //echo $sql;
+    //exit;
+    $resultado = $conexion->ejecutarConsulta($sql);
+    $respuesta = array();
+    if ($conexion->cantidadRegistros($resultado)<=0){
+           header("Location: login.php");
+    }
+
+    $registro = $conexion->obtenerFila($resultado);
+
 ?>
 
 <!DOCTYPE html>
@@ -152,8 +156,7 @@
         
     </main>
 
-    <footer class="bg-dark text-center text-lg-start">
-      <!-- Copyright -->
+    <!-- <footer class="bg-dark text-center text-lg-start">
       <div
         class="text-center text-light p-3"
         style="background-color: rgba(189, 177, 177, 0.2)"
@@ -161,7 +164,72 @@
         © 2020 Copyright:
         <a class="text-light" href="https://mdbootstrap.com/">MDBootstrap.com</a>
       </div>
-      <!-- Copyright -->
+    </footer> -->
+    <footer class="text-center text-lg-start">
+      <div class="row">
+        <div class="col-md-4 text-light">
+          <img class="logoFoot" src="./img/logos/logo1.png" alt="" />
+        </div>
+
+        <div class="col-md-8">
+          <h3 class="text-light text-center pt-3 mb-4">Desarrolladores</h3>
+          <div class="row">
+            <div class="col-md-4">
+              <img
+                class="creatorImg"
+                src="img/logos/prof.jpeg"
+                alt="Andres Lizardo"
+              />
+              <p class="text-light">Andres Lizardo</p>
+            </div>
+            <div class="col-md-4">
+              <img
+                class="creatorImg"
+                src="img/logos/prof.jpeg"
+                alt="Jheral Blanco"
+              />
+              <p class="text-light">Jheral Blanco</p>
+            </div>
+            <div class="col-md-4">
+              <img
+                class="creatorImg"
+                src="img/logos/prof.jpeg"
+                alt="Josue Lanza"
+              />
+              <p class="text-light">Josue Lanza</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+              <img
+                class="creatorImg"
+                src="img/logos/prof.jpeg"
+                alt="Rafael Bautista"
+              />
+              <p class="text-light">Rafael Bautista</p>
+            </div>
+            <div class="col-md-4">
+              <img
+                class="creatorImg"
+                src="img/logos/prof.jpeg"
+                alt="Rony Rodriguez"
+              />
+              <p class="text-light">Rony Rodriguez</p>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="footRow text-center text-light p-2">
+          © 2020 Copyright:
+          <a class="text-light" href="https://www.unah.edu.hn/"
+            >UNAH - www.unah.edu.hn</a
+          >
+        </div>
+      </div>
     </footer>
 
     <script src="js/nav.js" type="text/javascript"></script>
