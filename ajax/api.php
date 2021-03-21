@@ -45,6 +45,11 @@
             echo $verComPub->verComentarioPublicación($conexion);
         break;
 
+        case "insertar-comentario":
+            $insCom = new Comentario(null,$_POST["idUsuario"],$_POST["idPublicacion"],$_POST["Comentario"],null);
+            echo $insCom->insertarNuevoComentario($conexion);
+        break;
+
         case "ver-informacion-publicacion":
             $verInfoPub = new Publicacion($_GET["publicacion"],null,null,null,null,null,null);
             echo $verInfoPub->verPublicacionEspecifica($conexion);

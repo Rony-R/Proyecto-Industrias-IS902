@@ -130,6 +130,7 @@
                         u.nombre_img_perfil,
                         u.correo,
                         u.telefono,
+						u.direccion,
                         ps.pais
                         FROM TBL_PUBLICACION AS p
                         INNER JOIN TBL_USUARIO AS u

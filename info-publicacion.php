@@ -55,6 +55,14 @@
     <title>Información Publicacion</title>
   </head>
   <body>
+
+
+  <span class="d-none">
+    <input type="text" value="<?php echo $_SESSION["idUsr"]?>" id="txt-codigo-usuario">
+    </span>
+    <span class="d-none">
+    <input type="text" value="<?php echo $publicacion?>" id="id-publicacion">
+    </span>
     <nav>
       <ul class="menu">
         <li class="logo">

@@ -1,14 +1,14 @@
 $(document).ready(function () {
   $("#btn-comentarios").click(function () {
-    var parametros = "Comentario=" + $("#txta-comentario").val();
+    var parametros = "idUsuario="+ $("#txt-codigo-usuario").val() + "&idPublicacion=" + $('#id-publicacion').val() + "&Comentario=" + $("#txta-comentario").val();
 
     if ($("#txta-comentario").val() == "") {
       alert(
         "No es posible agregar un comentario vacio, por favor añadir algun valor"
       );
     } else {
-      /*$.ajax({
-                url: "ajax/api.php?accion=agregar-comentario-publicacion",
+      $.ajax({
+                url: "ajax/api.php?accion=insertar-comentario",
                 method: "POST",
                 data: parametros,
                 dataType: "json",
@@ -16,12 +16,10 @@ $(document).ready(function () {
                     alert("Comentario añadido correctamente");
                     location.reload();
                 },
-                error:function(e){
-                    console.log(e);
+                error: function (e) {
+                  console.log(e);
                 }
-            });*/
-
-      alert(parametros);
+            });
     }
   });
 
@@ -43,8 +41,6 @@ $(document).ready(function () {
             '<div class="card-header text-center">' +
             '<h5 class="card-subtitle">' +
             response[i].nombre +
-            " " +
-            response[i].apellido +
             "</h5>" +
             "</div>" +
             '<div class="card-body text-center">' +
@@ -71,6 +67,12 @@ $(document).ready(function () {
             response[i].telefono +
             "</td>" +
             "</tr>" +
+            "<tr>" +
+            "<td>Dirección:</td>" +
+            "<td>" +
+            response[i].direccion +
+            "</td>" +
+            "</tr>" +
             "</tbody>" +
             "</table>" +
             "</div>" +
@@ -91,7 +93,7 @@ $(document).ready(function () {
     success: function (response) {
       for (var i = 0; i < response.length; i++) {
         $("#div-card-title").append(
-          '<h5 class="card-title">' + response[i].nombre_proyecto + "</h5>"
+          '<h3 class="card-title fw-bold">' + response[i].nombre_proyecto + "</h3>"
         );
         $("#div-card-info").append(
           "<p>" +

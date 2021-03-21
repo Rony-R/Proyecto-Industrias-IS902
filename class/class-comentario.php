@@ -84,7 +84,33 @@
         }
 
         public function insertarNuevoComentario($conexion){
-            
+            $sql = sprintf("INSERT INTO tbl_comentarios
+				(id_comentario, 
+				id_usuario, 
+				id_publicacion, 
+				comentario, 
+				`fecha_comentario`) 
+			VALUES (null,
+				%s,
+				%s,
+				'%s',
+				CURDATE())",
+			$conexion->antiInyeccion($this->id_usuario),
+			$conexion->antiInyeccion($this->id_publicacion),
+			$conexion->antiInyeccion($this->comentario));
+
+			$resultado = $conexion->ejecutarConsulta($sql);
+
+			if($resultado){
+				$mensaje["mensaje"]="Comentario agregado exitosamente";
+				$mensaje["sql"]=$sql;
+				return json_encode($mensaje);
+			}
+			else{
+				$mensaje["mensaje"]="No se ha podido agregar el comentario";
+				$mensaje["sql"]=$sql;
+				return json_encode($mensaje);
+			}
         }
 
 
