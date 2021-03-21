@@ -63,7 +63,7 @@ $(document).ready(function () {
             '<p class="card-text txt-just">' +
             respuesta[i].descripcion +
             "</p>" +
-            '<a href="info-publicacion.php?idPublicacion=' +
+            '<a href="info-publicacion.php?publicacion=' +
             respuesta[i].id_publicacion +
             '" class="btn-ver-pub">Ver Publicación</a>' +
             "</div>" +

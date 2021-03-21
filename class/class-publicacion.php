@@ -1,6 +1,5 @@
 <?php
 
-	
 	class Publicacion{
 
 		private $id_publicacion;
@@ -80,18 +79,18 @@
 
         public function verPublicacionEspecifica($conexion){
             $sql = sprintf("SELECT id_publicacion,
-                        id_usuario, 
-                        c.categoria, 
-                        id_estado, 
-                        nombre_proyecto, 
-                        descripcion,
-						pr.presupuesto 
-						FROM tbl_publicacion as p
-						INNER JOIN tbl_categoria_proyecto as c
-						ON c.id_categoria = p.id_categoria
-						INNER JOIN tbl_presupuesto AS pr
-						ON pr.id_presupuesto = p.id_presupuesto 
-						WHERE id_publicacion=%s",
+			id_usuario, 
+			c.categoria, 
+			id_estado, 
+			nombre_proyecto, 
+			descripcion,
+			pr.presupuesto 
+			FROM TBL_PUBLICACION as p
+			INNER JOIN TBL_CATEGORIA_PROYECTO as c
+			ON c.id_categoria = p.id_categoria
+			INNER JOIN TBL_PRESUPUESTO AS pr
+			ON pr.id_presupuesto = p.id_presupuesto 
+			WHERE id_publicacion=%s",
 						$conexion->antiInyeccion($this->id_publicacion));
 					
             $resultado = $conexion->ejecutarConsulta($sql);
@@ -110,7 +109,7 @@
 					nombre_proyecto,
 					descripcion
 					FROM
-					tbl_publicacion";
+					TBL_PUBLICACION";
 			
 			$resultado = $conexion->ejecutarConsulta($sql);
             $listaSucursales = array();
@@ -132,10 +131,10 @@
                         u.correo,
                         u.telefono,
                         ps.pais
-                        FROM tbl_publicacion AS p
-                        INNER JOIN tbl_usuario AS u
+                        FROM TBL_PUBLICACION AS p
+                        INNER JOIN TBL_USUARIO AS u
                         ON p.id_usuario = u.id_usuario
-                        INNER JOIN tbl_paises AS ps
+                        INNER JOIN TBL_PAISES AS ps
                         ON u.id_pais = ps.id_pais
                         WHERE id_publicacion=%s",
 						$conexion->antiInyeccion($this->id_publicacion));

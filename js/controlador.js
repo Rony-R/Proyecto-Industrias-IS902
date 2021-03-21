@@ -1,13 +1,13 @@
 $(document).ready(function () {
-    $('#btn-comentarios').click(function () { 
+  $("#btn-comentarios").click(function () {
+    var parametros = "Comentario=" + $("#txta-comentario").val();
 
-        var parametros = "Comentario=" + $('#txta-comentario').val();
-
-        if($("#txta-comentario").val() == ""){
-            alert('No es posible agregar un comentario vacio, por favor añadir algun valor');
-        }
-        else{
-            /*$.ajax({
+    if ($("#txta-comentario").val() == "") {
+      alert(
+        "No es posible agregar un comentario vacio, por favor añadir algun valor"
+      );
+    } else {
+      /*$.ajax({
                 url: "ajax/api.php?accion=agregar-comentario-publicacion",
                 method: "POST",
                 data: parametros,
@@ -21,165 +21,169 @@ $(document).ready(function () {
                 }
             });*/
 
-            alert(parametros);
-        }
-    });
+      alert(parametros);
+    }
+  });
 
-    $.ajax({
-      type: "GET",
-      url: "ajax/api.php?accion=ver-lista-publicaciones",
-      dataType: "JSON",
-      success: function (response) {
-        for(var i=0;i<response.length;i++){
-          $('#div-publicaciones').append('<div class="col-md-3 col-sm-6 mb-4">'+
-          '<div class="card">'+
-            '<img src="img/logos/code.svg" class="card-img-top" alt="..." />'+
-            '<div class="card-body">'+
-              '<h5 class="card-title">'+response[i].nombre_proyecto+'</h5>'+
-              '<p class="card-text txt-just">'+
-                response[i].descripcion+
-              '</p>'+
-              '<a href="info-publicacion.php?publicacion='+response[i].id_publicacion+'" class="btn btn-primary">Ver Publicación</a>'+
-            '</div>'+
-          '</div>'+
-        '</div>')
-        }
-      },
-      error: function(e){
-        console.log(e);
+  //Ajax con el que se mandaria a llamar la información del usuario que inserto la publicación
+
+  var params = new URLSearchParams(location.search);
+  var publicacion = params.get("publicacion");
+  var parametros = "publicacion=" + publicacion;
+
+  $.ajax({
+    type: "GET",
+    url: "ajax/api.php?accion=ver-informacion-usuario-publicacion",
+    dataType: "json",
+    data: parametros,
+    success: function (response) {
+      for (var i = 0; i < response.length; i++) {
+        $("#div-usuario-publicacion").append(
+          '<div class="card border-primary">' +
+            '<div class="card-header text-center">' +
+            '<h5 class="card-subtitle">' +
+            response[i].nombre +
+            " " +
+            response[i].apellido +
+            "</h5>" +
+            "</div>" +
+            '<div class="card-body text-center">' +
+            '<img src="img/profile-examples/goku.jpg" class="img-fluid rounded-circle" alt="">' +
+            "</div>" +
+            '<div class="card-footer">' +
+            '<table class="table table-borderless">' +
+            "<tbody>" +
+            "<tr>" +
+            "<td>País:</td>" +
+            "<td>" +
+            response[i].pais +
+            "</td>" +
+            "</tr>" +
+            "<tr>" +
+            "<td>Correo:</td>" +
+            "<td>" +
+            response[i].correo +
+            "</td>" +
+            "</tr>" +
+            "<tr>" +
+            "<td>Teléfono:</td>" +
+            "<td>" +
+            response[i].telefono +
+            "</td>" +
+            "</tr>" +
+            "</tbody>" +
+            "</table>" +
+            "</div>" +
+            "</div>"
+        );
       }
-    });
+    },
+    error: function (e) {
+      console.log(e);
+    },
+  });
 
-
-    //Ajax con el que se mandaria a llamar la información del usuario que inserto la publicación
-
-    var params = new URLSearchParams(location.search);
-    var publicacion = params.get('publicacion');
-    var parametros = "publicacion=" + publicacion;
-
-    $.ajax({
-      type: "GET",
-      url: "ajax/api.php?accion=ver-informacion-usuario-publicacion",
-      dataType: "json",
-      data:parametros,
-      success: function (response) {
-        for(var i=0;i<response.length;i++){
-                $('#div-usuario-publicacion').append('<div class="card border-primary">'+
-                    '<div class="card-header text-center">'+
-                      '<h5 class="card-subtitle">'+response[i].nombre+' '+response[i].apellido+'</h5>'+ 
-                    '</div>'+
-                    '<div class="card-body text-center">'+
-                      '<img src="img/profile-examples/goku.jpg" class="img-fluid rounded-circle" alt="">'+
-                    '</div>'+
-                    '<div class="card-footer">'+
-                      '<table class="table table-borderless">'+
-                        '<tbody>'+
-                          '<tr>'+
-                            '<td>País:</td>'+
-                            '<td>'+response[i].pais+'</td>'+
-                          '</tr>'+
-                          '<tr>'+
-                            '<td>Correo:</td>'+
-                            '<td>'+response[i].correo+'</td>'+
-                          '</tr>'+
-                          '<tr>'+
-                            '<td>Teléfono:</td>'+
-                            '<td>'+response[i].telefono+'</td>'+
-                          '</tr>'+
-                        '</tbody>'+
-                      '</table>'+
-                    '</div>'+
-                '</div>');
-            }
-      },
-      error:function(e){
-        console.log(e);
+  $.ajax({
+    type: "GET",
+    url: "ajax/api.php?accion=ver-informacion-publicacion",
+    data: parametros,
+    dataType: "json",
+    success: function (response) {
+      for (var i = 0; i < response.length; i++) {
+        $("#div-card-title").append(
+          '<h5 class="card-title">' + response[i].nombre_proyecto + "</h5>"
+        );
+        $("#div-card-info").append(
+          "<p>" +
+            response[i].descripcion +
+            "</p>" +
+            '<span class="text-muted">Categoria: ' +
+            response[i].categoria +
+            "</span><br>" +
+            '<span class="text-muted">Presupuesto: ' +
+            response[i].presupuesto +
+            "</span>"
+        );
       }
-    });
+    },
+    error: function (e) {
+      console.log(e);
+    },
+  });
 
+  //Ajax con el que se mandaria a llamar la información de los comentarios y se imprimiria en la pagina
 
-    $.ajax({
-      type: "GET",
-      url: "ajax/api.php?accion=ver-informacion-publicacion",
-      data:parametros,
-      dataType: "json",
-      success: function (response) {
-        for(var i=0;i<response.length;i++){
-            $('#div-card-title').append('<h5 class="card-title">'+response[i].nombre_proyecto+'</h5>');
-            $('#div-card-info').append('<p>'+response[i].descripcion+'</p>'+
-            '<span class="text-muted">Categoria: '+response[i].categoria+'</span><br>'+
-            '<span class="text-muted">Presupuesto: '+response[i].presupuesto+'</span>');
-        }          
-      },
-      error:function(e){
-        console.log(e);
+  $.ajax({
+    url: "ajax/api.php?accion=ver-comentario-publicacion",
+    type: "GET",
+    data: parametros,
+    dataType: "json",
+    success: function (response) {
+      for (var i = 0; i < response.length; i++) {
+        $("#div-comentarios").append(
+          '<div class="row mb-1 mt-1">' +
+            '<div class="col-1">' +
+            '<img src="img/profile-examples/goku.jpg" class="img-fluid rounded-circle" alt="">' +
+            "</div>" +
+            '<div class="col-11">' +
+            '<span class="card-subtitle fw-bold" style="color: #681e99;">' +
+            response[i].nombre +
+            " " +
+            response[i].apellido +
+            " </span>" +
+            '<span class="card-subtitle text-primary text-muted">' +
+            response[i].fecha_comentario +
+            "</span>" +
+            '<p class="card-text">' +
+            response[i].comentario +
+            "</p>" +
+            "</div>" +
+            "</div>" +
+            "<hr>"
+        );
       }
-    });
+    },
+    error: function (e) {
+      console.log(e);
+    },
+  });
 
+  $("#btn-login").click(function () {
+    var parametros =
+      "Correo=" +
+      $("#txt-correo").val() +
+      "&" +
+      "Password=" +
+      $("#txt-password").val();
 
-
-    
-
-    //Ajax con el que se mandaria a llamar la información de los comentarios y se imprimiria en la pagina
-
-    $.ajax({
-        url: "ajax/api.php?accion=ver-comentario-publicacion",
-        type: "GET",
+    if ($("txt-correo").val() == "" || $("#txt-password").val() == "") {
+      alert("Correo o Contraseña Incorrecta");
+    } else {
+      $.ajax({
+        url: "ajax/login.php",
+        method: "POST",
         data: parametros,
-        dataType: 'json',
-        success:function(response){
-            for(var i=0;i<response.length;i++){
-                $('#div-comentarios').append('<div class="row mb-1 mt-1">'+
-                '<div class="col-1">'+
-                  '<img src="img/profile-examples/goku.jpg" class="img-fluid rounded-circle" alt="">'+
-                '</div>'+
-                '<div class="col-11">'+
-                  '<span class="card-subtitle fw-bold" style="color: #681e99;">'+response[i].nombre+' '+response[i].apellido+' </span>'+
-                  '<span class="card-subtitle text-primary text-muted">'+response[i].fecha_comentario+'</span>'+
-                  '<p class="card-text">'+response[i].comentario+'</p>'+
-                '</div>'+
-              '</div>'+
-              '<hr>');
-            }   
-        },
-        error:function(e){
-            console.log(e);
-        }
-    });
-
-    $('#btn-login').click(function () {  
-        var parametros = "Correo=" + $('#txt-correo').val() +"&"+"Password="+$("#txt-password").val();
-
-        if($("txt-correo").val() == "" || $("#txt-password").val() == ""){
-            alert("Correo o Contraseña Incorrecta");
-        }
-        else{
-          $.ajax({
-            url:"ajax/login.php",
-            method:"POST",
-            data: parametros,
-            dataType:"json",
-            success:function(respuesta){
-                console.log(respuesta);
-                function redireccionarPagina(){
-                  if(respuesta.codigoResultado==0){
-                    window.location.href = "publicaciones.php";
-                    $("#txt-correo").val("");
-                    $("#txt-contrasenia").val("");
-                  }
-                  else{
-                    alert("Correo o contraseña incorrecta");
-                    window.location.reload();
-                  }
-                }
-                window.setTimeout( redireccionarPagina, 2000);
-            },
-            error:function(e){
-                console.log(e);
+        dataType: "json",
+        success: function (respuesta) {
+          console.log(respuesta);
+          function redireccionarPagina() {
+            if (respuesta.codigoResultado == 0) {
+              window.location.href = "publicaciones.php";
+              $("#txt-correo").val("");
+              $("#txt-contrasenia").val("");
+            } else {
+              alert("Correo o contraseña incorrecta");
+              window.location.reload();
             }
-        });
-        }
-    });
+          }
+          window.setTimeout(redireccionarPagina, 2000);
+        },
+        error: function (e) {
+          console.log(e);
+        },
+      });
+    }
+  });
 });
 
 $(".toggle").click(function () {
@@ -201,12 +205,12 @@ function validarEmail(id) {
     $("#" + id).removeClass("is-valid");
     return false;
   }
-};
+}
 
 function validarPass(id) {
-  var patron = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&#.$($)$-$_])[A-Za-z\d$@$!%*?&#.$($)$-$_]{8,15}$/;;
-  console.log(patron.test($("#" + id).val()))
-  console.log(($("#" + id).val()))
+  var patron = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&#.$($)$-$_])[A-Za-z\d$@$!%*?&#.$($)$-$_]{8,15}$/;
+  console.log(patron.test($("#" + id).val()));
+  console.log($("#" + id).val());
   if (patron.test($("#" + id).val())) {
     $("#" + id).addClass("is-valid");
     $("#" + id).removeClass("is-invalid");
@@ -216,28 +220,21 @@ function validarPass(id) {
     $("#" + id).removeClass("is-valid");
     return false;
   }
-};
+}
 
 var validarCampoVacio = function (id) {
-  
-    if ($("#" + id).val() == "") {
-      $("#" + id).removeClass("is-valid");
-      $("#" + id).addClass("is-invalid");
-      return false;
-    } else {
-      $("#" + id).removeClass("is-invalid");
-      $("#" + id).addClass("is-valid");
-      return true;
-    
+  if ($("#" + id).val() == "") {
+    $("#" + id).removeClass("is-valid");
+    $("#" + id).addClass("is-invalid");
+    return false;
+  } else {
+    $("#" + id).removeClass("is-invalid");
+    $("#" + id).addClass("is-valid");
+    return true;
   }
 };
 
-
-
-
-
 function validarPersona() {
-
   var v1 = validarCampoVacio("nombreCuentaPersonal");
   var v2 = validarCampoVacio("apellidoCuentaPersonal");
   var v3 = validarCampoVacio("correoPersonal");
@@ -248,10 +245,12 @@ function validarPersona() {
   var v8 = validarPass("passwordCuentaPersonal");
 
   if (!v7) {
-    $("#validacion-correoPersonal").html("Ingresa un Correo Valido: ejemplo@gmail.com");
-    console.log(1)
-  } else{
-    if(!v8){
+    $("#validacion-correoPersonal").html(
+      "Ingresa un Correo Valido: ejemplo@gmail.com"
+    );
+    console.log(1);
+  } else {
+    if (!v8) {
       $("#validacion-passwordPersonal").html(`Requisitos:
                                             <ul class="list-group">
                                                 <li>Minimo 8 caracteres</li>
@@ -262,32 +261,25 @@ function validarPersona() {
                                                 <li>No espacios en blanco</li>
                                                 <li>Al menos 1 caracter especial</li>
                                             </ul>`);
-                                            console.log(2)
-    }else{
-      
-        if (v1 && v2 && v3 && v4 && v5) {
-          console.log(3)
-          var data = `nombre=${$("#nombreCuentaPersonal").val()}&apellido=${$(
-            "#apellidoCuentaPersonal"
-          ).val()}&correo=${$("#correoPersonal").val()}&telefono=${$(
-            "#telefonoPersonal"
-          ).val()}&password=${$("#passwordCuentaPersonal").val()}`;
-          console.log("La data es: " + data);
-        } else {
-          console.log(4)
-          alert("Todos los campos son obligatorios");
-        }
-      
+      console.log(2);
+    } else {
+      if (v1 && v2 && v3 && v4 && v5) {
+        console.log(3);
+        var data = `nombre=${$("#nombreCuentaPersonal").val()}&apellido=${$(
+          "#apellidoCuentaPersonal"
+        ).val()}&correo=${$("#correoPersonal").val()}&telefono=${$(
+          "#telefonoPersonal"
+        ).val()}&password=${$("#passwordCuentaPersonal").val()}`;
+        console.log("La data es: " + data);
+      } else {
+        console.log(4);
+        alert("Todos los campos son obligatorios");
+      }
     }
-
   }
-
-  
-};
-
+}
 
 function validarEmpresa() {
-
   var v1 = validarCampoVacio("nombreEmpresa");
   var v2 = validarCampoVacio("direccionEmpresa");
   var v3 = validarCampoVacio("correoEmpresa");
@@ -298,9 +290,11 @@ function validarEmpresa() {
   var v8 = validarPass("passwordCuentaEmpresa");
 
   if (!v7) {
-    $("#validacion-correoEmpresa").html("Ingresa un Correo Valido: ejemplo@gmail.com");
-  } 
-  if(!v8){
+    $("#validacion-correoEmpresa").html(
+      "Ingresa un Correo Valido: ejemplo@gmail.com"
+    );
+  }
+  if (!v8) {
     $("#validacion-passwordEmpresa").html(`Requisitos:
                                           <ul class="list-group">
                                               <li>Minimo 8 caracteres</li>
@@ -311,19 +305,16 @@ function validarEmpresa() {
                                               <li>No espacios en blanco</li>
                                               <li>Al menos 1 caracter especial</li>
                                           </ul>`);
-  }else{
-    
-      if (v1 && v2 && v3 && v4 && v5) {
-        var data = `nombre=${$("#nombreEmpresa").val()}&direccion=${$(
-          "#direccionEmpresa"
-        ).val()}&correo=${$("#correoEmpresa").val()}&telefono=${$(
-          "#telefonoEmpresa"
-        ).val()}&password=${$("#passwordCuentaEmpresa").val()}`;
-        console.log("La data es: " + data);
-      } else {
-        alert("Todos los campos son obligatorios");
-      }
-    
+  } else {
+    if (v1 && v2 && v3 && v4 && v5) {
+      var data = `nombre=${$("#nombreEmpresa").val()}&direccion=${$(
+        "#direccionEmpresa"
+      ).val()}&correo=${$("#correoEmpresa").val()}&telefono=${$(
+        "#telefonoEmpresa"
+      ).val()}&password=${$("#passwordCuentaEmpresa").val()}`;
+      console.log("La data es: " + data);
+    } else {
+      alert("Todos los campos son obligatorios");
+    }
   }
-  
-};
+}
