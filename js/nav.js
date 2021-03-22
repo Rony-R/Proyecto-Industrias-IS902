@@ -78,6 +78,32 @@ $(document).ready(function () {
       console.log("Error: " + error);
     },
   });
+
+  //Funcion para verificar el login y cambiar la navbar.
+  $.ajax({
+    url: "ajax/api.php?accion='verificarLogIn'",
+    success: function (respuesta) {
+      console.log("Respuesta de verificar el login: " + respuesta);
+      if (respuesta == 0) {
+        $("#ul-login").removeClass("d-block");
+        $("#ul-login").addClass("d-none");
+        $("#ul-no-login").removeClass("d-none");
+        $("#ul-no-login").addClass("d-block");
+      } else {
+        tipoUsuario();
+
+        $("#ul-login").removeClass("d-none");
+        $("#ul-login").addClass("d-block");
+        $("#ul-no-login").removeClass("d-block");
+        $("#ul-no-login").addClass("d-none");
+      }
+    },
+    error: function (e, text, error) {
+      console.log("Ocurrio un error al verificar el login!");
+      console.log("Texto: " + text);
+      console.log("Error: " + error);
+    },
+  });
 });
 
 $(".toggle").click(function () {
@@ -136,6 +162,40 @@ var validarCampoVacio = function (id) {
     }
   }
 };
+
+function tipoUsuario() {
+  $.ajax({
+    url: "ajax/api.php?accion='tipoUsuario'",
+    success: function (respuesta) {
+      console.log("El tipo de usuario es: " + respuesta);
+      if (respuesta == 2) {
+        $("#a-logut").removeClass("button");
+        $("#a-logut").removeClass("log");
+        $("#a-publicaciones").addClass("d-none");
+        $("#a-publicaciones").removeClass("d-block");
+        $("#btn-empresa1").removeClass("d-none");
+        $("#btn-empresa1").addClass("d-block");
+        $("#btn-empresa2").removeClass("d-none");
+        $("#btn-empresa2").addClass("d-block");
+      } else {
+        $("#a-logut").addClass("button");
+        $("#a-publicaciones").addClass("button");
+        $("#a-publicaciones").addClass("log");
+        $("#a-publicaciones").removeClass("d-none");
+        $("#a-publicaciones").addClass("d-block");
+        $("#btn-empresa1").removeClass("d-block");
+        $("#btn-empresa1").addClass("d-none");
+        $("#btn-empresa2").removeClass("d-block");
+        $("#btn-empresa2").addClass("d-none");
+      }
+    },
+    error: function (e, text, error) {
+      console.log("Ocurrio un error al verificr el tipo de usuario!");
+      console.log("Texto: " + text);
+      console.log("Error: " + error);
+    },
+  });
+}
 
 $("#btnPublicar").click(function (e) {
   var v1 = validarCampoVacio("nombProyecto");

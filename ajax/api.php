@@ -7,6 +7,23 @@
 
     switch($_GET["accion"]){
 
+        case "'verificarLogIn'":
+            session_start();
+
+            if(isset($_SESSION["usr"]) && isset($_SESSION["psw"]))
+                echo 1;
+            else
+                echo 0;
+        break;
+
+        case "'tipoUsuario'":
+            session_start();
+            if($_SESSION["idUsr"] == 1)
+                echo 1;
+            else
+                echo 2;
+        break;
+
         case "'traerPresupuestos'":
             $sql = "SELECT * FROM TBL_PRESUPUESTO;";
             $resultado = $conexion->ejecutarConsulta($sql);

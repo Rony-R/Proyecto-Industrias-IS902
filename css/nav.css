@@ -25,6 +25,14 @@ a:hover {
   color: #33b5e5;
 }
 
+.d-none {
+  display: none !important;
+}
+
+.d-block {
+  display: flex !important;
+}
+
 .menu li {
   font-size: 17px;
   padding: 10px 10px;
@@ -114,7 +122,7 @@ a:hover {
 
 /*Tablet Menu*/
 
-@media all and (min-width: 521px) {
+@media all and (min-width: 565px) {
   .menu {
     justify-content: center;
   }
@@ -175,8 +183,8 @@ a:hover {
   }
 }
 
-/*Desktop MMenu*/
-@media all and (min-width: 770px) {
+/*Desktop Menu*/
+@media all and (min-width: 865px) {
   .item {
     display: block;
     width: auto;
@@ -205,6 +213,13 @@ a:hover {
   .menu li.button {
     padding-right: 0;
   }
+
+  /* #btn-empresa1 {
+    display: block !important;
+  }
+  #btn-empresa2 {
+    display: block !important;
+  } */
 }
 
 .col-md-4 {
