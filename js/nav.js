@@ -85,17 +85,17 @@ $(document).ready(function () {
     success: function (respuesta) {
       console.log("Respuesta de verificar el login: " + respuesta);
       if (respuesta == 0) {
-        $("#ul-login").removeClass("d-block");
-        $("#ul-login").addClass("d-none");
-        $("#ul-no-login").removeClass("d-none");
-        $("#ul-no-login").addClass("d-block");
+        $("#nav-no-login").removeClass("d-none");
+        $("#nav-no-login").addClass("d-flex");
+        $("#nav-freelancer").removeClass("d-flex");
+        $("#nav-empresa").removeClass("d-flex");
+        $("#nav-freelancer").addClass("d-none");
+        $("#nav-empresa").addClass("d-none");
       } else {
         tipoUsuario();
 
-        $("#ul-login").removeClass("d-none");
-        $("#ul-login").addClass("d-block");
-        $("#ul-no-login").removeClass("d-block");
-        $("#ul-no-login").addClass("d-none");
+        $("#nav-no-login").removeClass("d-flex");
+        $("#nav-no-login").addClass("d-none");
       }
     },
     error: function (e, text, error) {
@@ -169,24 +169,15 @@ function tipoUsuario() {
     success: function (respuesta) {
       console.log("El tipo de usuario es: " + respuesta);
       if (respuesta == 2) {
-        $("#a-logut").removeClass("button");
-        $("#a-logut").removeClass("log");
-        $("#a-publicaciones").addClass("d-none");
-        $("#a-publicaciones").removeClass("d-block");
-        $("#btn-empresa1").removeClass("d-none");
-        $("#btn-empresa1").addClass("d-block");
-        $("#btn-empresa2").removeClass("d-none");
-        $("#btn-empresa2").addClass("d-block");
+        $("#nav-empresa").removeClass("d-none");
+        $("#nav-empresa").addClass("d-flex");
+        $("#nav-freelancer").removeClass("d-flex");
+        $("#nav-freelancer").addClass("d-none");
       } else {
-        $("#a-logut").addClass("button");
-        $("#a-publicaciones").addClass("button");
-        $("#a-publicaciones").addClass("log");
-        $("#a-publicaciones").removeClass("d-none");
-        $("#a-publicaciones").addClass("d-block");
-        $("#btn-empresa1").removeClass("d-block");
-        $("#btn-empresa1").addClass("d-none");
-        $("#btn-empresa2").removeClass("d-block");
-        $("#btn-empresa2").addClass("d-none");
+        $("#nav-freelancer").removeClass("d-none");
+        $("#nav-freelancer").addClass("d-flex");
+        $("#nav-empresa").removeClass("d-flex");
+        $("#nav-empresa").addClass("d-none");
       }
     },
     error: function (e, text, error) {

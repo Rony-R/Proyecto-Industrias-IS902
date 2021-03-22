@@ -29,7 +29,7 @@ a:hover {
   display: none !important;
 }
 
-.d-block {
+.d-flex {
   display: flex !important;
 }
 
@@ -213,13 +213,6 @@ a:hover {
   .menu li.button {
     padding-right: 0;
   }
-
-  /* #btn-empresa1 {
-    display: block !important;
-  }
-  #btn-empresa2 {
-    display: block !important;
-  } */
 }
 
 .col-md-4 {
