@@ -239,10 +239,29 @@ $("#btnPublicar").click(function (e) {
   }
 });
 
-// $("#guardar-publicacion").click(function () {
-//   alert("Guardando Publicacion!");
-// });
-
-function guardarPublicacion(data) {
-  alert("La data es: " + data);
+function guardarPublicacion(
+  idUs,
+  nomProy,
+  desc,
+  tipoProy,
+  presupuesto,
+  rutaImg,
+  nomImg
+) {
+  alert(
+    "La data es: " +
+      idUs +
+      " " +
+      nomProy +
+      " " +
+      desc +
+      " " +
+      tipoProy +
+      " " +
+      presupuesto +
+      " " +
+      rutaImg +
+      " " +
+      nomImg
+  );
 }

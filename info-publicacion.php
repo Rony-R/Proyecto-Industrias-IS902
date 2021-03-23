@@ -111,7 +111,7 @@
         <li class="item"><a href="ajax/logout.php">Cerrar Sesión</a></li>   
         <li class="item button log"><a href="#">Mis Publicaciones</a></li>
         <li class="item button">
-          <a id="h" href="pubProyecto.html"> Publicar un Proyecto </a>
+          <a id="h" href="pubProyecto.php"> Publicar un Proyecto </a>
         </li>
         <li class="toggle">
           <span class="bars"></span>

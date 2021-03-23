@@ -18,7 +18,7 @@
 
         case "'tipoUsuario'":
             session_start();
-            if($_SESSION["idUsr"] == 1)
+            if($_SESSION["idTipoUsr"] == 1)
                 echo 1;
             else
                 echo 2;

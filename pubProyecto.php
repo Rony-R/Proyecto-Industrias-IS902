@@ -1,3 +1,11 @@
+<?php
+
+  session_start();
+  if (!isset($_SESSION["usr"]) || !isset($_SESSION["psw"]))
+    header("Location: login.php");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,8 +45,25 @@
   </head>
   <body>
     <nav>
-      <!-- NavBar cuando hace login -->
-      <ul id="ul-login" class="menu mb-0" style="display: none">
+      <!-- NavBar sin login -->
+      <ul id="nav-no-login" class="menu mb-0" style="display: none">
+        <li class="logo">
+          <a href="#">
+            <img class="logoImg" src="./img/logos/logo1.png" alt="" />
+          </a>
+        </li>
+        <li class="item"><a href="index.php">Inicio</a></li>
+        <li class="item button log"><a href="registro.html">Registrarse</a></li>
+        <li class="item button">
+          <a id="h" href="login.php"> Iniciar Sesión </a>
+        </li>
+        <li class="toggle">
+          <span class="bars"></span>
+        </li>
+      </ul>
+
+      <!-- NavBar freelancer -->
+      <ul id="nav-freelancer" class="menu mb-0" style="display: none">
         <li class="logo">
           <a href="#">
             <img class="logoImg" src="./img/logos/logo1.png" alt="" />
@@ -46,37 +71,31 @@
         </li>
         <li class="item"><a href="index.php">Inicio</a></li>
         <li class="item"><a href="perfil-info-personal.html">Perfil</a></li>
-        <li class="item">
-          <a id="a-publicaciones" href="publicaciones.php">Publicaciones</a>
-        </li>
-        <li id="a-logut" class="item">
+        <li class="item button log">
           <a href="ajax/logout.php">Cerrar Sesión</a>
         </li>
-        <li class="item button log">
-          <a id="btn-empresa1" style="display: none" href="#"
-            >Mis Publicaciones</a
-          >
-        </li>
         <li class="item button">
-          <a id="btn-empresa2" style="display: none" href="pubProyecto.html">
-            Publicar un Proyecto
-          </a>
+          <a id="h" href="publicaciones.php"> Publicaciones </a>
         </li>
         <li class="toggle">
           <span class="bars"></span>
         </li>
       </ul>
 
-      <!-- NavBar cuando no ha hecho login -->
-      <ul id="ul-no-login" class="menu mb-0">
+      <!-- NavBar Empresa -->
+      <ul id="nav-empresa" class="menu mb-0">
         <li class="logo">
           <a href="#">
             <img class="logoImg" src="./img/logos/logo1.png" alt="" />
           </a>
         </li>
         <li class="item"><a href="index.php">Inicio</a></li>
-        <li class="item"><a href="registro.html">Registrarse</a></li>
-        <li class="item button"><a href="login.php">Iniciar Sesión</a></li>
+        <li class="item"><a href="perfil-info-personal.html">Perfil</a></li>
+        <li class="item"><a href="ajax/logout.php">Cerrar Sesión</a></li>
+        <li class="item button log"><a href="#">Mis Publicaciones</a></li>
+        <li class="item button">
+          <a id="h" href="pubProyecto.php"> Publicar un Proyecto </a>
+        </li>
         <li class="toggle">
           <span class="bars"></span>
         </li>

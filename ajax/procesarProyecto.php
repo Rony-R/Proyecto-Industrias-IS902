@@ -24,17 +24,56 @@
 <body id="grad">
     
     <nav>
-      <ul class="menu">
+      <!-- NavBar sin login -->
+      <ul id="nav-no-login" class="menu mb-0" style="display: none">
         <li class="logo">
           <a href="#">
             <img class="logoImg" src="../img/logos/logo1.png" alt="" />
           </a>
         </li>
-        <li class="item"><a href="index.html">Home</a></li>
-        <li class="item"><a href="#">Registrarse</a></li>
-        <li class="item button log"><a href="#">Iniciar Sesión</a></li>
+        <li class="item"><a href="index.php">Inicio</a></li>
+        <li class="item button log"><a href="registro.html">Registrarse</a></li>
         <li class="item button">
-          <a id="h" href="pubProyecto.html"> Publicar un Proyecto </a>
+          <a id="h" href="login.php"> Iniciar Sesión </a>
+        </li>
+        <li class="toggle">
+          <span class="bars"></span>
+        </li>
+      </ul>
+
+      <!-- NavBar freelancer -->
+      <ul id="nav-freelancer" class="menu mb-0" style="display: none">
+        <li class="logo">
+          <a href="#">
+            <img class="logoImg" src="../img/logos/logo1.png" alt="" />
+          </a>
+        </li>
+        <li class="item"><a href="index.php">Inicio</a></li>
+        <li class="item"><a href="perfil-info-personal.html">Perfil</a></li>
+        <li class="item button log">
+          <a href="ajax/logout.php">Cerrar Sesión</a>
+        </li>
+        <li class="item button">
+          <a id="h" href="publicaciones.php"> Publicaciones </a>
+        </li>
+        <li class="toggle">
+          <span class="bars"></span>
+        </li>
+      </ul>
+
+      <!-- NavBar Empresa -->
+      <ul id="nav-empresa" class="menu mb-0">
+        <li class="logo">
+          <a href="#">
+            <img class="logoImg" src="../img/logos/logo1.png" alt="" />
+          </a>
+        </li>
+        <li class="item"><a href="index.php">Inicio</a></li>
+        <li class="item"><a href="perfil-info-personal.html">Perfil</a></li>
+        <li class="item"><a href="ajax/logout.php">Cerrar Sesión</a></li>
+        <li class="item button log"><a href="#">Mis Publicaciones</a></li>
+        <li class="item button">
+          <a id="h" href="pubProyecto.php"> Publicar un Proyecto </a>
         </li>
         <li class="toggle">
           <span class="bars"></span>
@@ -49,6 +88,12 @@
         $v3 = ( empty($_POST['slcTipoProyecto']) ) ? NULL : $_POST['slcTipoProyecto'];
         $v5 = ( empty($_POST['slcPresupuesto']) ) ? NULL : $_POST['slcPresupuesto'];
 
+        session_start();
+
+        $idUsuario = $_SESSION["idUsr"];
+        $rutaImg = "";
+        $nomImg = "";
+
         if($v1 && $v2 && $v3 && $v5){
 
             if(isset($_POST['submit'])){
@@ -56,34 +101,45 @@
                 $filecount = count($_FILES['file']['name']);
                 $rutas = array();
                 $imgNames = array(); 
+
+                if(!(isset($_FILES))){
+                    $rutaImg = "";
+                    $nomImg = "";
+                }
+                else{
+                    for($i=0; $i < $filecount; $i++){
     
-                for($i=0; $i < $filecount; $i++){
-    
-                    $name = $_FILES['file']['name'][$i];
-                    $tmp_name = $_FILES['file']['tmp_name'][$i];
-                    $error = $_FILES['file']['error'][$i];
-                    $size = $_FILES['file']['size'][$i];
-                    $max_size = 1024*1024*1;
-                    $type = $_FILES['file']['type'][$i];
-    
-                    if($error){
-                        $resultado = "Ha ocurrido un error";
-                    }
-                    else if ($size > $max_size){
-                        $resultado = "El tamaño supera el máximo permitido: 1MB.";
-                    }
-                    else if ($type != 'image/jpg' && $type != 'image/png' && $type != 'image/gif' && $type != 'image/jpeg') {
-                        $resultado = "Los unicos archivos permitidos son: .jpg|.png|.gif|.jpeg";
-                    }
-    
-                    else{
-                        $ruta = '../img/imgProyectos/' . $name;
-                        $rutas[$i] = $ruta;
-                        $imgNames[$i] = $name;
-                        move_uploaded_file($tmp_name, $ruta);
-                        $resultado = "La imagen '$name' se ha guardado!";
+                        $name = $_FILES['file']['name'][$i];
+                        $tmp_name = $_FILES['file']['tmp_name'][$i];
+                        $error = $_FILES['file']['error'][$i];
+                        $size = $_FILES['file']['size'][$i];
+                        $max_size = 1024*1024*1;
+                        $type = $_FILES['file']['type'][$i];
+        
+                        if($error){
+                            $resultado = "Ha ocurrido un error";
+                        }
+                        else if ($size > $max_size){
+                            $resultado = "El tamaño supera el máximo permitido: 1MB.";
+                        }
+                        else if ($type != 'image/jpg' && $type != 'image/png' && $type != 'image/gif' && $type != 'image/jpeg') {
+                            $resultado = "Los unicos archivos permitidos son: .jpg|.png|.gif|.jpeg";
+                        }
+        
+                        else{
+                            $ruta = '../img/imgProyectos/' . $name;
+                            $rutas[$i] = $ruta;
+                            $imgNames[$i] = $name;                            
+                            move_uploaded_file($tmp_name, $ruta);
+                            $resultado = "La imagen '$name' se ha guardado!";
+                        }
+                        $rutaImg = $rutas[0];
+                        $nomImg = $imgNames[0];
                     }
                 }
+
+                //$data = "idUsuario=" .$idUsuario. "&nomProyecto=" .$_POST["nombProyecto"]. "&desc=" .$_POST["descProyecto"]. "&tipoProyecto=" .$_POST["slcTipoProyecto"]. "&presupuesto=" .$_POST["slcPresupuesto"]. "&rutaImg=" .$rutas[0]. "&nomImg=" .$imgNames[0];
+                $data = "idUsuario=" .$idUsuario. "&nomProyecto=" .$_POST["nombProyecto"];
     
                 //Imprimiendo una card con la info
                 echo '<div class="row justify-content-center">';
@@ -92,10 +148,11 @@
                             echo '<strong><h5 class="card-title text-center">Revisión de Datos</strong></h5>';
                             echo '<p class="card-text mt-3">Estos son los datos que has agregado:</p>';
                             echo '<ul class="list-group list-group-flush">';
+                            echo '<li class="list-group-item"><label class="font-weight-bold lb-rev">Id del Usuario: </label>'.$idUsuario.'</li>';
                                 echo '<li class="list-group-item"><label class="font-weight-bold lb-rev">Nombre del Proyecto:</label>'.$_POST["nombProyecto"].'</li>';
                                 echo '<li class="list-group-item"><label class="font-weight-bold lb-rev">Descripción:</label>'.$_POST["descProyecto"].'</li>';
                                 echo '<li class="list-group-item"><label class="font-weight-bold lb-rev">Tipo Proyecto:</label>'.$_POST["slcTipoProyecto"].'</li>';
-
+                                
                                 switch($_POST["slcPresupuesto"]){
                                     case 1:
                                         echo '<li class="list-group-item"><label class="font-weight-bold">Presupuesto: </label> $1,500 - $3,000</li>';
@@ -118,16 +175,19 @@
                                     break;
                                 }
                                 echo '<li class="list-group-item"><label class="font-weight-bold">Rutas de las imagenes:</label></li>';
-                                for($i=0; $i < count($rutas); $i++){
-                                    echo '<li class="list-group-item">'.$rutas[$i].'</li>';
-                                }
+                                // for($i=0; $i < count($rutas); $i++){
+                                //     echo '<li class="list-group-item">'.$rutas[$i].'</li>';
+                                // }
+                                echo '<li class="list-group-item">'.$rutaImg.'</li>';
                                 echo '<li class="list-group-item"><label class="font-weight-bold">Nombres de las imagenes:</label></li>';
-                                for($i=0; $i < count($imgNames); $i++){
-                                    echo '<li class="list-group-item">'.$imgNames[$i].'</li>';
-                                }
+                                // for($i=0; $i < count($imgNames); $i++){
+                                //     echo '<li class="list-group-item">'.$imgNames[$i].'</li>';
+                                // }
+                                echo '<li class="list-group-item">'.$nomImg.'</li>';
                             echo '</ul>';
-                            echo '<a href="../pubProyecto.html" class="btn btn-rev1">Cancelar</a>';
-                            echo '<button id="guardar-publicacion" onclick="guardarPublicacion(Hoola amigos)" type="button" class="btn btn-rev2">Guardar</button>';
+                            echo '<a href="../pubProyecto.php" class="btn btn-rev1">Cancelar</a>';
+                            //echo '<button id="guardar-publicacion" onclick="guardarPublicacion('.$idUsuario, $_POST["nombProyecto"], $_POST["descProyecto"], $_POST["slcTipoProyecto"], $_POST["slcPresupuesto"], $rutaImg, $nomImg.')" type="button" class="btn btn-rev2">Guardar</button>';
+                            echo '<button id="guardar-publicacion" onclick="guardarPublicacion('.$data.')" type="button" class="btn btn-rev2">Guardar</button>';
                         echo '</div>';
                     echo '</div>';
                 echo '</div>';

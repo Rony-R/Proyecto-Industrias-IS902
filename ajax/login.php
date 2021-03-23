@@ -3,7 +3,7 @@
     include("../class/class-conexion.php");
     $conexion = new Conexion();
     $sql = sprintf( 
-        "SELECT id_usuario, correo, contrasenia FROM tbl_usuario WHERE correo = '%s' and contrasenia ='%s'",
+        "SELECT id_usuario, id_tipo_usuario, correo, contrasenia FROM tbl_usuario WHERE correo = '%s' and contrasenia ='%s'",
         $_POST["Correo"],
         $_POST["Password"]);
  
@@ -16,6 +16,7 @@
         $_SESSION["usr"] = $respuesta["correo"];
         $_SESSION["psw"] = $respuesta["contrasenia"];
         $_SESSION["idUsr"] = $respuesta["id_usuario"];
+        $_SESSION["idTipoUsr"] = $respuesta["id_tipo_usuario"];
     }else {
         $respuesta["codigoResultado"] = 1;
         $respuesta["mensajeResultado"] = "El usuario no existe";
