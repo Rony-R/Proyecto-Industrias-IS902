@@ -50,26 +50,51 @@ $(document).ready(function () {
     success: function (respuesta) {
       console.log("Publicaciones: " + respuesta);
       for (var i = 0; i < respuesta.length; i++) {
-        $("#row-pubs").append(
-          '<div id="' +
-            respuesta[i].id_publicacion +
-            '" class="col-lg-3 col-md-4 col-sm-12 mb-4">' +
-            '<div class="card card-pub">' +
-            '<img src="img/logos/code.svg" class="card-img-top" alt="..." />' +
-            '<div class="card-body">' +
-            '<h5 class="card-title">' +
-            respuesta[i].nombre_proyecto +
-            "</h5>" +
-            '<p class="card-text txt-just">' +
-            respuesta[i].descripcion +
-            "</p>" +
-            '<a href="info-publicacion.php?publicacion=' +
-            respuesta[i].id_publicacion +
-            '" class="btn-ver-pub">Ver Publicación</a>' +
-            "</div>" +
-            "</div>" +
-            "</div>"
-        );
+        if (respuesta[i].ruta_img == "") {
+          $("#row-pubs").append(
+            '<div id="' +
+              respuesta[i].id_publicacion +
+              '" class="col-lg-3 col-md-4 col-sm-12 mb-4">' +
+              '<div class="card card-pub">' +
+              '<img src="img/logos/code.svg" class="card-img-top img-pub" />' +
+              '<div class="card-body">' +
+              '<h5 class="card-title">' +
+              respuesta[i].nombre_proyecto +
+              "</h5>" +
+              '<p class="card-text txt-just">' +
+              respuesta[i].descripcion +
+              "</p>" +
+              '<a href="info-publicacion.php?publicacion=' +
+              respuesta[i].id_publicacion +
+              '" class="btn-ver-pub">Ver Publicación</a>' +
+              "</div>" +
+              "</div>" +
+              "</div>"
+          );
+        } else {
+          $("#row-pubs").append(
+            '<div id="' +
+              respuesta[i].id_publicacion +
+              '" class="col-lg-3 col-md-4 col-sm-12 mb-4">' +
+              '<div class="card card-pub">' +
+              '<img src="img/imgProyectos/' +
+              respuesta[i].nombre_img +
+              '" class="card-img-top img-pub" />' +
+              '<div class="card-body">' +
+              '<h5 class="card-title">' +
+              respuesta[i].nombre_proyecto +
+              "</h5>" +
+              '<p class="card-text txt-just">' +
+              respuesta[i].descripcion +
+              "</p>" +
+              '<a href="info-publicacion.php?publicacion=' +
+              respuesta[i].id_publicacion +
+              '" class="btn-ver-pub">Ver Publicación</a>' +
+              "</div>" +
+              "</div>" +
+              "</div>"
+          );
+        }
       }
     },
     error: function (e, text, error) {
@@ -202,66 +227,13 @@ $("#btnPublicar").click(function (e) {
     ).val()}&tipoProyecto=${$("#slcTipoProyecto").val()}&presupuesto=${$(
       "#slcPresupuesto"
     ).val()}`;
-
-    //$("#modalDatos").modal();
-
-    //Lista de las imagenes:
-
-    // const fileSelector = $("#file-selector").val();
-    // console.log(fileSelector);
-
-    var fileInput = document.getElementById("file");
-
-    var files = fileInput.files;
-
-    var file;
-
-    for (var i = 0; i < files.length; i++) {
-      //file = files.item(i);
-      file = files[i];
-      console.log(file);
-    }
-
-    // $.ajax({
-    //   url: "ajax/api.php?accion=publicarProyecto",
-    //   method: "POST",
-    //   data: data,
-    //   dataType: "text",
-    //   success: function (respuesta) {
-    //     console.log("Success" + respuesta);
-    //   },
-    //   error: function (e, text, error) {
-    //     console.log("Ocurrio un error:" + error + " " + text);
-    //   },
-    // });
-
-    console.log("La data es: " + data);
   }
 });
 
-function guardarPublicacion(
-  idUs,
-  nomProy,
-  desc,
-  tipoProy,
-  presupuesto,
-  rutaImg,
-  nomImg
-) {
-  alert(
-    "La data es: " +
-      idUs +
-      " " +
-      nomProy +
-      " " +
-      desc +
-      " " +
-      tipoProy +
-      " " +
-      presupuesto +
-      " " +
-      rutaImg +
-      " " +
-      nomImg
-  );
+function guardarPublicacion(resultado) {
+  if (resultado) {
+    window.location = "../publicaciones.php";
+  } else {
+    alert("Ocurrio un problema! No se inserto el proyecto");
+  }
 }

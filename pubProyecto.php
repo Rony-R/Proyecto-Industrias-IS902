@@ -200,7 +200,7 @@
                   <i class="fas fa-images"></i>
                 </div>
                 <div>
-                  <input id="file" type="file" name="file[]" class="input" />
+                  <input id="file" type="file" name="file" class="input" />
                 </div>
               </div>
 

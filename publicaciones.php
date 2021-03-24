@@ -104,7 +104,7 @@ $registro = $conexion->obtenerFila($resultado); ?>
     </nav>
 
     <main>
-      <h3 class="text-center">Contenido Principal</h3>
+      <!-- <h3 class="text-center">Contenido Principal</h3> -->
 
       <div class="container">
         <div id="row-pubs" class="row mt-2 mb-2"></div>

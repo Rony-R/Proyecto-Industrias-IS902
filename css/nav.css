@@ -33,6 +33,11 @@ a:hover {
   display: flex !important;
 }
 
+.img-pub {
+  height: 300px;
+  width: 100%;
+}
+
 .menu li {
   font-size: 17px;
   padding: 10px 10px;
@@ -58,6 +63,16 @@ a:hover {
 
 .card-pub {
   height: 100%;
+}
+
+.btn-ver-pub {
+  display: inline-block;
+  padding: 7px 15px;
+  color: white;
+  border-radius: 50em;
+  font-weight: bolder;
+  background-image: linear-gradient(to right, #681e99, #106abe, #34c257);
+  border: 1px solid #33b5e5;
 }
 
 /*Mobile menu*/
@@ -142,7 +157,7 @@ a:hover {
   }
 
   .button a {
-    padding: 7px 15px;
+    padding: 5px 9px;
     border-radius: 50em;
     background-color: rgba(164, 46, 223, 0.527);
     border: 1px solid #33b5e5;
@@ -212,6 +227,20 @@ a:hover {
 
   .menu li.button {
     padding-right: 0;
+  }
+}
+
+@media all and (min-width: 1800px) {
+  .img-pub {
+    height: 250px !important;
+    width: 100% !important;
+  }
+}
+
+@media all and (min-width: 762px) {
+  .img-pub {
+    height: 170px;
+    width: 100%;
   }
 }
 

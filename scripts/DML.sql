@@ -96,29 +96,29 @@ VALUES (2,7,"Codeks",null,"Col. Res. Loarque, calle principal, casa N° 533.","c
 
 --INSERTS TBL_PUBLICACION (DE PRUEBA)
 INSERT INTO TBL_PUBLICACION (id_presupuesto, id_usuario, id_categoria, id_estado, nombre_proyecto, descripcion, nombre_img, ruta_img) 
-VALUES (1,7,2,1,'Dev Finder','Proyecto de programaion web para atraer posibles proyectos a los estudiantes de la UNAH', null, null);
+VALUES (1,7,2,1,'Dev Finder','Proyecto de programaion web para atraer posibles proyectos a los estudiantes de la UNAH', 'devFinder.png', null);
 INSERT INTO TBL_PUBLICACION (id_presupuesto, id_usuario, id_categoria, id_estado, nombre_proyecto, descripcion, nombre_img, ruta_img) 
-VALUES (1,7,5,1,'LTT Store','Tienda online para el canal de youtube de LTT.', null, null);
+VALUES (1,7,5,1,'LTT Store','Tienda online para el canal de youtube de LTT.', 'lttpng.png', null);
 INSERT INTO TBL_PUBLICACION (id_presupuesto, id_usuario, id_categoria, id_estado, nombre_proyecto, descripcion, nombre_img, ruta_img) 
-VALUES (1,7,2,1,'Pinterest','Pagina web que mostrara imagenes que lsean del gusto de los usuario.', null, null);
+VALUES (1,7,2,1,'Pinterest','Pagina web que mostrara imagenes que lsean del gusto de los usuario.', 'pinteres.png', null);
 INSERT INTO TBL_PUBLICACION (id_presupuesto, id_usuario, id_categoria, id_estado, nombre_proyecto, descripcion, nombre_img, ruta_img) 
-VALUES (1,7,3,1,'9Gag','Pagina web y aplicacion movil que mostrara memes de todo tipo a los usuarios.', null, null);
+VALUES (1,7,3,1,'9Gag','Pagina web y aplicacion movil que mostrara memes de todo tipo a los usuarios.', '9gag.png', null);
 INSERT INTO TBL_PUBLICACION (id_presupuesto, id_usuario, id_categoria, id_estado, nombre_proyecto, descripcion, nombre_img, ruta_img) 
-VALUES (1,4,2,1,'BK Store','Aplicacion movil para android y IOS para vender la mercaderia de BurgerKing.', null, null);
+VALUES (1,4,2,1,'BK Store','Aplicacion movil para android y IOS para vender la mercaderia de BurgerKing.', 'bk.png', null);
 INSERT INTO TBL_PUBLICACION (id_presupuesto, id_usuario, id_categoria, id_estado, nombre_proyecto, descripcion, nombre_img, ruta_img) 
-VALUES (1,6,1,1,'Shoes Customizer','Aplicacion que permitira a los usuarios personalizar tenis puma a su gusto.', null, null);
+VALUES (1,6,1,1,'Shoes Customizer','Aplicacion que permitira a los usuarios personalizar tenis puma a su gusto.', 'shoes.png', null);
 INSERT INTO TBL_PUBLICACION (id_presupuesto, id_usuario, id_categoria, id_estado, nombre_proyecto, descripcion, nombre_img, ruta_img) 
-VALUES (1,7,2,1,'AmongUS','Juego para android y IOS donde hay un impostor entre un numero de tripulantes.', null, null);
+VALUES (1,7,2,1,'AmongUS','Juego para android y IOS donde hay un impostor entre un numero de tripulantes.', 'among.png', null);
 INSERT INTO TBL_PUBLICACION (id_presupuesto, id_usuario, id_categoria, id_estado, nombre_proyecto, descripcion, nombre_img, ruta_img) 
-VALUES (1,7,6,1,'COD Mobile','Juego estilo Battle Royale donde la gente se va a matar con armas de todo tipo.', null, null);
+VALUES (1,7,6,1,'COD Mobile','Juego estilo Battle Royale donde la gente se va a matar con armas de todo tipo.', 'cod.png', null);
 INSERT INTO TBL_PUBLICACION (id_presupuesto, id_usuario, id_categoria, id_estado, nombre_proyecto, descripcion, nombre_img, ruta_img) 
-VALUES (1,7,3,1,'Fortnite','Juego estilo Battle Royale donde la gente se va a matar con armas de todo tipo, ademas de construir estructuras.', null, null);
+VALUES (1,7,3,1,'Fortnite','Juego estilo Battle Royale donde la gente se va a matar con armas de todo tipo, ademas de construir estructuras.', 'fortnite.png', null);
 INSERT INTO TBL_PUBLICACION (id_presupuesto, id_usuario, id_categoria, id_estado, nombre_proyecto, descripcion, nombre_img, ruta_img) 
-VALUES (1,7,1,1,'HNIPTV4','Aplicacion android donde los usuarios podran ver sus partidos favoritos de todas las ligas del mundo.', null, null);
+VALUES (1,7,1,1,'HNIPTV4','Aplicacion android donde los usuarios podran ver sus partidos favoritos de todas las ligas del mundo.', 'hn.png', null);
 INSERT INTO TBL_PUBLICACION (id_presupuesto, id_usuario, id_categoria, id_estado, nombre_proyecto, descripcion, nombre_img, ruta_img) 
-VALUES (1,7,5,1,'VS Code','Editor de texto para que los usuarios puedan programar en cualquier lenguage de programacion.', null, null);
+VALUES (1,7,5,1,'VS Code','Editor de texto para que los usuarios puedan programar en cualquier lenguage de programacion.', 'visual.png', null);
 INSERT INTO TBL_PUBLICACION (id_presupuesto, id_usuario, id_categoria, id_estado, nombre_proyecto, descripcion, nombre_img, ruta_img) 
-VALUES (1,7,2,1,'PUBG','Juego estilo battle royale bien tuany que tenga graficos tumbados y armas de la segunda guerra mundial.', null, null);
+VALUES (1,7,2,1,'PUBG','Juego estilo battle royale bien tuany que tenga graficos tumbados y armas de la segunda guerra mundial.', 'pubg.png', null);
 
 
 --INSERTS TBL_
