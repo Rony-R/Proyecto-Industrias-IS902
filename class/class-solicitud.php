@@ -57,7 +57,7 @@
                             $conexion->antiInyeccion($this->id_publicacion),
                             $conexion->antiInyeccion($this->id_usuario));
             
-                            $resultado = $conexion->ejecutarConsulta($sql);
+            $resultado = $conexion->ejecutarConsulta($sql);
 
 			if($resultado){
 				$mensaje["mensaje"]="Solicitud enviada exitosamente";
@@ -70,5 +70,22 @@
 				return json_encode($mensaje);
 			}
         }
+		
+		public function limitarSolicitudes($conexion){
+			$sql = sprintf("SELECT COUNT(id_solicitud) as cantidadSolicitudes FROM tbl_solicitudes
+					where id_publicacion = %s and id_usuario=%s",
+					$conexion->antiInyeccion($this->id_publicacion),
+					$conexion->antiInyeccion($this->id_usuario));
+			$resultado = $conexion->ejecutarConsulta($sql);
+            $listaSucursales = array();
+            while($fila = $conexion->obtenerFila($resultado)){
+                $listaSucursales[] = $fila;
+            }
+
+            $final = json_encode($listaSucursales);
+
+            return $final;
+		}
+
 	}
 ?>

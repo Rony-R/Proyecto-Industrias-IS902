@@ -88,6 +88,11 @@
             echo $enviarSol->enviarSolicitud($conexion);
         break;
 
+        case "limitar-solicitudes":
+            $limitSol = new Solicitud(null,$_GET["idPublicacion"],$_GET["idUsuario"],null);
+            echo $limitSol->limitarSolicitudes($conexion);
+        break;
+
     }
 
 ?>

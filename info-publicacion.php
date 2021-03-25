@@ -162,10 +162,12 @@
                 <div class="col-3"><img src="img/logos/logo1.png" class="img-thumbnail img-fluid" alt=""></div>
                 <div class="col-3"><img src="img/logos/logo1.png" class="img-thumbnail img-fluid" alt=""></div>
                 <div class="col-3"><img src="img/logos/logo1.png" class="img-thumbnail img-fluid" alt=""></div>
-              </div>
-              <button type="button" id="btn-solicitud" class="btn mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" id="btn-solicitud" class="btn mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Enviar Solicitud
-              </button>
+                </button>
+              </div>
+              
+              
 
               <!-- Modal -->
               <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -185,10 +187,6 @@
                   </div>
                 </div>
               </div>
-
-            </div>
-            <div class="card-footer">
-              
             </div>
             <div class="card-footer" style="background-color: white;">
               <div class="row">

@@ -205,6 +205,24 @@ $(document).ready(function () {
     });
   });
 
+  var parametrosValidacion = "idUsuario="+ $("#txt-codigo-usuario").val() + "&idPublicacion=" + $('#id-publicacion').val();
+  $.ajax({
+    type: "GET",
+    url: "ajax/api.php?accion=limitar-solicitudes",
+    data: parametrosValidacion,
+    dataType: "JSON",
+    success: function (response) {
+      for (var i = 0; i < response.length; i++) {
+        if(response[i].cantidadSolicitudes == 1){
+          $("#btn-solicitud").addClass('d-none');
+        }
+      }
+    },
+    error:function(e){
+        console.log(e);
+      }
+    });
+
 });
 
 $(".toggle").click(function () {
