@@ -47,7 +47,9 @@
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/nav.css" />
+    <link rel="stylesheet" href="css/nav.css"/>
+    <link rel="stylesheet" href="css/info-publicacion.css"/>
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
 
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -161,17 +163,43 @@
                 <div class="col-3"><img src="img/logos/logo1.png" class="img-thumbnail img-fluid" alt=""></div>
                 <div class="col-3"><img src="img/logos/logo1.png" class="img-thumbnail img-fluid" alt=""></div>
               </div>
+              <button type="button" id="btn-solicitud" class="btn mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Enviar Solicitud
+              </button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                      <h5><b>¿Esta seguro que desea enviar la solicitud?</b></h5>
+                      <span style="color: red; font-size:15px;">Si envia la solicitud, no podra cancelarla</span>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn" id="btn-no-solicitud" data-bs-dismiss="modal">Cancelar</button>
+                      <button type="button" class="btn" id="btn-enviar-solicitud">Si</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="card-footer">
+              
             </div>
             <div class="card-footer" style="background-color: white;">
               <div class="row">
-                <div class="col-1">
+                <div class="col-1 mt-2">
                   <img src="img/profile-examples/goku.jpg" class="img-fluid rounded-circle" alt=""> <!-- Aquí iria la imagen de perfil del usuario que inicio sesión -->
                 </div>
-                <div class="col-9 mt-1">
+                <div class="col-10 mt-3">
                   <input type="text" class="form-control" name="" id="txta-comentario">
                 </div>
-                <div class="col-2 mt-1">
-                  <button class="btn btn-outline-primary" id="btn-comentarios">Comentar</button>
+                <div class="col-1">
+                  <button class="btn" id="btn-comentarios"><span class="fas fa-comments"></span></button>
                 </div>
               </div>
             </div>

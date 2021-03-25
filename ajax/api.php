@@ -2,6 +2,7 @@
     include("../class/class-conexion.php");
     include("../class/class-comentario.php");
     include("../class/class-publicacion.php");
+    include("../class/class-solicitud.php");
 
     $conexion = new Conexion();
 
@@ -82,8 +83,10 @@
             echo $verInfoUserPub->verInformacionUsuarioPublicacion($conexion);
         break;
 
-        /*case "'accion'":
-        break;*/
+        case "enviar-solicitud":
+            $enviarSol = new Solicitud(null,$_POST["idPublicacion"],$_POST["idUsuario"],null);
+            echo $enviarSol->enviarSolicitud($conexion);
+        break;
 
     }
 

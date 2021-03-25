@@ -186,6 +186,25 @@ $(document).ready(function () {
       });
     }
   });
+
+  $("#btn-enviar-solicitud").click(function(){
+    var parametros = "idUsuario="+ $("#txt-codigo-usuario").val() + "&idPublicacion=" + $('#id-publicacion').val();
+
+    $.ajax({
+      type: "POST",
+      url: "ajax/api.php?accion=enviar-solicitud",
+      data: parametros,
+      dataType: "JSON",
+      success: function (response) {
+        alert("Solicitud enviada exitosamente");
+        location.reload();
+      },
+      error:function(e){
+        console.log(e);
+      }
+    });
+  });
+
 });
 
 $(".toggle").click(function () {

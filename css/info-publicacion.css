@@ -1,0 +1,84 @@
+#btn-solicitud{
+	display: block;
+	width: 200px;
+	height: 40px;
+	border-radius: 25px;
+	outline: none;
+	border: none;
+	background-image: linear-gradient(to right,#681e99, #106abe, #34c257);
+	background-size: 200%;
+	font-size: 0.9rem;
+	color: #fff;
+	font-family: 'Poppins', sans-serif;
+	text-transform: uppercase;
+	margin: 1rem 0;
+	cursor: pointer;
+	transition: .5s;
+}
+
+#btn-solicitud:hover{
+	background-position: right;
+}
+
+#btn-comentarios{
+	display: block;
+	width: 100%;
+	height: 40px;
+	border-radius: 25px;
+	outline: none;
+	border: none;
+	background-image: linear-gradient(to right,#681e99, #106abe, #34c257);
+	background-size: 200%;
+	font-size: 0.9rem;
+	color: #fff;
+	font-family: 'Poppins', sans-serif;
+	text-transform: uppercase;
+	margin: 1rem 0;
+	cursor: pointer;
+	transition: .5s;
+}
+
+#btn-comentarios:hover{
+	background-position: right;
+}
+
+#btn-no-solicitud{
+	display: block;
+	width: 25%;
+	height: 40px;
+	border-radius: 25px;
+	outline: none;
+	border: none;
+	background-color: #991e1e;
+	background-size: 200%;
+	font-size: 0.9rem;
+	color: #fff;
+	font-family: 'Poppins', sans-serif;
+	text-transform: uppercase;
+	margin: 1rem 0;
+	cursor: pointer;
+	transition: .5s;
+	margin-right: 10px;
+}
+
+#btn-enviar-solicitud{
+	display: block;
+	width: 10%;
+	height: 40px;
+	border-radius: 25px;
+	outline: none;
+	border: none;
+	background-image: linear-gradient(to right,#681e99, #106abe, #34c257);
+	background-size: 200%;
+	font-size: 0.9rem;
+	color: #fff;
+	font-family: 'Poppins', sans-serif;
+	text-transform: uppercase;
+	margin: 1rem 0;
+	cursor: pointer;
+	transition: .5s;
+}
+
+#btn-enviar-solicitud:hover{
+	background-position: right;
+}
