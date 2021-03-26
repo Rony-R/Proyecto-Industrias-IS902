@@ -15,9 +15,12 @@ $(document).ready(function () {
       }
     },
     error: function (e, text, error) {
-      console.log("Ocurrio un error al traes los presupuestos!");
-      console.log("Texto: " + text);
-      console.log("Error: " + error);
+      console.log(
+        "Ocurrio un error al traes los presupuestos! Texto: " +
+          text +
+          " Error: " +
+          error
+      );
     },
   });
 
@@ -37,9 +40,12 @@ $(document).ready(function () {
       }
     },
     error: function (e, text, error) {
-      console.log("Ocurrio un error al traes los presupuestos!");
-      console.log("Texto: " + text);
-      console.log("Error: " + error);
+      console.log(
+        "Ocurrio un error al traes los presupuestos! Texto: " +
+          text +
+          " Error: " +
+          error
+      );
     },
   });
 
@@ -48,7 +54,6 @@ $(document).ready(function () {
     url: "ajax/api.php?accion='traerPublicaciones'",
     dataType: "json",
     success: function (respuesta) {
-      console.log("Publicaciones: " + respuesta);
       for (var i = 0; i < respuesta.length; i++) {
         if (respuesta[i].ruta_img == "") {
           $("#row-pubs").append(
@@ -98,9 +103,12 @@ $(document).ready(function () {
       }
     },
     error: function (e, text, error) {
-      console.log("Ocurrio un error al traes los presupuestos!");
-      console.log("Texto: " + text);
-      console.log("Error: " + error);
+      console.log(
+        "Ocurrio un error al traes los presupuestos! Texto: " +
+          text +
+          " Error: " +
+          error
+      );
     },
   });
 
@@ -108,7 +116,6 @@ $(document).ready(function () {
   $.ajax({
     url: "ajax/api.php?accion='verificarLogIn'",
     success: function (respuesta) {
-      console.log("Respuesta de verificar el login: " + respuesta);
       if (respuesta == 0) {
         $("#nav-no-login").removeClass("d-none");
         $("#nav-no-login").addClass("d-flex");
@@ -124,9 +131,12 @@ $(document).ready(function () {
       }
     },
     error: function (e, text, error) {
-      console.log("Ocurrio un error al verificar el login!");
-      console.log("Texto: " + text);
-      console.log("Error: " + error);
+      console.log(
+        "Ocurrio un error al verificar el login! Texto: " +
+          text +
+          " Error: " +
+          error
+      );
     },
   });
 });
@@ -192,7 +202,6 @@ function tipoUsuario() {
   $.ajax({
     url: "ajax/api.php?accion='tipoUsuario'",
     success: function (respuesta) {
-      console.log("El tipo de usuario es: " + respuesta);
       if (respuesta == 2) {
         $("#nav-empresa").removeClass("d-none");
         $("#nav-empresa").addClass("d-flex");
@@ -206,9 +215,12 @@ function tipoUsuario() {
       }
     },
     error: function (e, text, error) {
-      console.log("Ocurrio un error al verificr el tipo de usuario!");
-      console.log("Texto: " + text);
-      console.log("Error: " + error);
+      console.log(
+        "Ocurrio un error al verificr el tipo de usuario! Texto: " +
+          text +
+          " Error: " +
+          error
+      );
     },
   });
 }
