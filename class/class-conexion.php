@@ -1,8 +1,8 @@
 <?php
 	class Conexion{
 		private $host = "localhost";
-		private $usuario = "manager";
-		private $password = "asd.456";
+		private $usuario = "root";
+		private $password = "";
 		private $baseDatos = "db_devFinder";
 		private $puerto = 3306;
 		private $link;

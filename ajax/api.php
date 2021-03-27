@@ -43,7 +43,7 @@
             while($fila = $conexion->obtenerFila($resultado)){
                 $categorias[] = $fila;
             }
-            echo (json_encode($categorias));
+            // echo (json_encode($categorias));
 
         break;
 
@@ -56,6 +56,19 @@
             }
             echo (json_encode($publicaciones));
             //echo (json_encode($publicaciones[2]));
+        break;
+
+        case "'traerPublicacionesEmpresas'":
+            session_start();
+            $iduser = $_SESSION["idUsr"];
+            $sql = "SELECT * FROM TBL_PUBLICACION where id_usuario=$iduser;";
+            $resultado = $conexion->ejecutarConsulta($sql);
+            $publicaciones = array();
+            while($fila = $conexion->obtenerFila($resultado)){
+                $publicaciones[] = $fila;
+            }
+            echo (json_encode($publicaciones));
+
         break;
 
         case "ver-comentario-publicacion":

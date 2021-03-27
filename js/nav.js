@@ -112,6 +112,79 @@ $(document).ready(function () {
     },
   });
 
+  //Funcion para traer publicaciones propias de una empresa
+  $.ajax({
+    url: "ajax/api.php?accion='traerPublicacionesEmpresas'",
+    dataType: "json",
+    success: function (respuesta) {
+      for (var i = 0; i < respuesta.length; i++) {
+        if (respuesta[i].ruta_img == "") {
+          $("#row-mispublicaciones").append(
+            '<div id="' +
+              respuesta[i].id_publicacion +
+              '" class="col-8">' +
+              '<div class="card border-primary">' +
+              '<div class="card-header">' +
+              '<h3 class="card-title fw-bold">' +
+              respuesta[i].nombre_proyecto + 
+              "</h3>" +
+              "</div>" +
+              '<div class="card-body">' +
+              "<p>" + 
+              respuesta[i].descripcion +
+              "</p>" +
+              '<span class="text-muted">Categoria: ' +
+              respuesta[i].categoria +
+              "</span><br>" +
+              '<span class="text-muted">Presupuesto: ' +
+              respuesta[i].presupuesto +
+              "</span><br>" +
+              '<button type="button">Ver solicitudes</button>' +
+              "</div>" +
+              "</div>" +
+              "</div><br>"
+          );
+        } else {
+          $("#row-mispublicaciones").append(
+            '<div id="' +
+              respuesta[i].id_publicacion +
+              '"class="col-12">' +
+              '<div class="card border-primary">' +
+              '<div class="card-header">' +
+              '<h3 class="card-title fw-bold">' +
+              respuesta[i].nombre_proyecto + 
+              "</h3>" +
+              "</div>" +
+              '<div class="card-body">' +
+              "<p>" + 
+              respuesta[i].descripcion +
+              "</p>" +
+              '<span class="text-muted">Categoria: ' +
+              respuesta[i].categoria +
+              "</span><br>" +
+              '<span class="text-muted">Presupuesto: ' +
+              respuesta[i].presupuesto +
+              "</span><br>" +
+              '<button type="button" class"btn mt-3" id="btn-solicitud">Ver solicitudes</button>' +
+              "</div>" +
+              "</div>" +
+            "</div><br>"
+          );
+        }
+      }
+    },
+    error: function (e, text, error) {
+      console.log(
+        "Ocurrio un error al traes los presupuestos! Texto: " +
+          text +
+          " Error: " +
+          error
+      );
+    },
+  });
+
+
+
   //Funcion para verificar el login y cambiar la navbar.
   $.ajax({
     url: "ajax/api.php?accion='verificarLogIn'",

@@ -93,7 +93,7 @@ $registro = $conexion->obtenerFila($resultado); ?>
         <li class="item"><a href="index.php">Inicio</a></li>
         <li class="item"><a href="perfil-info-personal.html">Perfil</a></li>
         <li class="item"><a href="ajax/logout.php">Cerrar Sesión</a></li>
-        <li class="item button log"><a href="#">Mis Publicaciones</a></li>
+        <li class="item button log"><a href="mis-publicaciones">Mis Publicaciones</a></li>
         <li class="item button">
           <a id="h" href="pubProyecto.php"> Publicar un Proyecto </a>
         </li>

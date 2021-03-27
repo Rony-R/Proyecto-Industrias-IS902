@@ -149,5 +149,32 @@
 
             return $final;
         }
+
+		public function verMisPublicaciones($conexion){
+			$sql = sprintf("SELECT id_publicacion,
+			id_usuario, 
+			c.categoria, 
+			id_estado, 
+			nombre_proyecto, 
+			descripcion,
+			pr.presupuesto 
+			FROM TBL_PUBLICACION as p
+			INNER JOIN TBL_CATEGORIA_PROYECTO as c
+			ON c.id_categoria = p.id_categoria
+			INNER JOIN TBL_PRESUPUESTO AS pr
+			ON pr.id_presupuesto = p.id_presupuesto 
+			WHERE id_publicacion=%s",
+						$conexion->antiInyeccion($this->id_publicacion));
+					
+            $resultado = $conexion->ejecutarConsulta($sql);
+            $listaSucursales = array();
+            while($fila = $conexion->obtenerFila($resultado)){
+                $listaSucursales[] = $fila;
+            }
+
+            $final = json_encode($listaSucursales);
+
+            return $final;
+		}
 	}
 ?>
