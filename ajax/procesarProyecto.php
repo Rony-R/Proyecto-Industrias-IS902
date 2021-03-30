@@ -125,8 +125,8 @@
                   $nomImg = $name;
                 }
 
-                $sql = "INSERT INTO TBL_PUBLICACION (id_presupuesto, id_usuario, id_categoria, id_estado, nombre_proyecto, descripcion, nombre_img, ruta_img) 
-                VALUES ($presupuesto,$idUsuario,$tipoProyecto,1,'$proyecto','$descripcion', '$nomImg', '$rutaImg')";
+                $sql = "insert into tbl_publicacion (id_presupuesto, id_usuario, id_categoria, id_estado, nombre_proyecto, descripcion, nombre_img, ruta_img) 
+                values ($presupuesto,$idUsuario,$tipoProyecto,1,'$proyecto','$descripcion', '$nomImg', '$rutaImg')";
 
                 $resultado = $conexion->ejecutarConsulta($sql);
 

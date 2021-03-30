@@ -26,7 +26,7 @@
         break;
 
         case "'traerPresupuestos'":
-            $sql = "SELECT * FROM TBL_PRESUPUESTO;";
+            $sql = "select * from tbl_presupuesto;";
             $resultado = $conexion->ejecutarConsulta($sql);
             $presupuestos = array();
             while($fila = $conexion->obtenerFila($resultado)){
@@ -37,31 +37,31 @@
         break;
         
         case "'traerTipoProyectos'":
-            $sql = "SELECT * FROM TBL_CATEGORIA_PROYECTO;";
+            $sql = "select * from tbl_categoria_proyecto;";
             $resultado = $conexion->ejecutarConsulta($sql);
             $categorias = array();
             while($fila = $conexion->obtenerFila($resultado)){
                 $categorias[] = $fila;
             }
-            // echo (json_encode($categorias));
+            echo (json_encode($categorias));
 
         break;
 
         case "'traerPublicaciones'":
-            $sql = "SELECT * FROM TBL_PUBLICACION;";
+            $sql = "select * from tbl_publicacion;";
             $resultado = $conexion->ejecutarConsulta($sql);
             $publicaciones = array();
             while($fila = $conexion->obtenerFila($resultado)){
                 $publicaciones[] = $fila;
             }
             echo (json_encode($publicaciones));
-            //echo (json_encode($publicaciones[2]));
+            
         break;
 
         case "'traerPublicacionesEmpresas'":
             session_start();
             $iduser = $_SESSION["idUsr"];
-            $sql = "SELECT * FROM TBL_PUBLICACION where id_usuario=$iduser;";
+            $sql = "select * from tbl_publicacion where id_usuario=$iduser;";
             $resultado = $conexion->ejecutarConsulta($sql);
             $publicaciones = array();
             while($fila = $conexion->obtenerFila($resultado)){
