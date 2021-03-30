@@ -55,51 +55,28 @@ $(document).ready(function () {
     dataType: "json",
     success: function (respuesta) {
       for (var i = 0; i < respuesta.length; i++) {
-        if (respuesta[i].ruta_img == "") {
-          $("#row-pubs").append(
-            '<div id="' +
-              respuesta[i].id_publicacion +
-              '" class="col-lg-3 col-md-4 col-sm-12 mb-4">' +
-              '<div class="card card-pub">' +
-              '<img src="img/logos/code.svg" class="card-img-top img-pub" />' +
-              '<div class="card-body">' +
-              '<h5 class="card-title">' +
-              respuesta[i].nombre_proyecto +
-              "</h5>" +
-              '<p class="card-text txt-just">' +
-              respuesta[i].descripcion +
-              "</p>" +
-              '<a href="info-publicacion.php?publicacion=' +
-              respuesta[i].id_publicacion +
-              '" class="btn-ver-pub">Ver Publicación</a>' +
-              "</div>" +
-              "</div>" +
-              "</div>"
-          );
-        } else {
-          $("#row-pubs").append(
-            '<div id="' +
-              respuesta[i].id_publicacion +
-              '" class="col-lg-3 col-md-4 col-sm-12 mb-4">' +
-              '<div class="card card-pub">' +
-              '<img src="img/imgProyectos/' +
-              respuesta[i].nombre_img +
-              '" class="card-img-top img-pub" />' +
-              '<div class="card-body">' +
-              '<h5 class="card-title">' +
-              respuesta[i].nombre_proyecto +
-              "</h5>" +
-              '<p class="card-text txt-just">' +
-              respuesta[i].descripcion +
-              "</p>" +
-              '<a href="info-publicacion.php?publicacion=' +
-              respuesta[i].id_publicacion +
-              '" class="btn-ver-pub">Ver Publicación</a>' +
-              "</div>" +
-              "</div>" +
-              "</div>"
-          );
-        }
+        $("#row-pubs").append(
+          '<div id="' +
+            respuesta[i].id_publicacion +
+            '" class="col-lg-3 col-md-4 col-sm-12 mb-4">' +
+            '<div class="card card-pub">' +
+            '<img src="img/imgProyectos/' +
+            respuesta[i].nombre_img +
+            '" class="card-img-top img-pub" />' +
+            '<div class="card-body">' +
+            '<h5 class="card-title">' +
+            respuesta[i].nombre_proyecto +
+            "</h5>" +
+            '<p class="card-text txt-just">' +
+            respuesta[i].descripcion +
+            "</p>" +
+            '<a href="info-publicacion.php?publicacion=' +
+            respuesta[i].id_publicacion +
+            '" class="btn-ver-pub">Ver Publicación</a>' +
+            "</div>" +
+            "</div>" +
+            "</div>"
+        );
       }
     },
     error: function (e, text, error) {
@@ -126,11 +103,11 @@ $(document).ready(function () {
               '<div class="card border-primary">' +
               '<div class="card-header">' +
               '<h3 class="card-title fw-bold">' +
-              respuesta[i].nombre_proyecto + 
+              respuesta[i].nombre_proyecto +
               "</h3>" +
               "</div>" +
               '<div class="card-body">' +
-              "<p>" + 
+              "<p>" +
               respuesta[i].descripcion +
               "</p>" +
               '<span class="text-muted">Categoria: ' +
@@ -152,11 +129,11 @@ $(document).ready(function () {
               '<div class="card border-primary">' +
               '<div class="card-header">' +
               '<h3 class="card-title fw-bold">' +
-              respuesta[i].nombre_proyecto + 
+              respuesta[i].nombre_proyecto +
               "</h3>" +
               "</div>" +
               '<div class="card-body">' +
-              "<p>" + 
+              "<p>" +
               respuesta[i].descripcion +
               "</p>" +
               '<span class="text-muted">Categoria: ' +
@@ -168,7 +145,7 @@ $(document).ready(function () {
               '<button type="button" class"btn mt-3" id="btn-solicitud">Ver solicitudes</button>' +
               "</div>" +
               "</div>" +
-            "</div><br>"
+              "</div><br>"
           );
         }
       }
@@ -182,8 +159,6 @@ $(document).ready(function () {
       );
     },
   });
-
-
 
   //Funcion para verificar el login y cambiar la navbar.
   $.ajax({

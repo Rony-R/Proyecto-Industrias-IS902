@@ -125,8 +125,15 @@
                   $nomImg = $name;
                 }
 
-                $sql = "insert into tbl_publicacion (id_presupuesto, id_usuario, id_categoria, id_estado, nombre_proyecto, descripcion, nombre_img, ruta_img) 
+                if($nomImg == ""){
+                  $sql = "insert into tbl_publicacion (id_presupuesto, id_usuario, id_categoria, id_estado, nombre_proyecto, descripcion, nombre_img, ruta_img) 
+                values ($presupuesto,$idUsuario,$tipoProyecto,1,'$proyecto','$descripcion', 'code.svg', 'img/imgproyectos/')";
+                }
+                else{
+                  $sql = "insert into tbl_publicacion (id_presupuesto, id_usuario, id_categoria, id_estado, nombre_proyecto, descripcion, nombre_img, ruta_img) 
                 values ($presupuesto,$idUsuario,$tipoProyecto,1,'$proyecto','$descripcion', '$nomImg', '$rutaImg')";
+                }
+
 
                 $resultado = $conexion->ejecutarConsulta($sql);
 

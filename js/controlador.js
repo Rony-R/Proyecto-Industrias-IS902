@@ -1,6 +1,12 @@
 $(document).ready(function () {
   $("#btn-comentarios").click(function () {
-    var parametros = "idUsuario="+ $("#txt-codigo-usuario").val() + "&idPublicacion=" + $('#id-publicacion').val() + "&Comentario=" + $("#txta-comentario").val();
+    var parametros =
+      "idUsuario=" +
+      $("#txt-codigo-usuario").val() +
+      "&idPublicacion=" +
+      $("#id-publicacion").val() +
+      "&Comentario=" +
+      $("#txta-comentario").val();
 
     if ($("#txta-comentario").val() == "") {
       alert(
@@ -8,18 +14,18 @@ $(document).ready(function () {
       );
     } else {
       $.ajax({
-                url: "ajax/api.php?accion=insertar-comentario",
-                method: "POST",
-                data: parametros,
-                dataType: "json",
-                success:function(respuesta){
-                    alert("Comentario añadido correctamente");
-                    location.reload();
-                },
-                error: function (e) {
-                  console.log(e);
-                }
-            });
+        url: "ajax/api.php?accion=insertar-comentario",
+        method: "POST",
+        data: parametros,
+        dataType: "json",
+        success: function (respuesta) {
+          alert("Comentario añadido correctamente");
+          location.reload();
+        },
+        error: function (e) {
+          console.log(e);
+        },
+      });
     }
   });
 
@@ -93,7 +99,9 @@ $(document).ready(function () {
     success: function (response) {
       for (var i = 0; i < response.length; i++) {
         $("#div-card-title").append(
-          '<h3 class="card-title fw-bold">' + response[i].nombre_proyecto + "</h3>"
+          '<h3 class="card-title fw-bold">' +
+            response[i].nombre_proyecto +
+            "</h3>"
         );
         $("#div-card-info").append(
           "<p>" +
@@ -167,7 +175,6 @@ $(document).ready(function () {
         data: parametros,
         dataType: "json",
         success: function (respuesta) {
-          console.log(respuesta);
           function redireccionarPagina() {
             if (respuesta.codigoResultado == 0) {
               window.location.href = "publicaciones.php";
@@ -187,8 +194,12 @@ $(document).ready(function () {
     }
   });
 
-  $("#btn-enviar-solicitud").click(function(){
-    var parametros = "idUsuario="+ $("#txt-codigo-usuario").val() + "&idPublicacion=" + $('#id-publicacion').val();
+  $("#btn-enviar-solicitud").click(function () {
+    var parametros =
+      "idUsuario=" +
+      $("#txt-codigo-usuario").val() +
+      "&idPublicacion=" +
+      $("#id-publicacion").val();
 
     $.ajax({
       type: "POST",
@@ -199,13 +210,17 @@ $(document).ready(function () {
         alert("Solicitud enviada exitosamente");
         location.reload();
       },
-      error:function(e){
+      error: function (e) {
         console.log(e);
-      }
+      },
     });
   });
 
-  var parametrosValidacion = "idUsuario="+ $("#txt-codigo-usuario").val() + "&idPublicacion=" + $('#id-publicacion').val();
+  var parametrosValidacion =
+    "idUsuario=" +
+    $("#txt-codigo-usuario").val() +
+    "&idPublicacion=" +
+    $("#id-publicacion").val();
   $.ajax({
     type: "GET",
     url: "ajax/api.php?accion=limitar-solicitudes",
@@ -213,16 +228,15 @@ $(document).ready(function () {
     dataType: "JSON",
     success: function (response) {
       for (var i = 0; i < response.length; i++) {
-        if(response[i].cantidadSolicitudes == 1){
-          $("#btn-solicitud").addClass('d-none');
+        if (response[i].cantidadSolicitudes == 1) {
+          $("#btn-solicitud").addClass("d-none");
         }
       }
     },
-    error:function(e){
-        console.log(e);
-      }
-    });
-
+    error: function (e) {
+      console.log(e);
+    },
+  });
 });
 
 $(".toggle").click(function () {
