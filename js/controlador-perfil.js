@@ -37,10 +37,11 @@ const llenarInfo = () => {
 
       // Datos para el navbar
       document.getElementById('navNombre').innerHTML = `${response[0].info[0].nombre} ${response[0].info[0].apellido}`;
-      document.getElementById('navImgPerfil').src = `./img/${response[0].info[0].rutaImgPerfil}/${response[0].info[0].nombreImgPerfil}`;
+      document.getElementById('navImgPerfil').src = `./img/${response[0].info[0].rutaImgPerfil}${response[0].info[0].nombreImgPerfil}`;
 
       // Informacion Basica
-      document.getElementById('imagenPerfil').src = `./img/${response[0].info[0].rutaImgPerfil}/${response[0].info[0].nombreImgPerfil}`;
+      // document.getElementById('imagenPerfil').src = '';
+      document.getElementById('imagenPerfil').src = `./img/${response[0].info[0].rutaImgPerfil}${response[0].info[0].nombreImgPerfil}`;
       document.getElementById('nombre').innerHTML = `${response[0].info[0].nombre}`;
       document.getElementById('apellido').innerHTML = `${response[0].info[0].apellido}`;
       document.getElementById('contrasenia').innerHTML = `••••••••`;
@@ -315,13 +316,90 @@ const mostrarSection = (atributo) => {
     case 'proyectos':
       console.log(atributo);
       break;
-  
+    case 'img':
+      console.log(atributo);
+      document.getElementById('h4Titulo').innerHTML = `Actualizar imagen de perfil`;
+      document.getElementById('cardEdicion').innerHTML = `
+        <legend id="lTituloEdicion" class="titulo-edicion">Imagen</legend>
+          <div id="actualizarImg" class="actualizar-img">
+            <img
+              id="imagenPerfil"
+              class="foto-perfil"
+              src="./img/${infoUsuario.rutaImgPerfil}/${infoUsuario.nombreImgPerfil}"
+              alt="foto de perfil"
+            />
+            <i id="arrow" class="fas fa-long-arrow-alt-right "></i>
+          </div>
+          <form id="formImg" method="post" enctype="multipart/form-data">
+          <label class="file">
+            <input type="file" name="fileImg" id="fileImg" accept="image/*">
+            <span class="file-custom"></span>
+          </label>
+            
+          </form>
+      `;
+      document.getElementById('arrow').style = 'display : none';
+      document.getElementById('btnAccion').innerHTML += `
+        <a id="btnActualizarFoto" class="btn-publicacion editar" href="javascript:actualizarImg();">
+          <i class="fas fa-pen"></i></i>Actualizar
+        </a>
+      `;
+      const fileImg = document.getElementById('fileImg');
+      const actualizarImg = document.getElementById('actualizarImg');
+      fileImg.addEventListener('change', (event) => {
+        let reader = new FileReader();
+        reader.readAsDataURL(event.target.files[0]); // Leemos el archivo y lo pasamos al fileReader
+
+        reader.onload = () => {
+          let imagen = document.createElement('img');
+          imagen.src = reader.result;
+          urlImagenPerfilNew = imagen.src;
+          // console.log(imagen.src);
+          actualizarImg.appendChild(imagen);
+          imagen.classList.add('actualizar-img2');
+          document.getElementById('arrow').style = 'display : block';
+        }
+        console.info(event);
+      });
+      break;
     default:
       break;
   }
 }
 
+const imgPerfil = document.getElementById('imagenPerfil');
+imgPerfil.addEventListener('click',() => {
+  mostrarSection('img');
+});
+const actualizarImg = () => {
+  const btnActualizarImg = document.getElementById('btnActualizarFoto');
+  btnActualizarImg.addEventListener('click', () => {
+    if (fileImg.value === '') {
+      console.info('No hay imagen de perfil que actualizar');
+    }
+    else {
+      const formImg = document.getElementById('formImg');
+      const formData = new FormData(formImg);
+      // console.info([formData]);
+      fetch('ajax/perfil.php?accion=5', {
+        method: 'POST',
+        body: formData
+      })
+        .then(res => res.ok ? Promise.resolve(res) : Promise.reject(new Error('Failed to load')))
+        .then(res => res.text()) // text o json
+        .then(data => {
+          let datos = JSON.parse(data)
+          console.log(datos);
 
+          esconderSection();
+          location.reload();
+          document.getElementById('navImgPerfil').src = `./img/${datos.res[0].ruta}${datos.res[0].nombreImg}?n=${Date.now()}`;
+          document.getElementById('imagenPerfil').src = `./img/${datos.res[0].ruta}${datos.res[0].nombreImg}?n=${Date.now()+1}`;
+        })
+        .catch((error) => console.info(`Error:${error.message}`));
+    }
+  });
+}
 const validarInput= () => {
   if (document.getElementById('inputText').value.length == 0) {
     return false;
@@ -332,6 +410,7 @@ const validarInput= () => {
 const seleccionarPais = () => {
   idPaisAuxiliar = document.getElementById('slc-pais').value;
 }
+
 
 const actualizar = (atributo) => {
   switch (atributo) {
@@ -379,12 +458,16 @@ const actualizar = (atributo) => {
     case 'habilidades':
         tecnologias = tecnologiasAuxiliar;
         break;
+    case 'img':
+      
+        break;
   
     default:
       break;
   }
-  console.info(infoUsuario);
-  console.info(tecnologias);
+
+  // console.info(infoUsuario);
+  // console.info(tecnologias);
   let urlTecnologias = '';
   tecnologias.forEach(tecnologia => {
     urlTecnologias += `&tecnologias[]=${tecnologia.idTecnologia}`;

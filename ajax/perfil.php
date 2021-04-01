@@ -1,6 +1,7 @@
 <?php
 include_once('../class/class-conexion.php');
 $conexion = new Conexion();
+$imagen;
 
 switch ($_GET["accion"]) {
   case "1":
@@ -88,7 +89,7 @@ switch ($_GET["accion"]) {
       'rutaImgPerfil' => $fila['ruta_img_perfil'],
       'nombreImgPerfil' => $fila['nombre_img_perfil']
     );
-
+    $imagen = strval($fila['nombre_img_perfil'].$fila['nombre_img_perfil']);
     $jsonString = json_encode($json);
     echo $jsonString;
     $conexion->cerrarConexion();
@@ -170,6 +171,87 @@ switch ($_GET["accion"]) {
     }
     // echo count($tecnologias);
     $conexion->cerrarConexion();
+    break;
+  case "5":
+    session_start();
+    $idTipoUsuario = "1";
+    $idUsuario = "2";
+    // $idTipoUsuario = $_SESSION["idTipoUsr"];
+    // $idUsuario = $_SESSION["idUsr"];
+    if ($idTipoUsuario == 1) {
+      $rutaImg = "usuarios/".$idUsuario."/";
+      $carpetaDestino="../img/usuarios/".$idUsuario."/";
+    } if ($idTipoUsuario == 2) {
+      $rutaImg = "empresas/".$idUsuario."/";
+      $carpetaDestino="../img/empresas/".$idUsuario."/";
+    }
+    
+    $extension;
+    // echo ($_FILES["fileImg"]["type"]);
+    if(isset($_FILES["fileImg"]) && $_FILES["fileImg"]["name"][0]){
+      if ($_FILES["fileImg"]["type"]=="image/jpeg" ) {
+        $extension ="jpeg";
+      }if($_FILES["fileImg"]["type"]=="image/jpg" ) {
+        $extension ="jpg";
+      }if($_FILES["fileImg"]["type"]=="image/gif" ) {
+        $extension ="gif";
+      }if($_FILES["fileImg"]["type"]=="image/png" ) {
+        $extension ="png";
+      }
+        //../assets/images/fotos/vehiculos/$marca/$modelo/
+        
+        if($_FILES["fileImg"]["type"]=="image/jpeg" 
+        || $_FILES["fileImg"]["type"]=="image/jpg" 
+        || $_FILES["fileImg"]["type"]=="image/gif" 
+        || $_FILES["fileImg"]["type"]=="image/png"){
+          if(file_exists($carpetaDestino)|| @mkdir($carpetaDestino, 755, true)){
+
+            $origen=$_FILES["fileImg"]["tmp_name"];
+            $destino= $carpetaDestino.$idUsuario.".".$extension;
+            $nombreImg= $idUsuario.".".$extension;
+            // Borramos la imagen de perfil anterior
+            $files = glob($carpetaDestino.'*'); //obtenemos todos los nombres de los ficheros
+            foreach($files as $file){
+                if(is_file($file))
+                unlink($file); //elimino el fichero
+            }
+            // Movemos la imagen seleccionada nuestro servidor
+            if(@move_uploaded_file($origen, $destino)){ 
+              $sql = sprintf(
+                "UPDATE tbl_usuario 
+                SET 
+                  ruta_img_perfil='$rutaImg',
+                  nombre_img_perfil='$nombreImg'
+                WHERE id_usuario = $idUsuario;"
+              );
+              $resQuery = $conexion->ejecutarConsulta($sql);
+              if ($resQuery) {
+                $json['res'][] = array(
+                  'nombreImg' => $nombreImg,
+                  'ruta' => $rutaImg
+                );
+                $jsonString = json_encode($json);
+              echo $jsonString;
+              } else {
+                echo "Error en la consulta";
+                exit;
+              }
+              $conexion->cerrarConexion();
+            }
+            else{
+              echo "<br>No se ha podido mover el archivo: ".$_FILES["fileImg"]["name"];
+            }
+          }
+          else{
+            echo "<br>No se ha podido crear la carpeta: ".$carpetaDestino;
+          }
+        }
+        else{
+            echo "<br>".$_FILES["fileImg"]["name"]." - NO es imagen jpg, png o gif";
+        }              
+    }else{
+      echo "No se encontro el archivo";
+    }
     break;
   default:
     echo ("nulllllllll");
