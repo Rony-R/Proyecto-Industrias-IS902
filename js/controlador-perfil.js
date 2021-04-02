@@ -14,13 +14,14 @@ let newpass;
 let newpass2;
 
 let resError;
+let resServer = document.getElementById('resServer');
 
 if (tipoUsuario == 1) {
-  console.log('Es freelancer');
+  // console.log('Es freelancer');
   document.getElementById("navPagos").style.display = "none";
   document.getElementById("navPublicaciones").style.display = "none";
 } else if (tipoUsuario == 2){
-  console.log('Es una empresa');
+  // console.log('Es una empresa');
   document.getElementById("cardExperienciaLaboral").style.display = "none";
   document.getElementById("divApellido").style.display = "none";
 } else {
@@ -35,19 +36,19 @@ const llenarInfo = () => {
     data: parametros,
     dataType: 'json',
     success: function (response) {
-      console.log(response); // ! Aqui tenemos todo lo relacionado con usuario, tanto de la tablas experiencias, info y tecnologias.
+      // console.log(response); //! Aqui tenemos todo lo relacionado con usuario, tanto de la tablas experiencias, info y tecnologias.
       infoUsuario = response[0].info[0]; // Guardamos toda la informacion del usuario
       tecnologias = response[0].tecnologias; // Guardamos las tecnologias que ya tiene el usuario
       tecnologiasAuxiliar = tecnologias; // Guardamos las tecnologias en la variable auxiliar
-      console.info(infoUsuario);
+      // console.info(infoUsuario);
 
       // Datos para el navbar
       document.getElementById('navNombre').innerHTML = `${response[0].info[0].nombre} ${response[0].info[0].apellido}`;
-      document.getElementById('navImgPerfil').src = `./img/${response[0].info[0].rutaImgPerfil}${response[0].info[0].nombreImgPerfil}`;
+      document.getElementById('navImgPerfil').src = `./img/${response[0].info[0].rutaImgPerfil}${response[0].info[0].nombreImgPerfil}?y=${Date.now()}`;
 
       // Informacion Basica
       // document.getElementById('imagenPerfil').src = '';
-      document.getElementById('imagenPerfil').src = `./img/${response[0].info[0].rutaImgPerfil}${response[0].info[0].nombreImgPerfil}`;
+      document.getElementById('imagenPerfil').src = `./img/${response[0].info[0].rutaImgPerfil}${response[0].info[0].nombreImgPerfil}?h=${Date.now()}`;
       document.getElementById('nombre').innerHTML = `${response[0].info[0].nombre}`;
       document.getElementById('apellido').innerHTML = `${response[0].info[0].apellido}`;
       document.getElementById('contrasenia').innerHTML = `••••••••`;
@@ -197,7 +198,7 @@ const mostrarSection = (atributo) => {
 
   switch (atributo) {
     case 'nombre':
-      console.log(atributo);
+      // console.log(atributo);
       document.getElementById('h4Titulo').innerHTML = `Cambiar nombre`;
       document.getElementById('lTituloEdicion').innerHTML = `Nombre`;
       document.getElementById('inputText').value = `${infoUsuario.nombre}`;
@@ -208,7 +209,7 @@ const mostrarSection = (atributo) => {
       `;
       break;
     case 'apellido':
-      console.log(atributo);
+      // console.log(atributo);
       document.getElementById('h4Titulo').innerHTML = `Cambiar apellido`;
       document.getElementById('lTituloEdicion').innerHTML = `Apellido`;
       document.getElementById('inputText').value = `${infoUsuario.apellido}`;
@@ -219,7 +220,7 @@ const mostrarSection = (atributo) => {
       `;
       break;
     case 'pais':
-      console.log(atributo);
+      // console.log(atributo);
       document.getElementById('h4Titulo').innerHTML = `Actualizar pais`;
       let optPais = '';
       paises.forEach(pais => {
@@ -238,7 +239,7 @@ const mostrarSection = (atributo) => {
       `;
       break;
     case 'contrasenia':
-      console.log(atributo);
+      // console.log(atributo);
       document.getElementById('cardSeccion').innerHTML = `
       <legend class="titulo-card"><h4 id="h4Titulo">Cambiar Contraseña</h4></legend>
           <fieldset id="cardEdicion" class="input-edicion">
@@ -266,7 +267,7 @@ const mostrarSection = (atributo) => {
       newpass2 = document.getElementById('newpass2');
       break;
     case 'correo':
-      console.log(atributo);
+      // console.log(atributo);
       document.getElementById('h4Titulo').innerHTML = `Actualizar correo`;
       document.getElementById('lTituloEdicion').innerHTML = `Correo`;
       document.getElementById('inputText').value = `${infoUsuario.correo}`;
@@ -277,7 +278,7 @@ const mostrarSection = (atributo) => {
       `;
       break;
     case 'telefono':
-      console.log(atributo);
+      // console.log(atributo);
       document.getElementById('h4Titulo').innerHTML = `Actualizar telefono`;
       document.getElementById('lTituloEdicion').innerHTML = `Telefono`;
       document.getElementById('inputText').value = `${infoUsuario.telefono}`;
@@ -288,7 +289,7 @@ const mostrarSection = (atributo) => {
       `;
       break;
       case 'direccion':
-        console.log(atributo);
+        // console.log(atributo);
         document.getElementById('h4Titulo').innerHTML = `Actualizar direccion`;
         document.getElementById('lTituloEdicion').innerHTML = `Direccion`;
       document.getElementById('inputText').value = `${infoUsuario.direccion}`;
@@ -299,7 +300,7 @@ const mostrarSection = (atributo) => {
       `;
         break;
     case 'habilidades':
-      console.log(atributo);
+      // console.log(atributo);
       document.getElementById('h4Titulo').innerHTML = `Actualizar habilidades`;
       document.getElementById('cardEdicion').innerHTML = `
         <legend id="lTituloEdicion" class="titulo-edicion">Tecnologias</legend>
@@ -325,7 +326,7 @@ const mostrarSection = (atributo) => {
       console.log(atributo);
       break;
     case 'img':
-      console.log(atributo);
+      // console.log(atributo);
       document.getElementById('h4Titulo').innerHTML = `Actualizar imagen de perfil`;
       document.getElementById('cardEdicion').innerHTML = `
         <legend id="lTituloEdicion" class="titulo-edicion">Imagen</legend>
@@ -333,7 +334,7 @@ const mostrarSection = (atributo) => {
             <img
               id="imagenPerfil"
               class="foto-perfil"
-              src="./img/${infoUsuario.rutaImgPerfil}/${infoUsuario.nombreImgPerfil}"
+              src="./img/${infoUsuario.rutaImgPerfil}/${infoUsuario.nombreImgPerfil}?q=${Date.now()}"
               alt="foto de perfil"
             />
             <i id="arrow" class="fas fa-long-arrow-alt-right "></i>
@@ -366,7 +367,7 @@ const mostrarSection = (atributo) => {
           imagen.classList.add('actualizar-img2');
           document.getElementById('arrow').style = 'display : block';
         }
-        console.info(event);
+        // console.info(event);
       });
       break;
     default:
@@ -380,10 +381,10 @@ imgPerfil.addEventListener('click',() => {
 });
 const actualizarImg = () => {
   if (fileImg.value === '') {
-    console.info('No hay imagen de perfil que actualizar');
+    // console.info('No hay imagen de perfil que actualizar');
     resError.classList.add('mostrar-respuesta');
     resError.classList.remove('ocultar-respuesta');
-    resError.textContent = 'No hay imagen de perfil que actualizar';
+    resError.textContent = 'Tiene que seleccionar una imagen para actualizar';
   }
   else {
     const formImg = document.getElementById('formImg');
@@ -401,10 +402,20 @@ const actualizarImg = () => {
 
         if (datos.res[0].error != 1) {
           esconderSection();
-          // location.reload();
+          location.reload();
           document.getElementById('navImgPerfil').src = `./img/${datos.res[0].ruta}${datos.res[0].nombreImg}?n=${Date.now()}`;
-          document.getElementById('imagenPerfil').src = `./img/${datos.res[0].ruta}${datos.res[0].nombreImg}?n=${Date.now() + 1}`;
-        } else console.info(datos.res[0].message);
+          document.getElementById('imagenPerfil').src = `./img/${datos.res[0].ruta}${datos.res[0].nombreImg}?x=${Date.now() + 1}`;
+
+          resServer.textContent = `${datos.res[0].message}`;
+          mostrarRespuestaExitosa();
+          setTimeout((ocultarRespuestaExitosa), 4000);
+        } else {
+          // console.info(datos.res[0].message);
+          resServer.textContent = `${datos.res[0].message}`;
+          mostrarRespuestaError();
+          setTimeout((ocultarRespuestaError), 4000);
+        }
+
       })
       .catch((error) => console.info(`Error:${error.message}`));
   }
@@ -427,7 +438,7 @@ const actualizar = (atributo) => {
       if (validarInput()) {
         infoUsuario.nombre = document.getElementById('inputText').value;
       } else {
-        console.info(`Debe agregar un ${atributo}`);
+        // console.info(`Debe agregar un ${atributo}`);
         resError.classList.add('mostrar-respuesta');
         resError.classList.remove('ocultar-respuesta');
         resError.textContent = `Debe agregar un ${atributo}`;
@@ -438,7 +449,7 @@ const actualizar = (atributo) => {
       if (validarInput()) {
         infoUsuario.apellido = document.getElementById('inputText').value;
       } else {
-        console.info(`Debe agregar un ${atributo}`);
+        // console.info(`Debe agregar un ${atributo}`);
         resError.classList.add('mostrar-respuesta');
         resError.classList.remove('ocultar-respuesta');
         resError.textContent = `Debe agregar un ${atributo}`;
@@ -463,7 +474,7 @@ const actualizar = (atributo) => {
         }
         
       } else {
-        console.info(`Debe agregar un ${atributo}`);
+        // console.info(`Debe agregar un ${atributo}`);
         resError.classList.add('mostrar-respuesta');
         resError.classList.remove('ocultar-respuesta');
         resError.textContent = `Debe agregar un ${atributo}`;
@@ -474,7 +485,7 @@ const actualizar = (atributo) => {
       if (validarInput()) {
         infoUsuario.telefono = document.getElementById('inputText').value;
       } else {
-        console.info(`Debe agregar un ${atributo}`);
+        // console.info(`Debe agregar un ${atributo}`);
         resError.classList.add('mostrar-respuesta');
         resError.classList.remove('ocultar-respuesta');
         resError.textContent = `Debe agregar un ${atributo}`;
@@ -485,7 +496,7 @@ const actualizar = (atributo) => {
       if (validarInput()) {
         infoUsuario.direccion = document.getElementById('inputText').value;
       } else {
-        console.info(`Debe agregar un ${atributo}`);
+        // console.info(`Debe agregar un ${atributo}`);
         resError.classList.add('mostrar-respuesta');
         resError.classList.remove('ocultar-respuesta');
         resError.textContent = `Debe agregar un ${atributo}`;
@@ -503,8 +514,7 @@ const actualizar = (atributo) => {
       break;
   }
 
-  // console.info(infoUsuario);
-  // console.info(tecnologias);
+  // Editamos Usuario
   if (verificacion) {
     let urlTecnologias = '';
     tecnologias.forEach(tecnologia => {
@@ -515,29 +525,62 @@ const actualizar = (atributo) => {
                     "&direccion=" + infoUsuario.direccion +
                     "&correo=" + infoUsuario.correo +
                     "&telefono=" + infoUsuario.telefono +
-                    "&contrasenia=" + infoUsuario.contrasenia +
                     "&rutaImgPerfil=" + infoUsuario.rutaImgPerfil +
                     "&nombreImgPerfil=" + infoUsuario.nombreImgPerfil +
                     "&idTipoUsuario=" + infoUsuario.idTipoUsuario +
                     "&idPais=" + infoUsuario.idPais +
                     urlTecnologias +
                     "&idUsuario=" + infoUsuario.idUsuario;
-    console.info(parametros);
+    // console.info(parametros);
   
     $.ajax({
       url: 'ajax/perfil.php?accion=4', //! Editar usuario
       method: 'POST',
       data: parametros,
       success: function (response) {
-        console.log(response);
-        esconderSection();
-        llenarInfo();
+        // console.log(JSON.parse(response));
+        let datos = JSON.parse(response);
+        if (datos.res[0].error != 1) {
+          console.info(datos.res[0].message);
+          esconderSection();
+          llenarInfo();
+          resServer.textContent = `${datos.res[0].message}`;
+          mostrarRespuestaExitosa();
+          setTimeout((ocultarRespuestaExitosa), 4000);
+        } else {
+          resServer.textContent = `${datos.res[0].message}`;
+          mostrarRespuestaError();
+          setTimeout((ocultarRespuestaError), 4000);
+        }
       },
       error: function (e) {
         console.log(e);
       }
     });
   }
+}
+
+const mostrarRespuestaExitosa = () => {
+  resServer.classList.add('mostrar-respuesta');
+  resServer.classList.remove('ocultar-respuesta');
+  resServer.classList.add('respuesta-exitosa');
+  resServer.classList.remove('respuesta-error');
+}
+const ocultarRespuestaExitosa = () => {
+  resServer.classList.remove('mostrar-respuesta');
+  resServer.classList.remove('respuesta-server');
+  resServer.classList.add('ocultar-respuesta');
+}
+const mostrarRespuestaError= () => {
+  resServer.classList.add = 'mostrar-respuesta';
+  resServer.classList.remove = 'ocultar-respuesta';
+  resServer.classList.add = 'respuesta-error';
+  resServer.classList.remove = 'respuesta-exitosa';
+}
+const ocultarRespuestaError= () => {
+  resServer.classList.remove('mostrar-respuesta');
+  resServer.classList.remove('respuesta-server');
+  resServer.classList.add('ocultar-respuesta');
 }
 
 // Actualizacion contrasenias.
@@ -585,12 +628,23 @@ const actualizacionPass = () => {
       .then(res => res.text()) // text o json
       .then(data => {
         let datos = JSON.parse(data);
-        console.log(datos);
+        // console.log(datos);
         if (datos.res[0].error != '1') {
-          console.info(datos.res[0].message);
+          // console.info(datos.res[0].message);
           esconderSection();
+          resServer.textContent = `${datos.res[0].message}`;
+          resServer.classList.add('mostrar-respuesta');
+          resServer.classList.remove('ocultar-respuesta');
+          resServer.classList.add('respuesta-exitosa');
+          resServer.classList.remove('respuesta-error');
+          
+          setTimeout(() => {
+            resServer.classList.remove('mostrar-respuesta');
+            resServer.classList.remove('respuesta-server');
+            resServer.classList.add('ocultar-respuesta');
+          }, 4000);
         } else {
-          console.info('error: ' + datos.res[0].message);
+          // console.info('error: ' + datos.res[0].message);
           mostrarSpanError();
           resError.textContent = `${datos.res[0].message}`;
         }

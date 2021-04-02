@@ -60,7 +60,7 @@ fieldset {
   color: #a6c;
 }
 /* ---------------------------------------Fin Main------------------------------------------- */
-/* ---------------------------------------Section--------------------------------------------- */
+/* ---------------------------------------Section editar-------------------------------------- */
 .section {
   position: absolute;
   /* top: 0; */
@@ -218,23 +218,7 @@ input[type="file"] {
   border: none;
   border-radius: 0;
 }
-/* Respuesta error */
-.error {
-  display: block;
-  width: inherit;
-  height: 50px;
-  padding: 15px;
-  text-align: center;
-  background: crimson;
-  color: white;
-  border: 1px solid red;
-}
-.ocultar-respuesta{
-  display: none;
-}
-.mostrar-respuesta{
-  display: block;
-}
+
 /* File */
 .file {
   position: relative;
@@ -292,7 +276,44 @@ input[type="file"] {
 .file input:focus ~ .file-custom {
   box-shadow: 0 0 0 0.075rem #fff, 0 0 0 0.2rem #0074d9;
 }
-/* ---------------------------------------Fin Section------------------------------------------*/
+/* Respuesta error */
+.error {
+  display: block;
+  width: inherit;
+  height: 50px;
+  padding: 15px;
+  text-align: center;
+  background: crimson;
+  color: white;
+  border: 1px solid red;
+}
+.ocultar-respuesta{
+  display: none;
+}
+.mostrar-respuesta{
+  display: block;
+}
+/* ---------------------------------------Fin Section Editar----------------------------------*/
+.respuesta-server {
+  display: block;
+  position: fixed;
+  top: 5%;
+  left: 45%;
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+  opacity: .9;
+}
+.respuesta-error {
+  background: crimson;
+  color: white;
+  border: 2px solid rgb(92, 8, 25);
+}
+.respuesta-exitosa {
+  background: #a6c;
+  color: white;
+  border: 2px solid rgb(67, 42, 80);
+}
 /* ---------------------------------------Responsive--------------------------------------- */
 @media (max-width: 575.98px) {
 }

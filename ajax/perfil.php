@@ -4,7 +4,7 @@ $conexion = new Conexion();
 $imagen;
 
 switch ($_GET["accion"]) {
-  case "1":
+  case "1": //* mostrar tecnologias
     $query = 'select * from tbl_tecnologias';
     $resQuery = $conexion->ejecutarConsulta($query);
 
@@ -21,7 +21,7 @@ switch ($_GET["accion"]) {
     echo $jsonString;
     $conexion->cerrarConexion();
     break;
-  case "2":
+  case "2": //* Mostrar paises
     $query = 'select * from tbl_paises';
     $resQuery = $conexion->ejecutarConsulta($query);
 
@@ -38,7 +38,7 @@ switch ($_GET["accion"]) {
     echo $jsonString;
     $conexion->cerrarConexion();
     break;
-  case "3":
+  case "3": //* Mostrar datos del usuario
     $idUsuario = $_GET['idUsuario'];
 
     // Obteniendo datos del usuario
@@ -85,7 +85,6 @@ switch ($_GET["accion"]) {
       'direccion' => $fila['direccion'],
       'correo' => $fila['correo'],
       'telefono' => $fila['telefono'],
-      'contrasenia' => $fila['contrasenia'],
       'rutaImgPerfil' => $fila['ruta_img_perfil'],
       'nombreImgPerfil' => $fila['nombre_img_perfil']
     );
@@ -94,20 +93,20 @@ switch ($_GET["accion"]) {
     echo $jsonString;
     $conexion->cerrarConexion();
     break;
-  case "4": // Editar informacion del usuario
+  case "4": //* Editar informacion del usuario
     $idUsuario = $_POST['idUsuario'];
     $apellido = $_POST['apellido'];
     $direccion = $_POST['direccion'];
     $correo = $_POST['correo'];
     $telefono = $_POST['telefono'];
-    $contrasenia = $_POST['contrasenia'];
-    $rutaImgPerfil = $_POST['rutaImgPerfil'];
-    $nombreImgPerfil = $_POST['nombreImgPerfil'];
     $idTipoUsuario = $_POST['idTipoUsuario'];
     $idPais = $_POST['idPais'];
     $nombre = $_POST['nombre'];
     $tecnologias = $_POST['tecnologias']; // Este es un arreglo de tecngologias
     
+    $error= "0";
+    $mensaje;
+
     $sql = sprintf(
       "UPDATE tbl_usuario 
       SET 
@@ -116,10 +115,7 @@ switch ($_GET["accion"]) {
         apellido='%s',
         direccion='%s',
         correo='%s',
-        telefono='%s',
-        contrasenia='%s',
-        ruta_img_perfil='%s',
-        nombre_img_perfil='%s'
+        telefono='%s'
       WHERE id_usuario = '%s'",
         stripslashes($idPais),
         stripslashes($nombre),
@@ -127,9 +123,6 @@ switch ($_GET["accion"]) {
         stripslashes($direccion),
         stripslashes($correo),
         stripslashes($telefono),
-        stripslashes($contrasenia),
-        stripslashes($rutaImgPerfil),
-        stripslashes($nombreImgPerfil),
         stripslashes($idUsuario)
     );
     $resQuery = $conexion->ejecutarConsulta($sql);
@@ -155,24 +148,31 @@ switch ($_GET["accion"]) {
           );
           $resQuery3 = $conexion->ejecutarConsulta($query2);
           if ($resQuery3) {
-            echo "1";
+            $mensaje= "El campo ha sido actualizado";
           } else {
-            echo "0"; // error al actualizar usuario
-            exit;
+            $mensaje= "No se pudo agregar las categorias";
+            $error = "1";
           }
         }
       }else {
-        echo "0"; // error al actualizar usuario
-        exit;
+        $mensaje= "No se pudo borrar las tecnologias";
+        $error = "1";
       }
     }else{
-      echo "0"; // error al actualizar usuario
-      exit;
+      $mensaje= "No se pudo editar el usuario";
+      $error = "1";
     }
-    // echo count($tecnologias);
+
+    $json['res'][] = array(
+      'error' => ''.$error.'',
+      'message' => "".$mensaje.""
+    );
+    $jsonString = json_encode($json);
+    echo $jsonString;
+
     $conexion->cerrarConexion();
     break;
-  case "5":
+  case "5": //* editar imagen de perfil
     session_start();
     $idTipoUsuario = "1";
     $idUsuario = "2";
@@ -285,7 +285,7 @@ switch ($_GET["accion"]) {
       exit;
     }
     break;
-  case "6":
+  case "6": //* Editar contrasenia
     session_start();
     $idUsuario = "2";
     // $idUsuario = $_SESSION["idUsr"];
