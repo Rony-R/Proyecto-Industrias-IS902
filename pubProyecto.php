@@ -1,3 +1,11 @@
+<?php
+
+  session_start();
+  if (!isset($_SESSION["usr"]) || !isset($_SESSION["psw"]))
+    header("Location: login.php");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,17 +45,56 @@
   </head>
   <body>
     <nav>
-      <ul class="menu">
+      <!-- NavBar sin login -->
+      <ul id="nav-no-login" class="menu mb-0" style="display: none">
         <li class="logo">
           <a href="#">
             <img class="logoImg" src="./img/logos/logo1.png" alt="" />
           </a>
         </li>
-        <li class="item"><a href="index.html">Home</a></li>
-        <li class="item"><a href="registro.html">Registrarse</a></li>
-        <li class="item button log"><a href="#">Iniciar Sesión</a></li>
+        <li class="item"><a href="index.php">Inicio</a></li>
+        <li class="item button log"><a href="registro.html">Registrarse</a></li>
         <li class="item button">
-          <a id="h" href="pubProyecto.html"> Publicar un Proyecto </a>
+          <a id="h" href="login.php"> Iniciar Sesión </a>
+        </li>
+        <li class="toggle">
+          <span class="bars"></span>
+        </li>
+      </ul>
+
+      <!-- NavBar freelancer -->
+      <ul id="nav-freelancer" class="menu mb-0" style="display: none">
+        <li class="logo">
+          <a href="#">
+            <img class="logoImg" src="./img/logos/logo1.png" alt="" />
+          </a>
+        </li>
+        <li class="item"><a href="index.php">Inicio</a></li>
+        <li class="item"><a href="perfil-info-personal.html">Perfil</a></li>
+        <li class="item button log">
+          <a href="ajax/logout.php">Cerrar Sesión</a>
+        </li>
+        <li class="item button">
+          <a id="h" href="publicaciones.php"> Publicaciones </a>
+        </li>
+        <li class="toggle">
+          <span class="bars"></span>
+        </li>
+      </ul>
+
+      <!-- NavBar Empresa -->
+      <ul id="nav-empresa" class="menu mb-0">
+        <li class="logo">
+          <a href="#">
+            <img class="logoImg" src="./img/logos/logo1.png" alt="" />
+          </a>
+        </li>
+        <li class="item"><a href="index.php">Inicio</a></li>
+        <li class="item"><a href="perfil-info-personal.html">Perfil</a></li>
+        <li class="item"><a href="ajax/logout.php">Cerrar Sesión</a></li>
+        <li class="item button log"><a href="#">Mis Publicaciones</a></li>
+        <li class="item button">
+          <a id="h" href="pubProyecto.php"> Publicar un Proyecto </a>
         </li>
         <li class="toggle">
           <span class="bars"></span>
@@ -84,6 +131,7 @@
                     class="input"
                     placeholder="Nombre del Proyecto"
                   />
+                  <div class="invalid-feedback">Este campo es obligatorio.</div>
                 </div>
               </div>
 
@@ -100,6 +148,7 @@
                     class="input"
                     placeholder="Descripción del Proyecto"
                   ></textarea>
+                  <div class="invalid-feedback">Este campo es obligatorio.</div>
                 </div>
               </div>
 
@@ -115,13 +164,18 @@
                     aria-label="Default select example"
                   >
                     <option value="0" selected>Rango de Presupuesto</option>
-                    <option value="1">$1,500 - $3,000</option>
-                    <option value="2">$3,000 - $5,000</option>
-                    <option value="3">$5,000 - $10,000</option>
-                    <option value="4">$10,000 - $20,000</option>
-                    <option value="5">Más de $20,000</option>
                   </select>
+                  <div class="invalid-feedback">Este campo es obligatorio.</div>
                 </div>
+              </div>
+
+              <div class="row mb-0">
+                <p class="m-0">
+                  Este presupuesto esta sujeto a cambios a medida negocies con
+                  los freelances que desarrollaraon tu proyecto tomando en
+                  cuenta varios parametros como tecnologías a utilizar, tiempo,
+                  etc.
+                </p>
               </div>
 
               <div class="input-div">
@@ -136,10 +190,8 @@
                     aria-label="Default select example"
                   >
                     <option value="0" selected>Tipo de Proyecto</option>
-                    <option value="1">Desarrollo Web</option>
-                    <option value="2">Desarrollo Móvil</option>
-                    <option value="3">Redes</option>
                   </select>
+                  <div class="invalid-feedback">Este campo es obligatorio.</div>
                 </div>
               </div>
 
@@ -148,14 +200,14 @@
                   <i class="fas fa-images"></i>
                 </div>
                 <div>
-                  <input
-                    id="file"
-                    type="file"
-                    name="file[]"
-                    class="input"
-                    multiple
-                  />
+                  <input id="file" type="file" name="file" class="input" />
                 </div>
+              </div>
+
+              <div class="row">
+                <p>
+                  Sube una imagen que describa tu proyecto, esto es opcional.
+                </p>
               </div>
 
               <button
@@ -164,7 +216,7 @@
                 name="submit"
                 class="btn btnPub"
               >
-                Publicar
+                Publicar Proyecto
               </button>
             </form>
           </div>

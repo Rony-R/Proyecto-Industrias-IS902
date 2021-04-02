@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 nav {
@@ -25,6 +25,19 @@ a:hover {
   color: #33b5e5;
 }
 
+.d-none {
+  display: none !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.img-pub {
+  height: 300px;
+  width: 100%;
+}
+
 .menu li {
   font-size: 17px;
   padding: 10px 10px;
@@ -37,6 +50,29 @@ a:hover {
 .logoImg {
   width: 60px;
   height: 50px;
+}
+
+#grad {
+  background-image: linear-gradient(
+    to right,
+    rgba(176, 69, 230, 0.425),
+    rgba(176, 69, 230, 0.74),
+    rgba(176, 69, 230, 0.952)
+  );
+}
+
+.card-pub {
+  height: 100%;
+}
+
+.btn-ver-pub {
+  display: inline-block;
+  padding: 7px 15px;
+  color: white;
+  border-radius: 50em;
+  font-weight: bolder;
+  background-image: linear-gradient(to right, #681e99, #106abe, #34c257);
+  border: 1px solid #33b5e5;
 }
 
 /*Mobile menu*/
@@ -101,7 +137,7 @@ a:hover {
 
 /*Tablet Menu*/
 
-@media all and (min-width: 521px) {
+@media all and (min-width: 565px) {
   .menu {
     justify-content: center;
   }
@@ -121,10 +157,28 @@ a:hover {
   }
 
   .button a {
-    padding: 7px 15px;
+    padding: 5px 9px;
     border-radius: 50em;
     background-color: rgba(164, 46, 223, 0.527);
     border: 1px solid #33b5e5;
+  }
+
+  .btn-ver-pub {
+    display: inline-block;
+    padding: 7px 15px;
+    color: white;
+    border-radius: 50em;
+    font-weight: bolder;
+    background-image: linear-gradient(to right, #681e99, #106abe, #34c257);
+    border: 1px solid #33b5e5;
+  }
+
+  a.btn-ver-pub:hover {
+    transition: all 0.2s;
+    text-decoration: underline;
+    color: white;
+    font-size: 17px;
+    background-image: linear-gradient(to left, #681e99cc, #106abed0, #34c258c9);
   }
 
   .button.log a {
@@ -144,8 +198,8 @@ a:hover {
   }
 }
 
-/*Desktop MMenu*/
-@media all and (min-width: 770px) {
+/*Desktop Menu*/
+@media all and (min-width: 865px) {
   .item {
     display: block;
     width: auto;
@@ -173,6 +227,20 @@ a:hover {
 
   .menu li.button {
     padding-right: 0;
+  }
+}
+
+@media all and (min-width: 1800px) {
+  .img-pub {
+    height: 250px !important;
+    width: 100% !important;
+  }
+}
+
+@media all and (min-width: 762px) {
+  .img-pub {
+    height: 170px;
+    width: 100%;
   }
 }
 
