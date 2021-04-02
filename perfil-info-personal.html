@@ -8,22 +8,54 @@
       src="https://kit.fontawesome.com/38614da2b6.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="./css/perfil-maquetado.css">
+    <link rel="stylesheet" href="./css/perfil-maquetado.css" />
     <link rel="stylesheet" href="css/perfil-info-personal.css" />
     <title>Perfil</title>
   </head>
   <body class="grid-container">
+    
+    <!-- Ventana de editar -->
+    <section id="section" class="section oculto">
+      <a href="javascript:esconderSection();">
+        <i class="fas fa-chevron-left"></i>
+      </a>
+      <div class="card-section">
+        <fieldset id="cardSeccion" class="card-edicion">
+          <legend class="titulo-card">
+            <h4 id="h4Titulo">Titulo cambio</h4>
+          </legend>
+          <fieldset id="cardEdicion" class="input-edicion">
+            <legend id="lTituloEdicion" class="titulo-edicion">nombre</legend>
+            <input id="inputText" type="text" placeholder="" />
+          </fieldset>
+          <div id="btnAccion" class="btn-accion">
+            <a class="btn-publicacion eliminar" href="#">Cancelar</a>
+            <a class="btn-publicacion editar" href="#">
+              <i class="fas fa-pen"></i>Guardar</a
+            >
+          </div>
+        </fieldset>
+      </div>
+    </section>
+    <!--Fin Ventana de editar -->
+<!-- Mensaje Respuesta del server -->
+<span class="respuesta-server ocultar-respuesta" id="resServer"></span>
+<!-- Fin Mensaje Respuesta del server -->
     <nav class="navbar">
+      
       <ul class="grid-navbar">
         <li class="nav-item1">
           <a href="#"
             ><img class="logo" src="./img/logos/logo1.png" alt="logo"
           /></a>
         </li>
-        <li class="nav-item2"><div class="nombre-empresa">Empresa x</div></li>
+        <li class="nav-item2">
+          <div id="navNombre" class="nombre-empresa">Empresa x</div>
+        </li>
         <li class="nav-item4">
           <a href="#"
             ><img
+              id="navImgPerfil"
               class="img-perfil"
               src="./img/Empressas/Empresa x/logo.jpg"
               alt=""
@@ -46,13 +78,13 @@
               <div class="cont-nav">Información personal</div></a
             >
           </li>
-          <li>
+          <li id="navPublicaciones">
             <a href="perfil-publicaciones.html"
               ><i class="fas fa-user-cog"></i>
               <div class="cont-nav">Publicaciones Propias</div></a
             >
           </li>
-          <li>
+          <li id="navPagos">
             <a href="perfil-pagos.html"
               ><i class="fas fa-credit-card"></i>
               <div class="cont-nav">Pagos</div></a
@@ -68,6 +100,7 @@
         </ul>
       </div>
     </aside>
+    <button id></button>
     <!-- Informacion Personal de la empresa -->
     <article class="main">
       <div class="grid-main">
@@ -88,69 +121,64 @@
             <legend><h3>Información básica</h3></legend>
             <div class="form-info img">
               <img
+                id="imagenPerfil"
                 class="foto-perfil"
                 src="./img/Empressas/Empresa x/logo.jpg"
                 alt="foto de perfil"
               />
             </div>
             <div class="form-info">
-              <a href="#">
+              <a href="javascript:mostrarSection('nombre');">
                 <label class="titulo-label">Nombre:</label>
-                <h4>Empresa X</h4>
+                <h4 id="nombre">Empresa X</h4>
+                <i class="fas fa-chevron-right"></i>
+              </a>
+            </div>
+            <div id="divApellido" class="form-info">
+              <a href="javascript:mostrarSection('apellido');">
+                <label class="titulo-label">Apellido:</label>
+                <h4 id="apellido">Empresa X</h4>
                 <i class="fas fa-chevron-right"></i>
               </a>
             </div>
             <div class="form-info">
-              <a href="#">
-                <label>Fecha de inicio:</label>
-                <h4>10 de agosto de 2001</h4>
+              <a href="javascript:mostrarSection('pais');">
+                <label>Pais:</label>
+                <h4 id="pais">Honduras</h4>
                 <i class="fas fa-chevron-right"></i>
               </a>
             </div>
             <div class="form-info">
-              <a href="#">
-                <label>Sector:</label>
-                <h4>Salud, ...</h4>
-                <i class="fas fa-chevron-right"></i>
-              </a>
-            </div>
-            <div class="form-info">
-              <a href="#">
-                <label>Categoría:</label>
-                <h4>Fármacos, ...</h4>
-                <i class="fas fa-chevron-right"></i>
-              </a>
-            </div>
-            <div class="form-info">
-              <a href="#">
+              <a href="javascript:mostrarSection('contrasenia');">
                 <label>Contraseña:</label>
-                <h4>••••••••</h4>
+                <h4 id="contrasenia">••••••••</h4>
                 <i class="fas fa-chevron-right"></i>
               </a>
             </div>
           </fieldset>
         </div>
+        <option value=""></option>
         <div class="info-basica">
           <fieldset class="card-info">
             <legend><h3>Información de contacto</h3></legend>
             <div class="form-info">
-              <a href="#">
+              <a href="javascript:mostrarSection('correo');">
                 <label class="titulo-label">Correo Electrónico:</label>
-                <h4>empresax.info@empresax.com</h4>
+                <h4 id="correo">empresax.info@empresax.com</h4>
                 <i class="fas fa-chevron-right"></i>
               </a>
             </div>
             <div class="form-info">
-              <a href="#">
+              <a href="javascript:mostrarSection('telefono');">
                 <label>Teléfono:</label>
-                <h4>+(504) 9999-9999</h4>
+                <h4 id="telefono">+(504) 9999-9999</h4>
                 <i class="fas fa-chevron-right"></i>
               </a>
             </div>
             <div class="form-info">
-              <a href="#">
+              <a href="javascript:mostrarSection('direccion');">
                 <label>Dirección:</label>
-                <h4>
+                <h4 id="direccion">
                   Honduras, Francisco Morazan, Tegucigalpa, 11101, UNAH CU
                 </h4>
                 <i class="fas fa-chevron-right"></i>
@@ -158,12 +186,31 @@
             </div>
           </fieldset>
         </div>
+        <div class="info-basica" id="cardExperienciaLaboral">
+          <fieldset class="card-info">
+            <legend><h3>Experiencia laboral</h3></legend>
+            <div class="form-info">
+              <a href="javascript:mostrarSection('habilidades');">
+                <label class="titulo-label">Habilidades:</label>
+                <h4 id="hTec"></h4>
+                <i class="fas fa-chevron-right"></i>
+              </a>
+            </div>
+            <div class="form-info">
+              <a href="javascript:mostrarSection('proyectos');">
+                <label>Proyectos en DevFinder:</label>
+                <h4 id="experiencia">5 proyectos</h4>
+                <i class="fas fa-chevron-right"></i>
+              </a>
+            </div>
+          </fieldset>
+        </div>
       </div>
-      <!-- Fin Informacion Personal de la empresa -->
+      <!-- Fin Informacion Personal del usuario -->
     </article>
     <footer class="footer">
       <div class="grid-footer">
-        <img class="logo-footer" src="./img/logos/logo2.png" alt="" />
+        <img class="logo-footer" src="./img/logos/logo1.png" alt="" />
         <h3 class="developers">Desarrolladores</h3>
         <div class="developer developer1">
           <img src="./img/logos/prof.jpeg" alt="" />
@@ -195,5 +242,11 @@
         </div>
       </div>
     </footer>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="./js/controlador-perfil.js"></script>
   </body>
 </html>
