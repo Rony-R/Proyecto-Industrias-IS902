@@ -4,6 +4,18 @@ $conexion = new Conexion();
 $imagen;
 
 switch ($_GET["accion"]) {
+  case '7': //* Obteniendo el usuario logueado
+    session_start();
+    $idTipoUsuario = $_SESSION["idTipoUsr"];
+    $idUsuario = $_SESSION["idUsr"];
+
+    $json[] = array(
+      'idUsuario' => ''.$idUsuario.'',
+      'idTipoUsuario' => ''.$idTipoUsuario.''
+    );
+    $jsonString = json_encode($json);
+    echo $jsonString;
+    break;
   case "1": //* mostrar tecnologias
     $query = 'select * from tbl_tecnologias';
     $resQuery = $conexion->ejecutarConsulta($query);
@@ -39,7 +51,9 @@ switch ($_GET["accion"]) {
     $conexion->cerrarConexion();
     break;
   case "3": //* Mostrar datos del usuario
-    $idUsuario = $_GET['idUsuario'];
+    session_start();
+    // $idUsuario = $_GET['idUsuario'];
+    $idUsuario = $_SESSION["idUsr"];
 
     // Obteniendo datos del usuario
     $query = "SELECT * FROM tbl_usuario u
@@ -63,15 +77,16 @@ switch ($_GET["accion"]) {
     $json[] = array();
     
     $fila = $conexion->obtenerFila($resQuery3);
-    $json[0]['expeciencia'][] = array($fila['experiencia']);
-
+    $json[0]['expeciencia'][] = array(
+      $fila['experiencia']
+    );
     while ($fila = $conexion->obtenerFila($resQuery2)) {
       $json[0]['tecnologias'][] = array(
         'tecnologia' => $fila['tec'],
         'idTecnologia' => $fila['idTecnologia']
-
       );
-    }
+    } 
+    
 
     $fila = $conexion->obtenerFila($resQuery);
     $json[0]['info'][] = array(
@@ -102,10 +117,13 @@ switch ($_GET["accion"]) {
     $idTipoUsuario = $_POST['idTipoUsuario'];
     $idPais = $_POST['idPais'];
     $nombre = $_POST['nombre'];
-    $tecnologias = $_POST['tecnologias']; // Este es un arreglo de tecngologias
+    $tecnologias = [];
+    if (isset($_POST['tecnologias'])) {
+      $tecnologias = $_POST['tecnologias'];// Este es un arreglo de tecngologias
+    }
     
     $error= "0";
-    $mensaje;
+    $mensaje= "";
 
     $sql = sprintf(
       "UPDATE tbl_usuario 
@@ -126,37 +144,45 @@ switch ($_GET["accion"]) {
         stripslashes($idUsuario)
     );
     $resQuery = $conexion->ejecutarConsulta($sql);
-    
-    
     if($resQuery){
-      $query = sprintf(
-        "DELETE 
-        FROM tbl_tec_x_usuario
-        WHERE id_usuario = '%s'",
-        stripslashes($idUsuario)
-      );
-      $resQuery2 = $conexion->ejecutarConsulta($query);
-      if ($resQuery2) {
-        foreach ($tecnologias as $tec) {
-          $query2 = sprintf(
-            "INSERT INTO tbl_tec_x_usuario
-            (id_usuario, id_tecnologia) 
-            VALUES
-            ('%s','%s')",
-            stripslashes($idUsuario),
-            stripslashes($tec)
-          );
-          $resQuery3 = $conexion->ejecutarConsulta($query2);
-          if ($resQuery3) {
-            $mensaje= "El campo ha sido actualizado";
-          } else {
-            $mensaje= "No se pudo agregar las categorias";
-            $error = "1";
+      if ($idTipoUsuario !=2) {
+        $query = sprintf(
+          "DELETE 
+          FROM tbl_tec_x_usuario
+          WHERE id_usuario = '%s'",
+          stripslashes($idUsuario)
+        );
+        $resQuery2 = $conexion->ejecutarConsulta($query);
+        if ($resQuery2) {
+          if (is_array($tecnologias)) {
+            foreach ($tecnologias as $tec) {
+              $query2 = sprintf(
+                "INSERT INTO tbl_tec_x_usuario
+                (id_usuario, id_tecnologia) 
+                VALUES
+                ('%s','%s')",
+                stripslashes($idUsuario),
+                stripslashes($tec)
+              );
+              $resQuery3 = $conexion->ejecutarConsulta($query2);
+              $mensaje= "El campo ha sido actualizado";
+              if ($resQuery3) {
+                $mensaje= "El campo ha sido actualizado";
+              } else {
+                $mensaje= "No se pudo agregar las categorias";
+                $error = "1";
+              }
+            }
+          }else {
+            $mensaje= "Se han eliminado las categorias";
           }
+          
+        }else {
+          $mensaje= "No se pudo borrar las tecnologias";
+          $error = "1";
         }
-      }else {
-        $mensaje= "No se pudo borrar las tecnologias";
-        $error = "1";
+      } else {
+        $mensaje= "El campo ha sido actualizado";
       }
     }else{
       $mensaje= "No se pudo editar el usuario";
@@ -165,7 +191,7 @@ switch ($_GET["accion"]) {
 
     $json['res'][] = array(
       'error' => ''.$error.'',
-      'message' => "".$mensaje.""
+      'message' => ''.$mensaje.''
     );
     $jsonString = json_encode($json);
     echo $jsonString;
@@ -174,10 +200,10 @@ switch ($_GET["accion"]) {
     break;
   case "5": //* editar imagen de perfil
     session_start();
-    $idTipoUsuario = "1";
-    $idUsuario = "2";
-    // $idTipoUsuario = $_SESSION["idTipoUsr"];
-    // $idUsuario = $_SESSION["idUsr"];
+    // $idTipoUsuario = "1";
+    // $idUsuario = "2";
+    $idTipoUsuario = $_SESSION["idTipoUsr"];
+    $idUsuario = $_SESSION["idUsr"];
     if ($idTipoUsuario == 1) {
       $rutaImg = "usuarios/".$idUsuario."/";
       $carpetaDestino="../img/usuarios/".$idUsuario."/";
@@ -287,8 +313,8 @@ switch ($_GET["accion"]) {
     break;
   case "6": //* Editar contrasenia
     session_start();
-    $idUsuario = "2";
-    // $idUsuario = $_SESSION["idUsr"];
+    // $idUsuario = "2";
+    $idUsuario = $_SESSION["idUsr"];
     if (!empty($_POST)) {
       $passOld = $_POST['passOld'];
       $passNew = $_POST['passNew'];
@@ -345,9 +371,7 @@ switch ($_GET["accion"]) {
       $jsonString = json_encode($json);
       echo $jsonString;
     }
-    
     break;
-
   default:
     echo ("nulllllllll");
     break;
