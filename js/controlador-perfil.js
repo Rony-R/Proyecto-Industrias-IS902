@@ -9,6 +9,12 @@ let paises; //* Array. Todos los paises de la base de datos.
 let idPaisAuxiliar; //! Aqui guardamos el posible pais al que se quiera cambiar.
 let chkTecnologias = ''; //todo: String. tecnologias formateadas en checkbox.
 
+let pass;
+let newpass;
+let newpass2;
+
+let resError;
+
 if (tipoUsuario == 1) {
   console.log('Es freelancer');
   document.getElementById("navPagos").style.display = "none";
@@ -118,7 +124,7 @@ obtenerTecnologias();
 const chkSeleccionado = (checkbox) => {
   //Si está marcada ejecuta la condición verdadera.
   if(checkbox.checked){
-    // alert('La casilla ha sido marcada! id:' + checkbox.id +'Value ' + checkbox.value);
+    // console.info('La casilla ha sido marcada! id:' + checkbox.id +'Value ' + checkbox.value);
     document.getElementById(`divTec${checkbox.value}`).classList.remove('chk-deseleccionado');
     document.getElementById(`divTec${checkbox.value}`).classList.add('chk-seleccionado');
     let index = allTecnologias.findIndex(obj => obj.idTecnologia == `${checkbox.value}`);//! Obtenemos el indice de la tecnologia seleccionada de nuestro array allTecnologias.
@@ -127,7 +133,7 @@ const chkSeleccionado = (checkbox) => {
   }
   //Si se ha desmarcado se ejecuta el siguiente mensaje.
   else{
-    // alert('La casilla ha sido desmarcada!');
+    // console.info('La casilla ha sido desmarcada!');
     document.getElementById(`divTec${checkbox.value}`).classList.remove('chk-seleccionado');
     document.getElementById(`divTec${checkbox.value}`).classList.add('chk-deseleccionado');
     let index = tecnologiasAuxiliar.findIndex(obj => obj.idTecnologia == `${checkbox.value}`); //! Obtenemos el indice de la tecnologia deseleccionada de nuestro array tecnologias.
@@ -173,13 +179,15 @@ const mostrarSection = (atributo) => {
     <legend id="lTituloEdicion" class="titulo-edicion">nombre</legend>
     <input id="inputText" type="text" placeholder="">
   </fieldset>
+  <span id="respuesta" class="error ocultar-respuesta"></span>
   <div id="btnAccion" class="btn-accion">
-    <a class="btn-publicacion eliminar" href="#">Cancelar</a>
+    <a class="btn-publicacion eliminar" href="javascript:esconderSection()">Cancelar</a>
     <a class="btn-publicacion editar" href="#">
       <i class="fas fa-pen"></i></i>Guardar</a>
   </div>`;
+  resError = document.getElementById('respuesta');
   document.getElementById('btnAccion').innerHTML = `
-    <a class="btn-publicacion eliminar" href="#">Cancelar</a>
+    <a class="btn-publicacion eliminar" href="javascript:esconderSection()">Cancelar</a>
   `;
   let intElemScrollTop = $('html').scrollTop();
   document.getElementById('section').style.top = `${intElemScrollTop}px`;
@@ -235,27 +243,27 @@ const mostrarSection = (atributo) => {
       <legend class="titulo-card"><h4 id="h4Titulo">Cambiar Contraseña</h4></legend>
           <fieldset id="cardEdicion" class="input-edicion">
             <legend id="lTituloEdicion" class="titulo-edicion">Contraseña actual</legend>
-            <input id="psw" type="password" placeholder="">
+            <input id="pass" type="password" placeholder="">
           </fieldset>
           <fieldset id="cardEdicion" class="input-edicion">
             <legend id="lTituloEdicion" class="titulo-edicion">Contraseña nueva</legend>
-            <input id="repsw1" type="password" placeholder="">
+            <input id="newpass" type="password" placeholder="">
           </fieldset>
           <fieldset id="cardEdicion" class="input-edicion">
-            <legend id="lTituloEdicion" class="titulo-edicion">Confirma contraseña nueva</legend>
-            <input id="repsw2" type="password" placeholder="">
+            <legend id="lTituloEdicion" class="titulo-edicion">Confirmar contraseña nueva</legend>
+            <input id="newpass2" type="password" placeholder="">
           </fieldset>
+          <span id="respuesta" class="error ocultar-respuesta"></span>
         <div class="btn-accion">
-          <a class="btn-publicacion eliminar" href="#">Cancelar</a>
-          <a class="btn-publicacion editar" href="#">
+          <a class="btn-publicacion eliminar" href="javascript:esconderSection()">Cancelar</a>
+          <a class="btn-publicacion editar" href="javascript:actualizacionPass();">
           <i class="fas fa-pen"></i>Guardar</a>
         </div>
       `;
-      document.getElementById('btnAccion').innerHTML += `
-        <a class="btn-publicacion editar" href="javascript:actualizar('contrasenia');">
-          <i class="fas fa-pen"></i></i>Actualizar
-        </a>
-      `;
+      resError = document.getElementById('respuesta');
+      pass = document.getElementById('pass');
+      newpass = document.getElementById('newpass');
+      newpass2 = document.getElementById('newpass2');
       break;
     case 'correo':
       console.log(atributo);
@@ -331,11 +339,10 @@ const mostrarSection = (atributo) => {
             <i id="arrow" class="fas fa-long-arrow-alt-right "></i>
           </div>
           <form id="formImg" method="post" enctype="multipart/form-data">
-          <label class="file">
-            <input type="file" name="fileImg" id="fileImg" accept="image/*">
-            <span class="file-custom"></span>
-          </label>
-            
+            <label class="file">
+              <input type="file" name="fileImg" id="fileImg" accept="image/*">
+              <span class="file-custom"></span>
+            </label>
           </form>
       `;
       document.getElementById('arrow').style = 'display : none';
@@ -372,33 +379,35 @@ imgPerfil.addEventListener('click',() => {
   mostrarSection('img');
 });
 const actualizarImg = () => {
-  const btnActualizarImg = document.getElementById('btnActualizarFoto');
-  btnActualizarImg.addEventListener('click', () => {
-    if (fileImg.value === '') {
-      console.info('No hay imagen de perfil que actualizar');
-    }
-    else {
-      const formImg = document.getElementById('formImg');
-      const formData = new FormData(formImg);
-      // console.info([formData]);
-      fetch('ajax/perfil.php?accion=5', {
-        method: 'POST',
-        body: formData
-      })
-        .then(res => res.ok ? Promise.resolve(res) : Promise.reject(new Error('Failed to load')))
-        .then(res => res.text()) // text o json
-        .then(data => {
-          let datos = JSON.parse(data)
-          console.log(datos);
+  if (fileImg.value === '') {
+    console.info('No hay imagen de perfil que actualizar');
+    resError.classList.add('mostrar-respuesta');
+    resError.classList.remove('ocultar-respuesta');
+    resError.textContent = 'No hay imagen de perfil que actualizar';
+  }
+  else {
+    const formImg = document.getElementById('formImg');
+    const formData = new FormData(formImg);
+    // console.info([formData]);
+    fetch('ajax/perfil.php?accion=5', {
+      method: 'POST',
+      body: formData
+    })
+      .then(res => res.ok ? Promise.resolve(res) : Promise.reject(new Error('Failed to load')))
+      .then(res => res.text()) // text o json
+      .then(data => {
+        let datos = JSON.parse(data);
+        // console.log(datos);
 
+        if (datos.res[0].error != 1) {
           esconderSection();
-          location.reload();
+          // location.reload();
           document.getElementById('navImgPerfil').src = `./img/${datos.res[0].ruta}${datos.res[0].nombreImg}?n=${Date.now()}`;
-          document.getElementById('imagenPerfil').src = `./img/${datos.res[0].ruta}${datos.res[0].nombreImg}?n=${Date.now()+1}`;
-        })
-        .catch((error) => console.info(`Error:${error.message}`));
-    }
-  });
+          document.getElementById('imagenPerfil').src = `./img/${datos.res[0].ruta}${datos.res[0].nombreImg}?n=${Date.now() + 1}`;
+        } else console.info(datos.res[0].message);
+      })
+      .catch((error) => console.info(`Error:${error.message}`));
+  }
 }
 const validarInput= () => {
   if (document.getElementById('inputText').value.length == 0) {
@@ -411,21 +420,29 @@ const seleccionarPais = () => {
   idPaisAuxiliar = document.getElementById('slc-pais').value;
 }
 
-
 const actualizar = (atributo) => {
+  let verificacion= true;
   switch (atributo) {
     case 'nombre':
       if (validarInput()) {
         infoUsuario.nombre = document.getElementById('inputText').value;
       } else {
-        alert(`Debe agregar un ${atributo}`);
+        console.info(`Debe agregar un ${atributo}`);
+        resError.classList.add('mostrar-respuesta');
+        resError.classList.remove('ocultar-respuesta');
+        resError.textContent = `Debe agregar un ${atributo}`;
+        verificacion = false;
       }
       break;
     case 'apellido':
       if (validarInput()) {
         infoUsuario.apellido = document.getElementById('inputText').value;
       } else {
-        alert(`Debe agregar un ${atributo}`);
+        console.info(`Debe agregar un ${atributo}`);
+        resError.classList.add('mostrar-respuesta');
+        resError.classList.remove('ocultar-respuesta');
+        resError.textContent = `Debe agregar un ${atributo}`;
+        verificacion = false;
       }
       break;
     case 'pais':
@@ -436,23 +453,43 @@ const actualizar = (atributo) => {
       break;
     case 'correo':
       if (validarInput()) {
-        infoUsuario.correo = document.getElementById('inputText').value;
+        if (validacionEmail(document.getElementById('inputText').value)) {
+          infoUsuario.correo = document.getElementById('inputText').value;
+        } else {
+          verificacion = false;
+          resError.classList.add('mostrar-respuesta');
+          resError.classList.remove('ocultar-respuesta');
+          resError.textContent = `El correo no es valido`;
+        }
+        
       } else {
-        alert(`Debe agregar un ${atributo}`);
+        console.info(`Debe agregar un ${atributo}`);
+        resError.classList.add('mostrar-respuesta');
+        resError.classList.remove('ocultar-respuesta');
+        resError.textContent = `Debe agregar un ${atributo}`;
+        verificacion = false;
       }
       break;
     case 'telefono':
       if (validarInput()) {
         infoUsuario.telefono = document.getElementById('inputText').value;
       } else {
-        alert(`Debe agregar un ${atributo}`);
+        console.info(`Debe agregar un ${atributo}`);
+        resError.classList.add('mostrar-respuesta');
+        resError.classList.remove('ocultar-respuesta');
+        resError.textContent = `Debe agregar un ${atributo}`;
+        verificacion = false;
       }
       break;
     case 'direccion':
       if (validarInput()) {
         infoUsuario.direccion = document.getElementById('inputText').value;
       } else {
-        alert(`Debe agregar un ${atributo}`);
+        console.info(`Debe agregar un ${atributo}`);
+        resError.classList.add('mostrar-respuesta');
+        resError.classList.remove('ocultar-respuesta');
+        resError.textContent = `Debe agregar un ${atributo}`;
+        verificacion = false;
       }
         break;
     case 'habilidades':
@@ -468,35 +505,103 @@ const actualizar = (atributo) => {
 
   // console.info(infoUsuario);
   // console.info(tecnologias);
-  let urlTecnologias = '';
-  tecnologias.forEach(tecnologia => {
-    urlTecnologias += `&tecnologias[]=${tecnologia.idTecnologia}`;
-  });
-  let parametros = "nombre=" + infoUsuario.nombre+
-                  "&apellido=" + infoUsuario.apellido +
-                  "&direccion=" + infoUsuario.direccion +
-                  "&correo=" + infoUsuario.correo +
-                  "&telefono=" + infoUsuario.telefono +
-                  "&contrasenia=" + infoUsuario.contrasenia +
-                  "&rutaImgPerfil=" + infoUsuario.rutaImgPerfil +
-                  "&nombreImgPerfil=" + infoUsuario.nombreImgPerfil +
-                  "&idTipoUsuario=" + infoUsuario.idTipoUsuario +
-                  "&idPais=" + infoUsuario.idPais +
-                  urlTecnologias +
-                  "&idUsuario=" + infoUsuario.idUsuario;
-  console.info(parametros);
+  if (verificacion) {
+    let urlTecnologias = '';
+    tecnologias.forEach(tecnologia => {
+      urlTecnologias += `&tecnologias[]=${tecnologia.idTecnologia}`;
+    });
+    let parametros = "nombre=" + infoUsuario.nombre+
+                    "&apellido=" + infoUsuario.apellido +
+                    "&direccion=" + infoUsuario.direccion +
+                    "&correo=" + infoUsuario.correo +
+                    "&telefono=" + infoUsuario.telefono +
+                    "&contrasenia=" + infoUsuario.contrasenia +
+                    "&rutaImgPerfil=" + infoUsuario.rutaImgPerfil +
+                    "&nombreImgPerfil=" + infoUsuario.nombreImgPerfil +
+                    "&idTipoUsuario=" + infoUsuario.idTipoUsuario +
+                    "&idPais=" + infoUsuario.idPais +
+                    urlTecnologias +
+                    "&idUsuario=" + infoUsuario.idUsuario;
+    console.info(parametros);
+  
+    $.ajax({
+      url: 'ajax/perfil.php?accion=4', //! Editar usuario
+      method: 'POST',
+      data: parametros,
+      success: function (response) {
+        console.log(response);
+        esconderSection();
+        llenarInfo();
+      },
+      error: function (e) {
+        console.log(e);
+      }
+    });
+  }
+}
 
-  $.ajax({
-    url: 'ajax/perfil.php?accion=4', //! Editar usuario
-    method: 'POST',
-    data: parametros,
-    success: function (response) {
-      console.log(response);
-      esconderSection();
-      llenarInfo();
-    },
-    error: function (e) {
-      console.log(e);
+// Actualizacion contrasenias.
+const verificarInputsPass = () => {
+  if (newpass2.value.length == 0 || newpass.value.length == 0 || pass.value.length == 0) return false;
+  else return true;
+}
+
+const verificarNewPass = () => {
+  if (newpass2.value !== newpass.value) return false;
+  else return true;
+}
+const mostrarSpanError = () => {
+  resError.classList.add('mostrar-respuesta');
+  resError.classList.remove('ocultar-respuesta');
+}
+const actualizacionPass = () => {
+  // console.info([newpass2.value, newpass.value]);
+  verificacion = true;
+  if (verificarInputsPass()) {
+    if (verificarNewPass()) {
+      // infoUsuario.contrasenia = newpass2.value;
+      verificacion = true;
+    } else {
+      verificacion = false;
+      console.info(`Las contraseñas no coinciden`);
+      mostrarSpanError();
+      resError.textContent = `Las contraseñas no coinciden`;
     }
-  });
+  } else {
+    verificacion = false;
+    console.info(`Debe llenar todos los campos para actualizar la contraseña`);
+    mostrarSpanError();
+    resError.textContent = `Debe llenar todos los campos para actualizar la contraseña`;
+  }
+  if (verificacion) {
+    let formData = new FormData();
+    formData.append('passOld', pass.value);
+    formData.append('passNew', newpass2.value);
+
+    fetch('ajax/perfil.php?accion=6', {
+      method: 'POST',
+      body: formData
+    })
+      .then(res => res.text()) // text o json
+      .then(data => {
+        let datos = JSON.parse(data);
+        console.log(datos);
+        if (datos.res[0].error != '1') {
+          console.info(datos.res[0].message);
+          esconderSection();
+        } else {
+          console.info('error: ' + datos.res[0].message);
+          mostrarSpanError();
+          resError.textContent = `${datos.res[0].message}`;
+        }
+      })
+      .catch((error) => console.info(`Error: ${error.message}`));
+  }
+}
+
+// Validacion de correo
+const validacionEmail = (email) => {
+  const emailRegex = /^(([^<>()\[\]\\.,:\s@"]+(\.[^<>()\[\]\\.,:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  if(emailRegex.test(email)) return true
+  else return false
 }

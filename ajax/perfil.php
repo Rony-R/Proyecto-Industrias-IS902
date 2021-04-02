@@ -227,35 +227,131 @@ switch ($_GET["accion"]) {
               $resQuery = $conexion->ejecutarConsulta($sql);
               if ($resQuery) {
                 $json['res'][] = array(
+                  'error' => '0',
+                  'message' => 'Se cambio la imagen de perfil',
                   'nombreImg' => $nombreImg,
                   'ruta' => $rutaImg
                 );
                 $jsonString = json_encode($json);
               echo $jsonString;
               } else {
-                echo "Error en la consulta";
+                $json['res'][] = array(
+                  'error' => '1',
+                  'message' => 'Error en la consulta'
+                );
+                $jsonString = json_encode($json);
+                echo $jsonString;
+                // echo "Error en la consulta";
                 exit;
               }
               $conexion->cerrarConexion();
             }
             else{
-              echo "<br>No se ha podido mover el archivo: ".$_FILES["fileImg"]["name"];
+              $json['res'][] = array(
+                'error' => '1',
+                'message' => 'No se ha podido mover el archivo'
+              );
+              $jsonString = json_encode($json);
+              echo $jsonString;
+              // echo "<br>No se ha podido mover el archivo: ".$_FILES["fileImg"]["name"];
             }
           }
           else{
-            echo "<br>No se ha podido crear la carpeta: ".$carpetaDestino;
+            $json['res'][] = array(
+              'error' => '1',
+              'message' => 'No se ha podido crear la carpeta'
+            );
+            $jsonString = json_encode($json);
+            echo $jsonString;
+            // echo "<br>No se ha podido crear la carpeta: ".$carpetaDestino;
           }
         }
         else{
-            echo "<br>".$_FILES["fileImg"]["name"]." - NO es imagen jpg, png o gif";
+          $json['res'][] = array(
+            'error' => '1',
+            'message' => 'El archivo no es imagen jpg, png o jpeg'
+          );
+          $jsonString = json_encode($json);
+          echo $jsonString;
         }              
     }else{
-      echo "No se encontro el archivo";
+      $json['res'][] = array(
+        'error' => '1',
+        'message' => 'No se encontro el archivo'
+      );
+      $jsonString = json_encode($json);
+      echo $jsonString;
+      // echo "No se encontro el archivo";
+      exit;
     }
     break;
+  case "6":
+    session_start();
+    $idUsuario = "2";
+    // $idUsuario = $_SESSION["idUsr"];
+    if (!empty($_POST)) {
+      $passOld = $_POST['passOld'];
+      $passNew = $_POST['passNew'];
+  
+      // comparacion de la vieja contraseña
+      $query = sprintf(
+        "SELECT * FROM  tbl_usuario
+        WHERE id_usuario = $idUsuario;"
+      );
+      $resQuery = $conexion->ejecutarConsulta($query);
+      
+      $fila = $conexion->obtenerFila($resQuery);
+      
+      if ($fila['contrasenia'] == $passOld) {
+        $sql = sprintf(
+          "UPDATE tbl_usuario 
+          SET 
+          contrasenia='%s'
+          WHERE id_usuario = $idUsuario;",
+          stripslashes($passNew)
+        );
+        $resQuery = $conexion->ejecutarConsulta($sql);
+        if ($resQuery) {
+          $json['res'][] = array(
+            'error' => '0',
+            'message' => 'La contraseña ha sido actualizada'
+          );
+          $jsonString = json_encode($json);
+        echo $jsonString;
+        } else {
+          $json['res'][] = array(
+            'error' => '1',
+            'message' => 'No se puede cambiar la contraseña'
+          );
+          $jsonString = json_encode($json);
+          echo $jsonString;
+          exit;
+        }
+      } else {
+        $json['res'][] = array(
+          'error' => '1',
+          'message' => 'La contraseña actual es incorrecta'
+        );
+        $jsonString = json_encode($json);
+        echo $jsonString;
+        exit;
+      }
+      $conexion->cerrarConexion();
+    }else{
+      $json['res'][] = array(
+        'error' => '1',
+        'message' => 'No se enviaron los parametros'
+      );
+      $jsonString = json_encode($json);
+      echo $jsonString;
+    }
+    
+    break;
+
   default:
     echo ("nulllllllll");
     break;
+
 }
 
 ?>
