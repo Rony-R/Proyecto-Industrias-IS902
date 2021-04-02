@@ -118,6 +118,7 @@
         <div id="row-mispublicaciones" class="row mt-2 mb-2"></div>
       </div>
     </main>
+    
     <script src="js/nav.js" type="text/javascript"></script>
   </body>
 </html>

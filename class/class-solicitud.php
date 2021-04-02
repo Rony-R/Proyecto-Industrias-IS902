@@ -87,5 +87,28 @@
             return $final;
 		}
 
+		public function verSolicitudes($conexion){
+            $sql = sprintf("SELECT s.id_solicitud,
+			u.nombre,
+			u.apellido,
+			u.correo,
+			u.telefono,
+			fecha_solicitud
+			FROM TBL_SOLICITUDES as s
+			INNER JOIN TBL_USUARIO as u
+			ON u.id_usuario = s.id_usuario
+			WHERE id_publicacion = %s",
+			$conexion->antiInyeccion($this->id_publicacion));
+            $resultado = $conexion->ejecutarConsulta($sql);
+            $listaSucursales = array();
+            while($fila = $conexion->obtenerFila($resultado)){
+                $listaSucursales[] = $fila;
+            }
+
+            $final = json_encode($listaSucursales);
+
+            return $final;
+        }
+
 	}
 ?>

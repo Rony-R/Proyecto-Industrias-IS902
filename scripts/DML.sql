@@ -121,6 +121,7 @@ INSERT INTO TBL_PUBLICACION (id_presupuesto, id_usuario, id_categoria, id_estado
 VALUES (1,7,2,1,'PUBG','Juego estilo battle royale bien tuany que tenga graficos tumbados y armas de la segunda guerra mundial.', 'pubg.png', null);
 
 
---INSERTS TBL_
+--INSERTS TBL_Solicitud
+INSERT INTO TBL_SOLICITUDES (id_solicitud, id_publicacion, id_usuario, fecha_solicitud) VALUES (null,5,1,'2021-04-01');
 
 --INSERTS TBL_

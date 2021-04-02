@@ -91,6 +91,7 @@ $(document).ready(function () {
     },
   });
 
+ //Ajax con el que se mandaria a llamar la información de la publicacion
   $.ajax({
     type: "GET",
     url: "ajax/api.php?accion=ver-informacion-publicacion",
@@ -112,6 +113,35 @@ $(document).ready(function () {
             "</span><br>" +
             '<span class="text-muted">Presupuesto: ' +
             response[i].presupuesto +
+            "</span>"
+        );
+      }
+    },
+    error: function (e) {
+      console.log(e);
+    },
+  });
+
+  //Ajax con el que se mandaria a llamar las solicitudes de dicha publicacion
+  $.ajax({
+    type: "GET",
+    url: "ajax/api.php?accion=ver-solicitudes",
+    data: parametros,
+    dataType: "json",
+    success: function (response) {
+      for (var i = 0; i < response.length; i++) {
+        $("#div-nombre-apellido").append(
+          '<h3 class="card-title fw-bold">' +
+            response[i].nombre +
+            response[i].apellido +
+            "</h3>"
+        );
+        $("#div-contacto").append(
+            '<span class="text-muted">Correo: ' +
+            response[i].correo +
+            "</span><br>" +
+            '<span class="text-muted">Telefono: ' +
+            response[i].telefono +
             "</span>"
         );
       }

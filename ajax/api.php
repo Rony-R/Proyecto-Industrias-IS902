@@ -58,7 +58,7 @@
             
         break;
 
-        case "'traerPublicacionesEmpresas'":
+        case "'traerPublicacionesPropias'":
             session_start();
             $iduser = $_SESSION["idUsr"];
             $sql = "select * from tbl_publicacion where id_usuario=$iduser;";
@@ -84,6 +84,11 @@
         case "ver-informacion-publicacion":
             $verInfoPub = new Publicacion($_GET["publicacion"],null,null,null,null,null,null);
             echo $verInfoPub->verPublicacionEspecifica($conexion);
+        break;
+
+        case "ver-solicitudes":
+            $verSolis = new Solicitud(null,$_GET["publicacion"],null,null);
+            echo $verSolis->verSolicitudes($conexion);
         break;
 
         case "ver-lista-publicaciones":

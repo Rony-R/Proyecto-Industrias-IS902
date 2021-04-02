@@ -91,7 +91,7 @@ $(document).ready(function () {
 
   //Funcion para traer publicaciones propias de una empresa
   $.ajax({
-    url: "ajax/api.php?accion='traerPublicacionesEmpresas'",
+    url: "ajax/api.php?accion='traerPublicacionesPropias'",
     dataType: "json",
     success: function (respuesta) {
       for (var i = 0; i < respuesta.length; i++) {
@@ -110,13 +110,13 @@ $(document).ready(function () {
               "<p>" +
               respuesta[i].descripcion +
               "</p>" +
-              '<span class="text-muted">Categoria: ' +
-              respuesta[i].categoria +
-              "</span><br>" +
-              '<span class="text-muted">Presupuesto: ' +
-              respuesta[i].presupuesto +
-              "</span><br>" +
-              '<button type="button">Ver solicitudes</button>' +
+              "<br>" +
+              '<a href="info-publicacion.php?publicacion=' +
+              respuesta[i].id_publicacion +
+              '" class="btn-ver-pub">Ver Publicación</a>' +
+              '<a href="solicitudes.php?publicacion=' +
+              respuesta[i].id_publicacion +
+              '" class="btn-ver-pub">Ver Solicitudes</a>' +
               "</div>" +
               "</div>" +
               "</div><br>"
@@ -136,13 +136,13 @@ $(document).ready(function () {
               "<p>" +
               respuesta[i].descripcion +
               "</p>" +
-              '<span class="text-muted">Categoria: ' +
-              respuesta[i].categoria +
-              "</span><br>" +
-              '<span class="text-muted">Presupuesto: ' +
-              respuesta[i].presupuesto +
-              "</span><br>" +
-              '<button type="button" class"btn mt-3" id="btn-solicitud">Ver solicitudes</button>' +
+              "<br>" +
+              '<a href="info-publicacion.php?publicacion=' +
+              respuesta[i].id_publicacion +
+              '" class="btn-ver-pub">Ver Publicación</a>' +
+              '<a href="solicitudes.php?publicacion=' +
+              respuesta[i].id_publicacion +
+              '" class="btn-ver-pub">Ver Solicitudes</a>' +
               "</div>" +
               "</div>" +
               "</div><br>"
@@ -152,7 +152,7 @@ $(document).ready(function () {
     },
     error: function (e, text, error) {
       console.log(
-        "Ocurrio un error al traes los presupuestos! Texto: " +
+        "Ocurrio un error al traer las publicaciones de la empresa! Texto: " +
           text +
           " Error: " +
           error
