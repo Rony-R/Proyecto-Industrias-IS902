@@ -13,14 +13,13 @@
     <title>Perfil</title>
   </head>
   <body class="grid-container">
-    
     <!-- Ventana de editar -->
     <section id="section" class="section oculto">
-      <a href="javascript:esconderSection();">
+      <a class="ocultar-respuesta" id="atras" href="javascript:esconderSection();">
         <i class="fas fa-chevron-left"></i>
       </a>
       <div class="card-section">
-        <fieldset id="cardSeccion" class="card-edicion">
+        <fieldset id="cardSeccion" class="ocultar-respuesta">
           <legend class="titulo-card">
             <h4 id="h4Titulo">Titulo cambio</h4>
           </legend>
@@ -38,16 +37,21 @@
       </div>
     </section>
     <!--Fin Ventana de editar -->
-<!-- Mensaje Respuesta del server -->
-<span class="respuesta-server ocultar-respuesta" id="resServer"></span>
-<!-- Fin Mensaje Respuesta del server -->
+    <!-- Mensaje Respuesta del server -->
+    <span class="respuesta-server ocultar-respuesta" id="resServer"></span>
+    <!-- Fin Mensaje Respuesta del server -->
     <nav class="navbar">
-      
       <ul class="grid-navbar">
         <li class="nav-item1">
-          <a href="#"
+          <a href="index.php"
             ><img class="logo" src="./img/logos/logo1.png" alt="logo"
           /></a>
+        </li>
+        <li id="navLogout" class="navLogout navBtn itemLogout ">
+          <a href="ajax/logout.php">Cerrar Sesión</a>
+        </li>
+        <li id="navPub" class="navPublic navBtn itemPub ">
+          <a  href="publicaciones.php"> Publicaciones </a>
         </li>
         <li class="nav-item2">
           <div id="navNombre" class="nombre-empresa">Empresa x</div>
@@ -67,7 +71,7 @@
       <div class="menu-lateral">
         <ul>
           <li>
-            <a href="publicaciones.html"
+            <a href="index.php"
               ><i class="fas fa-house-user"></i>
               <div class="cont-nav">Pagina principal</div>
             </a>
@@ -100,7 +104,6 @@
         </ul>
       </div>
     </aside>
-    <button id></button>
     <!-- Informacion Personal de la empresa -->
     <article class="main">
       <div class="grid-main">

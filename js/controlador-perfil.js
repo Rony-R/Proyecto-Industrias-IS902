@@ -29,6 +29,7 @@ const obtenerUsuario = () => {
         // console.log('Es freelancer');
         document.getElementById("navPagos").style.display = "none";
         document.getElementById("navPublicaciones").style.display = "none";
+        document.getElementById("navPub").style.display = "none";
       } else if (tipoUsuario == 2){
         // console.log('Es una empresa');
         document.getElementById("cardExperienciaLaboral").style.display = "none";
@@ -190,6 +191,13 @@ const esconderSection = () => {
   document.getElementById('section').classList.remove('visible');
   document.getElementById('section').classList.remove('grid-section');
   document.getElementById('section').classList.add('oculto');
+
+  document.getElementById('cardSeccion').classList.add('ocultar-respuesta');
+  document.getElementById('cardSeccion').classList.remove('mostrar-respuesta');
+  document.getElementById('cardSeccion').classList.remove('card-edicion');
+  
+  document.getElementById('atras').classList.add('ocultar-respuesta');
+  document.getElementById('atras').classList.remove('mostrar-respuesta');
 }
 
 const mostrarSection = (atributo) => {
@@ -216,6 +224,13 @@ const mostrarSection = (atributo) => {
   document.getElementById('section').classList.remove('oculto');
   document.getElementById('section').classList.add('visible');
   document.getElementById('section').classList.add('grid-section');
+
+  document.getElementById('cardSeccion').classList.remove('ocultar-respuesta');
+  document.getElementById('cardSeccion').classList.add('mostrar-respuesta');
+  document.getElementById('cardSeccion').classList.add('card-edicion');
+
+  document.getElementById('atras').classList.remove('ocultar-respuesta');
+  document.getElementById('atras').classList.add('mostrar-respuesta');
 
   switch (atributo) {
     case 'nombre':
