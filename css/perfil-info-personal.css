@@ -38,17 +38,17 @@ fieldset {
 }
 .form-info > a > label {
   display: inline-block;
-  width: 30%;
+  width: 29%;
   height: 100%;
 }
 .form-info > a > h4 {
   display: inline-block;
-  width: 65%;
+  width: 64%;
   overflow: hidden;
 }
 .form-info > a > ul {
   display: inline-block;
-  width: 65%;
+  width: 64%;
 }
 .form-info > a > ul > li {
   font-weight: 1.33rem;
@@ -316,6 +316,59 @@ input[type="file"] {
 }
 /* ---------------------------------------Responsive--------------------------------------- */
 @media (max-width: 575.98px) {
+  .respuesta-server {
+    left: 12%;
+  }
+  .card-edicion {
+    width: 350px;
+  }
+  .btn-publicacion{
+    width: 150px;
+  }
+  .input-edicion > input{
+    width: inherit;
+  }
+  .chk-tecnologia {
+    padding: 2px;
+    width: 130px;
+    height: 20px;
+    overflow: hidden;
+  }
+  .section > a {
+    grid-column: 1/2;
+    justify-self: start;
+    align-self: start;
+    z-index: 100;
+  }
+
+  .actualizar-img {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 40px 1fr;
+  }
+  .actualizar-img > img {
+    width: 150px;
+    height: 150px;
+  }
+  .actualizar-img > img#imagenPerfil {
+    grid-column: 1/-1;
+    grid-row: 1/2;
+    justify-self: center;
+    align-self: center;
+  }
+  .actualizar-img > i {
+    grid-column: 1/-1;
+    grid-row: 2/3;
+    justify-self: center;
+    align-self: center;
+  }
+  .actualizar-img2 {
+    /* Cuando seleccionamos una imagen agregamos esta clase */
+    grid-column: 1/-1;
+    grid-row: 3/4;
+    justify-self: center;
+    align-self: center;
+  }
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
 }

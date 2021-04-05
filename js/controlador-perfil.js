@@ -1,8 +1,8 @@
-let tipoUsuario = 1;
-let idUsuario = 2;
+let tipoUsuario;
+let idUsuario;
 
 let infoUsuario; //! Array. Informacion del usuario.
-let tecnologias; //! Array. Tecnologias que tiene el usuario.
+let tecnologias = Array(); //! Array. Tecnologias que tiene el usuario.
 let allTecnologias = Array(); //* Todas las tecnologias que estan en la base de datos.
 let tecnologiasAuxiliar; //! Aqui guardamos el posible arreglo de tecnologias a editar.
 let paises; //* Array. Todos los paises de la base de datos.
@@ -16,19 +16,37 @@ let newpass2;
 let resError;
 let resServer = document.getElementById('resServer');
 
-if (tipoUsuario == 1) {
-  // console.log('Es freelancer');
-  document.getElementById("navPagos").style.display = "none";
-  document.getElementById("navPublicaciones").style.display = "none";
-} else if (tipoUsuario == 2){
-  // console.log('Es una empresa');
-  document.getElementById("cardExperienciaLaboral").style.display = "none";
-  document.getElementById("divApellido").style.display = "none";
-} else {
-  console.log('Debe loguearse para utilizar estas funciones');
+const obtenerUsuario = () => {
+  fetch('ajax/perfil.php?accion=7')
+    .then(response => (response.ok) ? Promise.resolve(response) : Promise.reject(new Error('Fail to load')))
+    .then(response => response.json())
+    .then(data => {
+      // console.info(data);
+      tipoUsuario = data[0].idTipoUsuario;
+      idUsuario = data[0].idUsuario;
+      // console.info(idUsuario);
+      if (tipoUsuario == 1) {
+        // console.log('Es freelancer');
+        document.getElementById("navPagos").style.display = "none";
+        document.getElementById("navPublicaciones").style.display = "none";
+        document.getElementById("navPub").style.display = "none";
+      } else if (tipoUsuario == 2){
+        // console.log('Es una empresa');
+        document.getElementById("cardExperienciaLaboral").style.display = "none";
+        document.getElementById("divApellido").style.display = "none";
+      } else {
+        console.log('Debe loguearse para utilizar estas funciones');
+      }
+      llenarInfo();
+    })
+    .catch((error) => console.log(`Error: ${error.message}`))
 }
+obtenerUsuario();
+
+
 
 const llenarInfo = () => {
+  
   let parametros = `idUsuario=${idUsuario}`;
   $.ajax({
     url: "ajax/perfil.php?accion=3", // * Obtener usuario
@@ -38,7 +56,9 @@ const llenarInfo = () => {
     success: function (response) {
       // console.log(response); //! Aqui tenemos todo lo relacionado con usuario, tanto de la tablas experiencias, info y tecnologias.
       infoUsuario = response[0].info[0]; // Guardamos toda la informacion del usuario
-      tecnologias = response[0].tecnologias; // Guardamos las tecnologias que ya tiene el usuario
+      if (response[0].tecnologias!= undefined) {
+        tecnologias = response[0].tecnologias; // Guardamos las tecnologias que ya tiene el usuario
+      } 
       tecnologiasAuxiliar = tecnologias; // Guardamos las tecnologias en la variable auxiliar
       // console.info(infoUsuario);
 
@@ -72,7 +92,9 @@ const llenarInfo = () => {
         });
         hTecnologias.innerHTML = `${cadenaTecnologia.slice(0,-2)}`;
       } catch (error) {
-        console.log('catch del las tecnologias');
+        // console.log('catch del las tecnologias');
+        document.getElementById('hTec').textContent = 'Selecciona las habilidades que posees para que las empresas sepan de tí';
+        
       }
         // Proyectos en DevFinder
       try {
@@ -83,7 +105,7 @@ const llenarInfo = () => {
           document.getElementById('experiencia').innerHTML = `${response[0].expeciencia[0]} proyecto`
           );
       } catch (error) {
-        console.log('catch del las experiencia');
+        // console.log('catch del las experiencia');
       }
     },
     error: function (e) {
@@ -91,7 +113,7 @@ const llenarInfo = () => {
     }
   });
 }
-llenarInfo();
+
 
 const obtenerTecnologias = () => {
   $.ajax({
@@ -169,6 +191,13 @@ const esconderSection = () => {
   document.getElementById('section').classList.remove('visible');
   document.getElementById('section').classList.remove('grid-section');
   document.getElementById('section').classList.add('oculto');
+
+  document.getElementById('cardSeccion').classList.add('ocultar-respuesta');
+  document.getElementById('cardSeccion').classList.remove('mostrar-respuesta');
+  document.getElementById('cardSeccion').classList.remove('card-edicion');
+  
+  document.getElementById('atras').classList.add('ocultar-respuesta');
+  document.getElementById('atras').classList.remove('mostrar-respuesta');
 }
 
 const mostrarSection = (atributo) => {
@@ -195,6 +224,13 @@ const mostrarSection = (atributo) => {
   document.getElementById('section').classList.remove('oculto');
   document.getElementById('section').classList.add('visible');
   document.getElementById('section').classList.add('grid-section');
+
+  document.getElementById('cardSeccion').classList.remove('ocultar-respuesta');
+  document.getElementById('cardSeccion').classList.add('mostrar-respuesta');
+  document.getElementById('cardSeccion').classList.add('card-edicion');
+
+  document.getElementById('atras').classList.remove('ocultar-respuesta');
+  document.getElementById('atras').classList.add('mostrar-respuesta');
 
   switch (atributo) {
     case 'nombre':
@@ -307,14 +343,17 @@ const mostrarSection = (atributo) => {
         ${chkTecnologias}
       `;
       allTecnologias.forEach(tec => {
-        tecnologias.forEach(tecnologia => {
-          if (tecnologia.idTecnologia == tec.idTecnologia) {
-            let id = `#tec${tec.idTecnologia}`;
-            let id2 = `divTec${tec.idTecnologia}`;
-            $(id).prop('checked', true);
-            document.getElementById(id2).classList.add('chk-seleccionado');
-          }
-        });
+        if (tecnologias.length != 0) {
+          tecnologias.forEach(tecnologia => {
+            if (tecnologia.idTecnologia == tec.idTecnologia) {
+              let id = `#tec${tec.idTecnologia}`;
+              let id2 = `divTec${tec.idTecnologia}`;
+              $(id).prop('checked', true);
+              document.getElementById(id2).classList.add('chk-seleccionado');
+            }
+          });
+        }
+        
       });
       document.getElementById('btnAccion').innerHTML += `
         <a class="btn-publicacion editar" href="javascript:actualizar('habilidades');">
