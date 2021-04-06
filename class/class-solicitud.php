@@ -93,10 +93,13 @@
 			u.apellido,
 			u.correo,
 			u.telefono,
-			fecha_solicitud
+			fecha_solicitud,
+			ps.pais
 			FROM TBL_SOLICITUDES as s
 			INNER JOIN TBL_USUARIO as u
 			ON u.id_usuario = s.id_usuario
+			INNER JOIN TBL_PAISES AS ps
+            ON u.id_pais = ps.id_pais
 			WHERE id_publicacion = %s",
 			$conexion->antiInyeccion($this->id_publicacion));
             $resultado = $conexion->ejecutarConsulta($sql);

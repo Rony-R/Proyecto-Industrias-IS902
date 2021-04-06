@@ -133,6 +133,7 @@ $(document).ready(function () {
         $("#div-nombre-apellido").append(
           '<h3 class="card-title fw-bold">' +
             response[i].nombre +
+            ' ' +
             response[i].apellido +
             "</h3>"
         );
@@ -142,6 +143,12 @@ $(document).ready(function () {
             "</span><br>" +
             '<span class="text-muted">Telefono: ' +
             response[i].telefono +
+            "</span><br>" +
+            '<span class="text-muted">Pais: ' +
+            response[i].pais +
+            "</span><br>" +
+            '<span class="text-muted">Fecha de la solicitud: ' +
+            response[i].fecha_solicitud +
             "</span>"
         );
       }
