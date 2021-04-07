@@ -1,10 +1,7 @@
-<?php
-
-  $publicacion = $_GET["publicacion"];
-
-?>
-
 <?php 
+
+    $publicacion = $_GET["publicacion"];
+
     session_start();
 
     if (!isset($_SESSION["usr"]) || !isset($_SESSION["psw"]))
