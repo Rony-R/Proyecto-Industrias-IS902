@@ -72,7 +72,7 @@
         }
 		
 		public function limitarSolicitudes($conexion){
-			$sql = sprintf("SELECT COUNT(id_solicitud) as cantidadSolicitudes FROM tbl_solicitudes
+			$sql = sprintf("select count(id_solicitud) as cantidadSolicitudes from tbl_solicitudes
 					where id_publicacion = %s and id_usuario=%s",
 					$conexion->antiInyeccion($this->id_publicacion),
 					$conexion->antiInyeccion($this->id_usuario));
@@ -88,19 +88,19 @@
 		}
 
 		public function verSolicitudes($conexion){
-            $sql = sprintf("SELECT s.id_solicitud,
+            $sql = sprintf("select s.id_solicitud,
 			u.nombre,
 			u.apellido,
 			u.correo,
 			u.telefono,
 			fecha_solicitud,
 			ps.pais
-			FROM TBL_SOLICITUDES as s
-			INNER JOIN TBL_USUARIO as u
-			ON u.id_usuario = s.id_usuario
-			INNER JOIN TBL_PAISES AS ps
-            ON u.id_pais = ps.id_pais
-			WHERE id_publicacion = %s",
+			from tbl_solicitudes as s
+			inner join tbl_usuario as u
+			on u.id_usuario = s.id_usuario
+			inner join tbl_paises as ps
+            on u.id_pais = ps.id_pais
+			where id_publicacion = %s",
 			$conexion->antiInyeccion($this->id_publicacion));
             $resultado = $conexion->ejecutarConsulta($sql);
             $listaSucursales = array();
