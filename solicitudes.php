@@ -105,7 +105,7 @@
             <img class="logoImg" src="./img/logos/logo1.png" alt="" />
           </a>
         </li>
-        <li class="item"><a href="index.php">Inicio</a></li>
+        <li class="item"><a href="publicaciones.php">Inicio</a></li>
         <li class="item"><a href="perfil-info-personal.html">Perfil</a></li>
         <li class="item"><a href="ajax/logout.php">Cerrar Sesión</a></li>
         <li class="item button log"><a href="mis-publicaciones">Mis Publicaciones</a></li>

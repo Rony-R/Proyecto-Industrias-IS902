@@ -15,7 +15,11 @@
   <body class="grid-container">
     <!-- Ventana de editar -->
     <section id="section" class="section oculto">
-      <a class="ocultar-respuesta" id="atras" href="javascript:esconderSection();">
+      <a
+        class="ocultar-respuesta"
+        id="atras"
+        href="javascript:esconderSection();"
+      >
         <i class="fas fa-chevron-left"></i>
       </a>
       <div class="card-section">
@@ -40,30 +44,62 @@
     <!-- Mensaje Respuesta del server -->
     <span class="respuesta-server ocultar-respuesta" id="resServer"></span>
     <!-- Fin Mensaje Respuesta del server -->
-    <nav class="navbar">
-      <ul class="grid-navbar">
-        <li class="nav-item1">
-          <a href="index.php"
-            ><img class="logo" src="./img/logos/logo1.png" alt="logo"
-          /></a>
+    <nav>
+      <!-- NavBar sin login -->
+      <ul id="nav-no-login" class="menu mb-0">
+        <li class="logo">
+          <a href="#">
+            <img class="logoImg" src="./img/logos/logo1.png" alt="" />
+          </a>
         </li>
-        <li id="navLogout" class="navLogout navBtn itemLogout ">
+        <li class="item"><a href="index.php">Inicio</a></li>
+        <li class="item button log"><a href="registro.html">Registrarse</a></li>
+        <li class="item button">
+          <a id="h" href="login.php"> Iniciar Sesión </a>
+        </li>
+        <li class="toggle">
+          <span class="bars"></span>
+        </li>
+      </ul>
+
+      <!-- NavBar freelancer -->
+      <ul id="nav-freelancer" class="menu mb-0" style="display: none">
+        <li class="logo">
+          <a href="#">
+            <img class="logoImg" src="./img/logos/logo1.png" alt="" />
+          </a>
+        </li>
+        <li class="item"><a href="index.php">Inicio</a></li>
+        <li class="item"><a href="perfil-info-personal.html">Perfil</a></li>
+        <li class="item button log">
           <a href="ajax/logout.php">Cerrar Sesión</a>
         </li>
-        <li id="navPub" class="navPublic navBtn itemPub ">
-          <a  href="publicaciones.php"> Publicaciones </a>
+        <li class="item button">
+          <a id="h" href="publicaciones.php"> Publicaciones </a>
         </li>
-        <li class="nav-item2">
-          <div id="navNombre" class="nombre-empresa">Empresa x</div>
+        <li class="toggle">
+          <span class="bars"></span>
         </li>
-        <li class="nav-item4">
-          <a href="#"
-            ><img
-              id="navImgPerfil"
-              class="img-perfil"
-              src="./img/Empressas/Empresa x/logo.jpg"
-              alt=""
-          /></a>
+      </ul>
+
+      <!-- NavBar Empresa -->
+      <ul id="nav-empresa" class="menu mb-0" style="display: none">
+        <li class="logo">
+          <a href="#">
+            <img class="logoImg" src="./img/logos/logo1.png" alt="" />
+          </a>
+        </li>
+        <li class="item"><a href="publicaciones.php">Inicio</a></li>
+        <li class="item"><a href="perfil-info-personal.html">Perfil</a></li>
+        <li class="item"><a href="ajax/logout.php">Cerrar Sesión</a></li>
+        <li class="item button log">
+          <a href="mis-publicaciones">Mis Publicaciones</a>
+        </li>
+        <li class="item button">
+          <a id="h" href="pubProyecto.php"> Publicar un Proyecto </a>
+        </li>
+        <li class="toggle">
+          <span class="bars"></span>
         </li>
       </ul>
     </nav>
