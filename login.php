@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8" />
-	<title>Animated Login Form</title>
+	<title>Dev-Finder - Login</title>
 	<link rel="stylesheet" type="text/css" href="css/login.css">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
@@ -41,7 +41,7 @@
             	<input type="button" class="btn" value="Iniciar Sesion" id="btn-login">
 				<div class="text-center">
 					<h5 id="label-registrate">¿No tienes cuenta aún?</h5>
-            		<a href="registro.html" id="registrate">Registrate!</a>
+            		<a href="registro.php" id="registrate">Registrate!</a>
 				</div>
             </form>
         </div>

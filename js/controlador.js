@@ -121,6 +121,20 @@ $(document).ready(function () {
       console.log(e);
     },
   });
+  
+  $.ajax({
+    type: "GET",
+    url: "ajax/api.php?accion=ver-tipos-usuarios",
+    dataType: "json",
+    success: function (response) {
+      for (var i = 0; i < response.length; i++) {
+        $("#slc-tipo-cuenta").append("<option value='"+response[i].id_tipo_usuario+"'>"+response[i].tipo_usuario+"</option>");
+      }
+    },
+    error: function (e) {
+      console.log(e);
+    },
+  });
 
   //Ajax con el que se mandaria a llamar las solicitudes de dicha publicacion
   $.ajax({
@@ -231,6 +245,8 @@ $(document).ready(function () {
     }
   });
 
+
+
   $("#btn-enviar-solicitud").click(function () {
     var parametros =
       "idUsuario=" +
@@ -276,6 +292,131 @@ $(document).ready(function () {
   });
 });
 
+
+$("#slc-tipo-cuenta").change(function(){
+
+
+  if($("#slc-tipo-cuenta").val() == 1){
+    $("#div-nombre").removeClass("d-none");
+    $("#div-apellido").removeClass("d-none");
+    $("#div-correo").removeClass("d-none");
+    $("#div-contraseña").removeClass("d-none");
+    $("#div-repetir-contraseña").removeClass("d-none");
+    $("#div-telefono").removeClass("d-none");
+    $("#div-direccion").addClass("d-none");
+    $("#txt-nombre").val("");
+    $("#txt-apellido").val("");
+    $("#txt-correo").val("");
+    $("#txt-contraseña").val("");
+    $("#txt-repetir-contraseña").val("");
+    $("#txt-telefono").val("");
+    $("#txt-direccion").val("");
+    
+  }
+  else if($("#slc-tipo-cuenta").val() == 2){
+    $("#div-nombre").removeClass("d-none");
+    $("#div-correo").removeClass("d-none");
+    $("#div-apellido").addClass("d-none");
+    $("#div-contraseña").removeClass("d-none");
+    $("#div-repetir-contraseña").removeClass("d-none");
+    $("#div-telefono").removeClass("d-none");
+    $("#div-direccion").removeClass("d-none");
+    $("#txt-nombre").val("");
+    $("#txt-apellido").val("");
+    $("#txt-correo").val("");
+    $("#txt-contraseña").val("");
+    $("#txt-repetir-contraseña").val("");
+    $("#txt-telefono").val("");
+    $("#txt-direccion").val("");
+  }
+  
+  else{
+    $("#div-nombre").addClass("d-none");
+    $("#div-correo").addClass("d-none");
+    $("#div-apellido").addClass("d-none");
+    $("#div-contraseña").addClass("d-none");
+    $("#div-repetir-contraseña").addClass("d-none");
+    $("#div-telefono").addClass("d-none");
+    $("#div-direccion").addClass("d-none");
+  }
+});
+
+$("#btn-signup").click(function(){
+
+  parametrosFreelancer = "nombre=" + $("#txt-nombre").val() + "&" + "apellido=" + $("#txt-apellido").val() + "&" + "correo=" + $("#txt-correo").val() + "&" + "contraseña=" + $("#txt-contraseña").val() + "&" + "telefono=" + $("#txt-nombre").val() + "&" + "tipocuenta=" + $("#slc-tipo-cuenta").val();
+
+  parametrosEmpresa = "nombre=" + $("#txt-nombre").val() + "&" + "correo=" + $("#txt-correo").val() + "&" + "contraseña=" + $("#txt-contraseña").val() + "&" + "telefono=" + $("#txt-nombre").val() + "direccion=" + $("#txt-direccion").val() + "tipocuenta=" + $("#slc-tipo-cuenta").val();
+
+  if($("#slc-tipo-cuenta").val()==0 || $("#slc-tipo-cuenta").val()==""){
+    alert("Seleccione un tipo de usuario");
+  }
+  else if($("#slc-tipo-cuenta").val() == 1){
+    if($("#txt-nombre").val() == "" || $("#txt-apellido").val() == "" || $("#txt-correo").val() == "" || $("#txt-contraseña").val() == "" || $("#txt-repetir-contraseña").val() == "" || $("#txt-telefono").val() == ""){
+      alert("Por favor, llenar todos los datos del formulario")
+    }
+    else if( $("#txt-contraseña").val() != $("#txt-repetir-contraseña").val()){
+      alert("Verificar que las contraseñas sean las mismas")
+    }
+    /*else if(validarEmail($("#txt-correo").val()) == false){
+      alert("Correo invalido");
+    }*/
+    else{
+      alert(parametrosFreelancer);
+      /*$.ajax({
+        type: "POST",
+        url: "ajax/api.php?accion=registrar-freelancer",
+        data: parametrosFreelancer,
+        dataType: "JSON",
+        success: function (response) {
+        },
+        error: function (e) {
+          console.log(e);
+        },
+      });*/
+    }
+  }
+  else if($("#slc-tipo-cuenta").val() == 2){
+    if($("#txt-nombre").val() == "" || $("#txt-direccion").val() == "" || $("#txt-correo").val() == "" || $("#txt-contraseña").val() == "" || $("#txt-repetir-contraseña").val() == "" || $("#txt-telefono").val() == ""){
+      alert("Por favor, llenar todos los datos del formulario")
+    }
+    else if( $("#txt-contraseña").val() != $("#txt-repetir-contraseña").val()){
+      alert("Verificar que las contraseñas sean las mismas")
+    }
+    /*else if(validarEmail($("#txt-correo").val()) == false){
+      alert("Correo invalido");
+    }*/
+    else{
+      alert(parametrosEmpresa);
+      /*$.ajax({
+        type: "POST",
+        url: "ajax/api.php?accion=registrar-freelancer",
+        data: parametrosEmpresa,
+        dataType: "JSON",
+        success: function (response) {
+        },
+        error: function (e) {
+          console.log(e);
+        },
+      });*/
+    }
+  }
+
+});
+
+
+function validarEmail(id) {
+  var patron = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if (patron.test($("#" + id).val())) {
+    $("#txt-correo" + id).addClass("is-valid");
+    $("#txt-correo" + id).removeClass("is-invalid");
+    return true;
+  } else {
+    $("#txt-correo" + id).addClass("is-invalid");
+    $("#txt-correo" + id).removeClass("is-valid");
+    return false;
+  }
+}
+
 $(".toggle").click(function () {
   if ($(".item").hasClass("active")) {
     $(".item").removeClass("active");
@@ -284,18 +425,6 @@ $(".toggle").click(function () {
   }
 });
 
-function validarEmail(id) {
-  var patron = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  if (patron.test($("#" + id).val())) {
-    $("#" + id).addClass("is-valid");
-    $("#" + id).removeClass("is-invalid");
-    return true;
-  } else {
-    $("#" + id).addClass("is-invalid");
-    $("#" + id).removeClass("is-valid");
-    return false;
-  }
-}
 
 function validarPass(id) {
   var patron = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&#.$($)$-$_])[A-Za-z\d$@$!%*?&#.$($)$-$_]{8,15}$/;

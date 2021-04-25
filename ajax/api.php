@@ -3,6 +3,7 @@
     include("../class/class-comentario.php");
     include("../class/class-publicacion.php");
     include("../class/class-solicitud.php");
+    include("../class/class-tipo-usuario.php");
 
     $conexion = new Conexion();
 
@@ -110,6 +111,10 @@
             $limitSol = new Solicitud(null,$_GET["idPublicacion"],$_GET["idUsuario"],null);
             echo $limitSol->limitarSolicitudes($conexion);
         break;
+
+        case "ver-tipos-usuarios":
+            $tipoUser = new tipoUsuario(null,null);
+            echo $tipoUser->verTipoUsuario($conexion);
 
     }
 
