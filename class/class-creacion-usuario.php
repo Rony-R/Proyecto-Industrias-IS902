@@ -126,7 +126,7 @@
                     correo, 
                     telefono, 
                     contrasenia) 
-                VALUES (%s,
+                values (%s,
                     %s,
                     '%s',
                     '%s',
@@ -164,7 +164,7 @@
 				correo, 
 				telefono, 
 				contrasenia) 
-			VALUES (%s,
+			values (%s,
 				%s,
 				'%s',
 				'%s',
