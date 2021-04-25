@@ -30,8 +30,8 @@
            		   </div>
            		   <div class="div">
            		    	<select id="slc-tipo-cuenta" name="slc-tipo-cuenta" class="input">
-                      <option value="0" selected>Tipo de Cuenta</option>
-                    </select>
+                      		<option value="0" selected>Tipo de Cuenta</option>
+                    	</select>
             	   </div>
             	</div>
            		<div class="input-div one d-none" id="div-nombre">
@@ -88,7 +88,16 @@
            		   		<input type="number" class="input" id="txt-telefono">
            		   </div>
            		</div>
-              <div class="input-div one d-none" id="div-direccion">
+				<div class="input-div one d-none" id="div-pais">
+           		   <div class="i">
+           		   </div>
+           		   <div class="div">
+           		   		<select id="slc-paises" name="slc-paises" class="input">
+                      		<option value="0" selected>¿De que país eres?</option>
+                    	</select>
+           		   </div>
+           		</div>
+              	<div class="input-div one d-none" id="div-direccion">
            		   <div class="i">
            		   		<i class="fas fa-street-view"></i>
            		   </div>

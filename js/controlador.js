@@ -136,6 +136,20 @@ $(document).ready(function () {
     },
   });
 
+  $.ajax({
+    type: "GET",
+    url: "ajax/api.php?accion=ver-paises",
+    dataType: "json",
+    success: function (response) {
+      for (var i = 0; i < response.length; i++) {
+        $("#slc-paises").append("<option value='"+response[i].id_pais+"'>"+response[i].pais+"</option>");
+      }
+    },
+    error: function (e) {
+      console.log(e);
+    },
+  });
+
   //Ajax con el que se mandaria a llamar las solicitudes de dicha publicacion
   $.ajax({
     type: "GET",
@@ -304,6 +318,7 @@ $("#slc-tipo-cuenta").change(function(){
     $("#div-repetir-contraseña").removeClass("d-none");
     $("#div-telefono").removeClass("d-none");
     $("#div-direccion").addClass("d-none");
+    $("#div-pais").removeClass("d-none");
     $("#txt-nombre").val("");
     $("#txt-apellido").val("");
     $("#txt-correo").val("");
@@ -311,6 +326,7 @@ $("#slc-tipo-cuenta").change(function(){
     $("#txt-repetir-contraseña").val("");
     $("#txt-telefono").val("");
     $("#txt-direccion").val("");
+    $("#slc-paises").val("0");
     
   }
   else if($("#slc-tipo-cuenta").val() == 2){
@@ -321,6 +337,7 @@ $("#slc-tipo-cuenta").change(function(){
     $("#div-repetir-contraseña").removeClass("d-none");
     $("#div-telefono").removeClass("d-none");
     $("#div-direccion").removeClass("d-none");
+    $("#div-pais").removeClass("d-none");
     $("#txt-nombre").val("");
     $("#txt-apellido").val("");
     $("#txt-correo").val("");
@@ -328,6 +345,7 @@ $("#slc-tipo-cuenta").change(function(){
     $("#txt-repetir-contraseña").val("");
     $("#txt-telefono").val("");
     $("#txt-direccion").val("");
+    $("#slc-paises").val("0");
   }
   
   else{
@@ -338,20 +356,21 @@ $("#slc-tipo-cuenta").change(function(){
     $("#div-repetir-contraseña").addClass("d-none");
     $("#div-telefono").addClass("d-none");
     $("#div-direccion").addClass("d-none");
+    $("#div-pais").addClass("d-none");
   }
 });
 
 $("#btn-signup").click(function(){
 
-  parametrosFreelancer = "nombre=" + $("#txt-nombre").val() + "&" + "apellido=" + $("#txt-apellido").val() + "&" + "correo=" + $("#txt-correo").val() + "&" + "contraseña=" + $("#txt-contraseña").val() + "&" + "telefono=" + $("#txt-nombre").val() + "&" + "tipocuenta=" + $("#slc-tipo-cuenta").val();
+  parametrosFreelancer = "nombre=" + $("#txt-nombre").val() + "&" + "apellido=" + $("#txt-apellido").val() + "&" + "correo=" + $("#txt-correo").val() + "&" + "contraseña=" + $("#txt-contraseña").val() + "&" + "telefono=" + $("#txt-telefono").val() + "&" + "tipocuenta=" + $("#slc-tipo-cuenta").val() + "&" + "pais=" + $("#slc-paises").val();
 
-  parametrosEmpresa = "nombre=" + $("#txt-nombre").val() + "&" + "correo=" + $("#txt-correo").val() + "&" + "contraseña=" + $("#txt-contraseña").val() + "&" + "telefono=" + $("#txt-nombre").val() + "direccion=" + $("#txt-direccion").val() + "tipocuenta=" + $("#slc-tipo-cuenta").val();
+  parametrosEmpresa = "nombre=" + $("#txt-nombre").val() + "&" + "correo=" + $("#txt-correo").val() + "&" + "contraseña=" + $("#txt-contraseña").val() + "&" + "telefono=" + $("#txt-telefono").val() + "&" + "direccion=" + $("#txt-direccion").val() + "&" + "tipocuenta=" + $("#slc-tipo-cuenta").val() + "&" + "pais=" + $("#slc-paises").val();
 
   if($("#slc-tipo-cuenta").val()==0 || $("#slc-tipo-cuenta").val()==""){
     alert("Seleccione un tipo de usuario");
   }
   else if($("#slc-tipo-cuenta").val() == 1){
-    if($("#txt-nombre").val() == "" || $("#txt-apellido").val() == "" || $("#txt-correo").val() == "" || $("#txt-contraseña").val() == "" || $("#txt-repetir-contraseña").val() == "" || $("#txt-telefono").val() == ""){
+    if($("#txt-nombre").val() == "" || $("#txt-apellido").val() == "" || $("#txt-correo").val() == "" || $("#txt-contraseña").val() == "" || $("#txt-repetir-contraseña").val() == "" || $("#txt-telefono").val() == "" || $("#slc-paises").val() == " " || $("#slc-paises").val() == 0){
       alert("Por favor, llenar todos los datos del formulario")
     }
     else if( $("#txt-contraseña").val() != $("#txt-repetir-contraseña").val()){
@@ -362,21 +381,23 @@ $("#btn-signup").click(function(){
     }*/
     else{
       alert(parametrosFreelancer);
-      /*$.ajax({
+      $.ajax({
         type: "POST",
-        url: "ajax/api.php?accion=registrar-freelancer",
+        url: "ajax/api.php?accion=crear-freelancer",
         data: parametrosFreelancer,
         dataType: "JSON",
         success: function (response) {
+          alert("Cuenta creada exitosamente");
+          window.location.href = "login.php";
         },
         error: function (e) {
           console.log(e);
         },
-      });*/
+      });
     }
   }
   else if($("#slc-tipo-cuenta").val() == 2){
-    if($("#txt-nombre").val() == "" || $("#txt-direccion").val() == "" || $("#txt-correo").val() == "" || $("#txt-contraseña").val() == "" || $("#txt-repetir-contraseña").val() == "" || $("#txt-telefono").val() == ""){
+    if($("#txt-nombre").val() == "" || $("#txt-direccion").val() == "" || $("#txt-correo").val() == "" || $("#txt-contraseña").val() == "" || $("#txt-repetir-contraseña").val() == "" || $("#txt-telefono").val() == "" || $("#slc-paises").val() == " " || $("#slc-paises").val() == 0){
       alert("Por favor, llenar todos los datos del formulario")
     }
     else if( $("#txt-contraseña").val() != $("#txt-repetir-contraseña").val()){
@@ -387,17 +408,19 @@ $("#btn-signup").click(function(){
     }*/
     else{
       alert(parametrosEmpresa);
-      /*$.ajax({
+      $.ajax({
         type: "POST",
-        url: "ajax/api.php?accion=registrar-freelancer",
+        url: "ajax/api.php?accion=crear-empresa",
         data: parametrosEmpresa,
         dataType: "JSON",
         success: function (response) {
+          alert("Cuenta creada exitosamente!");
+          window.location.href = "login.php";
         },
         error: function (e) {
           console.log(e);
         },
-      });*/
+      });
     }
   }
 

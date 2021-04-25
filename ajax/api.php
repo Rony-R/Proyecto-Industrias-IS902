@@ -4,6 +4,8 @@
     include("../class/class-publicacion.php");
     include("../class/class-solicitud.php");
     include("../class/class-tipo-usuario.php");
+    include("../class/class-paises.php");
+    include("../class/class-creacion-usuario.php");
 
     $conexion = new Conexion();
 
@@ -82,6 +84,16 @@
             echo $insCom->insertarNuevoComentario($conexion);
         break;
 
+        case "crear-freelancer":
+            $creaFree = new creacionUsuario(null,$_POST["tipocuenta"],$_POST["pais"], $_POST["nombre"], $_POST["apellido"], null, $_POST["correo"], $_POST["telefono"], $_POST["contraseña"],null,null);
+            echo $creaFree->crearFreelancer($conexion);
+        break;
+
+        case "crear-empresa":
+            $creaEmpresa = new creacionUsuario(null,$_POST["tipocuenta"],$_POST["pais"], $_POST["nombre"], null, $_POST["direccion"], $_POST["correo"], $_POST["telefono"], $_POST["contraseña"],null,null);
+            echo $creaEmpresa->crearEmpresa($conexion);
+        break;
+
         case "ver-informacion-publicacion":
             $verInfoPub = new Publicacion($_GET["publicacion"],null,null,null,null,null,null);
             echo $verInfoPub->verPublicacionEspecifica($conexion);
@@ -115,6 +127,12 @@
         case "ver-tipos-usuarios":
             $tipoUser = new tipoUsuario(null,null);
             echo $tipoUser->verTipoUsuario($conexion);
+        break;
+
+        case "ver-paises":
+            $paises = new Pais(null,null);
+            echo $paises->verPaises($conexion);
+        break;
 
     }
 

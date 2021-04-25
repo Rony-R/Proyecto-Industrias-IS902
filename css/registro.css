@@ -210,6 +210,21 @@ a:hover{
 	font-family: 'poppins', sans-serif;
 }
 
+#slc-paises{
+    position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	border: none;
+	outline: none;
+	background: none;
+	padding: 0.5rem 0.7rem;
+	font-size: 1.2rem;
+	color: #555;
+	font-family: 'poppins', sans-serif;
+}
+
 option{
     position: absolute;
 	left: 0;
