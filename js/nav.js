@@ -95,59 +95,28 @@ $(document).ready(function () {
     dataType: "json",
     success: function (respuesta) {
       for (var i = 0; i < respuesta.length; i++) {
-        if (respuesta[i].ruta_img == "") {
-          $("#row-mispublicaciones").append(
-            '<div id="' +
-              respuesta[i].id_publicacion +
-              '" class="col-8">' +
-              '<div class="card border-primary">' +
-              '<div class="card-header">' +
-              '<h3 class="card-title fw-bold">' +
-              respuesta[i].nombre_proyecto +
-              "</h3>" +
-              "</div>" +
-              '<div class="card-body">' +
-              "<p>" +
-              respuesta[i].descripcion +
-              "</p>" +
-              "<br>" +
-              '<a href="info-publicacion.php?publicacion=' +
-              respuesta[i].id_publicacion +
-              '" class="btn-ver-pub">Ver Publicación</a>' +
-              '<a href="solicitudes.php?publicacion=' +
-              respuesta[i].id_publicacion +
-              '" class="btn-ver-pub">Ver Solicitudes</a>' +
-              "</div>" +
-              "</div>" +
-              "</div><br>"
-          );
-        } else {
-          $("#row-mispublicaciones").append(
-            '<div id="' +
-              respuesta[i].id_publicacion +
-              '"class="col-12">' +
-              '<div class="card border-primary">' +
-              '<div class="card-header">' +
-              '<h3 class="card-title fw-bold">' +
-              respuesta[i].nombre_proyecto +
-              "</h3>" +
-              "</div>" +
-              '<div class="card-body">' +
-              "<p>" +
-              respuesta[i].descripcion +
-              "</p>" +
-              "<br>" +
-              '<a href="info-publicacion.php?publicacion=' +
-              respuesta[i].id_publicacion +
-              '" class="btn-ver-pub">Ver Publicación</a>' +
-              '<a href="solicitudes.php?publicacion=' +
-              respuesta[i].id_publicacion +
-              '" class="btn-ver-pub">Ver Solicitudes</a>' +
-              "</div>" +
-              "</div>" +
-              "</div><br>"
-          );
-        }
+        $("#row-mispublicaciones").append(
+          '<div id="' +
+            respuesta[i].id_publicacion +
+            '" class="col-lg-3 col-md-4 col-sm-12 mb-4">' +
+            '<div class="card card-pub">' +
+            '<img src="img/imgProyectos/' +
+            respuesta[i].nombre_img +
+            '" class="card-img-top img-pub" />' +
+            '<div class="card-body">' +
+            '<h5 class="card-title">' +
+            respuesta[i].nombre_proyecto +
+            "</h5>" +
+            '<p class="card-text txt-just">' +
+            respuesta[i].descripcion +
+            "</p>" +
+            '<a href="solicitudes.php?publicacion=' +
+            respuesta[i].id_publicacion +
+            '" class="btn-ver-pub">Ver Solicitudes</a>' +
+            "</div>" +
+            "</div>" +
+            "</div>"
+        );
       }
     },
     error: function (e, text, error) {

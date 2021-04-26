@@ -78,17 +78,17 @@
 		}
 
         public function verPublicacionEspecifica($conexion){
-            $sql = sprintf("SELECT id_publicacion,
+            $sql = sprintf("select id_publicacion,
 			id_usuario, 
 			c.categoria, 
 			id_estado, 
 			nombre_proyecto, 
 			descripcion,
 			pr.presupuesto 
-			FROM TBL_PUBLICACION as p
-			INNER JOIN TBL_CATEGORIA_PROYECTO as c
+			from tbl_publicacion as p
+			inner join tbl_categoria_proyecto as c
 			ON c.id_categoria = p.id_categoria
-			INNER JOIN TBL_PRESUPUESTO AS pr
+			inner join tbl_presupuesto AS pr
 			ON pr.id_presupuesto = p.id_presupuesto 
 			WHERE id_publicacion=%s",
 						$conexion->antiInyeccion($this->id_publicacion));
@@ -105,11 +105,11 @@
         }
 
 		public function verPublicaciones($conexion){
-			$sql = "SELECT id_publicacion,
+			$sql = "select id_publicacion,
 					nombre_proyecto,
 					descripcion
-					FROM
-					TBL_PUBLICACION";
+					from
+					tbl_publicacion";
 			
 			$resultado = $conexion->ejecutarConsulta($sql);
             $listaSucursales = array();
@@ -123,7 +123,7 @@
 		}
 
         public function verInformacionUsuarioPublicacion($conexion){
-            $sql = sprintf("SELECT id_publicacion, 
+            $sql = sprintf("select id_publicacion, 
                         u.nombre,
                         u.apellido,
                         u.ruta_img_perfil,
@@ -132,12 +132,12 @@
                         u.telefono,
 						u.direccion,
                         ps.pais
-                        FROM TBL_PUBLICACION AS p
-                        INNER JOIN TBL_USUARIO AS u
-                        ON p.id_usuario = u.id_usuario
-                        INNER JOIN TBL_PAISES AS ps
-                        ON u.id_pais = ps.id_pais
-                        WHERE id_publicacion=%s",
+                        from tbl_publicacion as p
+                        inner join tbl_usuario as u
+                        on p.id_usuario = u.id_usuario
+                        inner join tbl_paises as ps
+                        on u.id_pais = ps.id_pais
+                        where id_publicacion=%s",
 						$conexion->antiInyeccion($this->id_publicacion));
             $resultado = $conexion->ejecutarConsulta($sql);
             $listaSucursales = array();
@@ -151,19 +151,19 @@
         }
 
 		public function verMisPublicaciones($conexion){
-			$sql = sprintf("SELECT id_publicacion,
+			$sql = sprintf("select id_publicacion,
 			id_usuario, 
 			c.categoria, 
 			id_estado, 
 			nombre_proyecto, 
 			descripcion,
 			pr.presupuesto 
-			FROM TBL_PUBLICACION as p
-			INNER JOIN TBL_CATEGORIA_PROYECTO as c
-			ON c.id_categoria = p.id_categoria
-			INNER JOIN TBL_PRESUPUESTO AS pr
-			ON pr.id_presupuesto = p.id_presupuesto 
-			WHERE id_publicacion=%s",
+			from tbl_publicacion as p
+			inner join tbl_categoria_proyecto as c
+			on c.id_categoria = p.id_categoria
+			inner join tbl_presupuesto as pr
+			on pr.id_presupuesto = p.id_presupuesto 
+			where id_publicacion=%s",
 						$conexion->antiInyeccion($this->id_publicacion));
 					
             $resultado = $conexion->ejecutarConsulta($sql);

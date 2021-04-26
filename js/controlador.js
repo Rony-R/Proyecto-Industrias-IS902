@@ -91,7 +91,7 @@ $(document).ready(function () {
     },
   });
 
- //Ajax con el que se mandaria a llamar la información de la publicacion
+  //Ajax con el que se mandaria a llamar la información de la publicacion
   $.ajax({
     type: "GET",
     url: "ajax/api.php?accion=ver-informacion-publicacion",
@@ -122,6 +122,46 @@ $(document).ready(function () {
     },
   });
 
+  $.ajax({
+    type: "GET",
+    url: "ajax/api.php?accion=ver-tipos-usuarios",
+    dataType: "json",
+    success: function (response) {
+      for (var i = 0; i < response.length; i++) {
+        $("#slc-tipo-cuenta").append(
+          "<option value='" +
+            response[i].id_tipo_usuario +
+            "'>" +
+            response[i].tipo_usuario +
+            "</option>"
+        );
+      }
+    },
+    error: function (e) {
+      console.log(e);
+    },
+  });
+
+  $.ajax({
+    type: "GET",
+    url: "ajax/api.php?accion=ver-paises",
+    dataType: "json",
+    success: function (response) {
+      for (var i = 0; i < response.length; i++) {
+        $("#slc-paises").append(
+          "<option value='" +
+            response[i].id_pais +
+            "'>" +
+            response[i].pais +
+            "</option>"
+        );
+      }
+    },
+    error: function (e) {
+      console.log(e);
+    },
+  });
+
   //Ajax con el que se mandaria a llamar las solicitudes de dicha publicacion
   $.ajax({
     type: "GET",
@@ -133,15 +173,22 @@ $(document).ready(function () {
         $("#div-nombre-apellido").append(
           '<h3 class="card-title fw-bold">' +
             response[i].nombre +
+            " " +
             response[i].apellido +
             "</h3>"
         );
         $("#div-contacto").append(
-            '<span class="text-muted">Correo: ' +
+          '<span class="text-muted">Correo: ' +
             response[i].correo +
             "</span><br>" +
             '<span class="text-muted">Telefono: ' +
             response[i].telefono +
+            "</span><br>" +
+            '<span class="text-muted">Pais: ' +
+            response[i].pais +
+            "</span><br>" +
+            '<span class="text-muted">Fecha de la solicitud: ' +
+            response[i].fecha_solicitud +
             "</span>"
         );
       }
@@ -269,6 +316,186 @@ $(document).ready(function () {
   });
 });
 
+$("#slc-tipo-cuenta").change(function () {
+  if ($("#slc-tipo-cuenta").val() == 1) {
+    $("#div-nombre").removeClass("d-none");
+    $("#div-apellido").removeClass("d-none");
+    $("#div-correo").removeClass("d-none");
+    $("#div-contraseña").removeClass("d-none");
+    $("#div-repetir-contraseña").removeClass("d-none");
+    $("#div-telefono").removeClass("d-none");
+    $("#div-direccion").addClass("d-none");
+    $("#div-pais").removeClass("d-none");
+    $("#txt-nombre").val("");
+    $("#txt-apellido").val("");
+    $("#txt-correo").val("");
+    $("#txt-contraseña").val("");
+    $("#txt-repetir-contraseña").val("");
+    $("#txt-telefono").val("");
+    $("#txt-direccion").val("");
+    $("#slc-paises").val("0");
+  } else if ($("#slc-tipo-cuenta").val() == 2) {
+    $("#div-nombre").removeClass("d-none");
+    $("#div-correo").removeClass("d-none");
+    $("#div-apellido").addClass("d-none");
+    $("#div-contraseña").removeClass("d-none");
+    $("#div-repetir-contraseña").removeClass("d-none");
+    $("#div-telefono").removeClass("d-none");
+    $("#div-direccion").removeClass("d-none");
+    $("#div-pais").removeClass("d-none");
+    $("#txt-nombre").val("");
+    $("#txt-apellido").val("");
+    $("#txt-correo").val("");
+    $("#txt-contraseña").val("");
+    $("#txt-repetir-contraseña").val("");
+    $("#txt-telefono").val("");
+    $("#txt-direccion").val("");
+    $("#slc-paises").val("0");
+  } else {
+    $("#div-nombre").addClass("d-none");
+    $("#div-correo").addClass("d-none");
+    $("#div-apellido").addClass("d-none");
+    $("#div-contraseña").addClass("d-none");
+    $("#div-repetir-contraseña").addClass("d-none");
+    $("#div-telefono").addClass("d-none");
+    $("#div-direccion").addClass("d-none");
+    $("#div-pais").addClass("d-none");
+  }
+});
+
+$("#btn-signup").click(function () {
+  parametrosFreelancer =
+    "nombre=" +
+    $("#txt-nombre").val() +
+    "&" +
+    "apellido=" +
+    $("#txt-apellido").val() +
+    "&" +
+    "correo=" +
+    $("#txt-correo").val() +
+    "&" +
+    "contraseña=" +
+    $("#txt-contraseña").val() +
+    "&" +
+    "telefono=" +
+    $("#txt-telefono").val() +
+    "&" +
+    "tipocuenta=" +
+    $("#slc-tipo-cuenta").val() +
+    "&" +
+    "pais=" +
+    $("#slc-paises").val();
+
+  parametrosEmpresa =
+    "nombre=" +
+    $("#txt-nombre").val() +
+    "&" +
+    "correo=" +
+    $("#txt-correo").val() +
+    "&" +
+    "contraseña=" +
+    $("#txt-contraseña").val() +
+    "&" +
+    "telefono=" +
+    $("#txt-telefono").val() +
+    "&" +
+    "direccion=" +
+    $("#txt-direccion").val() +
+    "&" +
+    "tipocuenta=" +
+    $("#slc-tipo-cuenta").val() +
+    "&" +
+    "pais=" +
+    $("#slc-paises").val();
+
+  if ($("#slc-tipo-cuenta").val() == 0 || $("#slc-tipo-cuenta").val() == "") {
+    alert("Seleccione un tipo de usuario");
+  } else if ($("#slc-tipo-cuenta").val() == 1) {
+    if (
+      $("#txt-nombre").val() == "" ||
+      $("#txt-apellido").val() == "" ||
+      $("#txt-correo").val() == "" ||
+      $("#txt-contraseña").val() == "" ||
+      $("#txt-repetir-contraseña").val() == "" ||
+      $("#txt-telefono").val() == "" ||
+      $("#slc-paises").val() == " " ||
+      $("#slc-paises").val() == 0
+    ) {
+      alert("Por favor, llenar todos los datos del formulario");
+    } else if (
+      $("#txt-contraseña").val() != $("#txt-repetir-contraseña").val()
+    ) {
+      alert("Verificar que las contraseñas sean las mismas");
+    } else {
+      /*else if(validarEmail($("#txt-correo").val()) == false){
+      alert("Correo invalido");
+    }*/
+      // alert(parametrosFreelancer);
+      $.ajax({
+        type: "POST",
+        url: "ajax/api.php?accion=crear-freelancer",
+        data: parametrosFreelancer,
+        dataType: "JSON",
+        success: function (response) {
+          alert("Cuenta creada exitosamente");
+          window.location.href = "login.php";
+        },
+        error: function (e) {
+          console.log(e);
+        },
+      });
+    }
+  } else if ($("#slc-tipo-cuenta").val() == 2) {
+    if (
+      $("#txt-nombre").val() == "" ||
+      $("#txt-direccion").val() == "" ||
+      $("#txt-correo").val() == "" ||
+      $("#txt-contraseña").val() == "" ||
+      $("#txt-repetir-contraseña").val() == "" ||
+      $("#txt-telefono").val() == "" ||
+      $("#slc-paises").val() == " " ||
+      $("#slc-paises").val() == 0
+    ) {
+      alert("Por favor, llenar todos los datos del formulario");
+    } else if (
+      $("#txt-contraseña").val() != $("#txt-repetir-contraseña").val()
+    ) {
+      alert("Verificar que las contraseñas sean las mismas");
+    } else {
+      /*else if(validarEmail($("#txt-correo").val()) == false){
+      alert("Correo invalido");
+    }*/
+      // alert(parametrosEmpresa);
+      $.ajax({
+        type: "POST",
+        url: "ajax/api.php?accion=crear-empresa",
+        data: parametrosEmpresa,
+        dataType: "JSON",
+        success: function (response) {
+          alert("Cuenta creada exitosamente!");
+          window.location.href = "login.php";
+        },
+        error: function (e) {
+          console.log(e);
+        },
+      });
+    }
+  }
+});
+
+function validarEmail(id) {
+  var patron = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if (patron.test($("#" + id).val())) {
+    $("#txt-correo" + id).addClass("is-valid");
+    $("#txt-correo" + id).removeClass("is-invalid");
+    return true;
+  } else {
+    $("#txt-correo" + id).addClass("is-invalid");
+    $("#txt-correo" + id).removeClass("is-valid");
+    return false;
+  }
+}
+
 $(".toggle").click(function () {
   if ($(".item").hasClass("active")) {
     $(".item").removeClass("active");
@@ -276,19 +503,6 @@ $(".toggle").click(function () {
     $(".item").addClass("active");
   }
 });
-
-function validarEmail(id) {
-  var patron = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  if (patron.test($("#" + id).val())) {
-    $("#" + id).addClass("is-valid");
-    $("#" + id).removeClass("is-invalid");
-    return true;
-  } else {
-    $("#" + id).addClass("is-invalid");
-    $("#" + id).removeClass("is-valid");
-    return false;
-  }
-}
 
 function validarPass(id) {
   var patron = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&#.$($)$-$_])[A-Za-z\d$@$!%*?&#.$($)$-$_]{8,15}$/;

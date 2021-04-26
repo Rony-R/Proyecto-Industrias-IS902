@@ -14,21 +14,62 @@
     <title>Perfil</title>
   </head>
   <body class="grid-container">
-    <nav class="navbar">
-      <ul class="grid-navbar">
-        <li class="nav-item1">
-          <a href="#"
-            ><img class="logo" src="./img/logos/logo1.png" alt="logo"
-          /></a>
+    <nav>
+      <!-- NavBar sin login -->
+      <ul id="nav-no-login" class="menu mb-0">
+        <li class="logo">
+          <a href="#">
+            <img class="logoImg" src="./img/logos/logo1.png" alt="" />
+          </a>
         </li>
-        <li class="nav-item2"><div class="nombre-empresa">Empresa x</div></li>
-        <li class="nav-item4">
-          <a href="#"
-            ><img
-              class="img-perfil"
-              src="./img/Empressas/Empresa x/logo.jpg"
-              alt=""
-          /></a>
+        <li class="item"><a href="index.php">Inicio</a></li>
+        <li class="item button log"><a href="registro.html">Registrarse</a></li>
+        <li class="item button">
+          <a id="h" href="login.php"> Iniciar Sesión </a>
+        </li>
+        <li class="toggle">
+          <span class="bars"></span>
+        </li>
+      </ul>
+
+      <!-- NavBar freelancer -->
+      <ul id="nav-freelancer" class="menu mb-0" style="display: none">
+        <li class="logo">
+          <a href="#">
+            <img class="logoImg" src="./img/logos/logo1.png" alt="" />
+          </a>
+        </li>
+        <li class="item"><a href="index.php">Inicio</a></li>
+        <li class="item"><a href="perfil-info-personal.html">Perfil</a></li>
+        <li class="item button log">
+          <a href="ajax/logout.php">Cerrar Sesión</a>
+        </li>
+        <li class="item button">
+          <a id="h" href="publicaciones.php"> Publicaciones </a>
+        </li>
+        <li class="toggle">
+          <span class="bars"></span>
+        </li>
+      </ul>
+
+      <!-- NavBar Empresa -->
+      <ul id="nav-empresa" class="menu mb-0" style="display: none">
+        <li class="logo">
+          <a href="#">
+            <img class="logoImg" src="./img/logos/logo1.png" alt="" />
+          </a>
+        </li>
+        <li class="item"><a href="publicaciones.php">Inicio</a></li>
+        <li class="item"><a href="perfil-info-personal.html">Perfil</a></li>
+        <li class="item"><a href="ajax/logout.php">Cerrar Sesión</a></li>
+        <li class="item button log">
+          <a href="mis-publicaciones.php">Mis Publicaciones</a>
+        </li>
+        <li class="item button">
+          <a id="h" href="pubProyecto.php"> Publicar un Proyecto </a>
+        </li>
+        <li class="toggle">
+          <span class="bars"></span>
         </li>
       </ul>
     </nav>

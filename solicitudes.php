@@ -105,10 +105,10 @@
             <img class="logoImg" src="./img/logos/logo1.png" alt="" />
           </a>
         </li>
-        <li class="item"><a href="index.php">Inicio</a></li>
+        <li class="item"><a href="publicaciones.php">Inicio</a></li>
         <li class="item"><a href="perfil-info-personal.html">Perfil</a></li>
         <li class="item"><a href="ajax/logout.php">Cerrar Sesión</a></li>
-        <li class="item button log"><a href="mis-publicaciones">Mis Publicaciones</a></li>
+        <li class="item button log"><a href="mis-publicaciones.php">Mis Publicaciones</a></li>
         <li class="item button">
           <a id="h" href="pubProyecto.php"> Publicar un Proyecto </a>
         </li>
@@ -133,72 +133,6 @@
       </div>
     </main>
 
-    <footer class="text-center text-lg-start">
-      <div class="row">
-        <div class="col-md-4 text-light">
-          <img class="logoFoot" src="./img/logos/logo1.png" alt="" />
-        </div>
-
-        <div class="col-md-8">
-          <h3 class="text-light text-center pt-3 mb-4">Desarrolladores</h3>
-          <div class="row">
-            <div class="col-md-4">
-              <img
-                class="creatorImg"
-                src="img/logos/prof.jpeg"
-                alt="Andres Lizardo"
-              />
-              <p class="text-light">Andres Lizardo</p>
-            </div>
-            <div class="col-md-4">
-              <img
-                class="creatorImg"
-                src="img/logos/prof.jpeg"
-                alt="Jheral Blanco"
-              />
-              <p class="text-light">Jheral Blanco</p>
-            </div>
-            <div class="col-md-4">
-              <img
-                class="creatorImg"
-                src="img/logos/prof.jpeg"
-                alt="Josue Lanza"
-              />
-              <p class="text-light">Josue Lanza</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-4">
-              <img
-                class="creatorImg"
-                src="img/logos/prof.jpeg"
-                alt="Rafael Bautista"
-              />
-              <p class="text-light">Rafael Bautista</p>
-            </div>
-            <div class="col-md-4">
-              <img
-                class="creatorImg"
-                src="img/logos/prof.jpeg"
-                alt="Rony Rodriguez"
-              />
-              <p class="text-light">Rony Rodriguez</p>
-            </div>
-            <div class="col-md-2"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="footRow text-center text-light p-2">
-          © 2020 Copyright:
-          <a class="text-light" href="https://www.unah.edu.hn/"
-            >UNAH - www.unah.edu.hn</a
-          >
-        </div>
-      </div>
-    </footer>
 
     <script src="js/nav.js" type="text/javascript"></script>
     <script src="js/controlador.js"></script>

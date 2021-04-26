@@ -58,7 +58,7 @@
 		}
 
         public function verComentarioPublicación($conexion){
-            $sql = sprintf(	"SELECT 
+            $sql = sprintf(	"select 
                 c.id_comentario, 
                 u.nombre,
                 u.apellido,
@@ -66,10 +66,10 @@
                 u.nombre_img_perfil, 
                 c.comentario,
 				c.fecha_comentario
-                FROM tbl_comentarios as c
-                INNER JOIN tbl_usuario as u
-                ON c.id_usuario = u.id_usuario 
-                WHERE c.id_publicacion= %s",
+                from tbl_comentarios as c
+                inner join tbl_usuario as u
+                on c.id_usuario = u.id_usuario 
+                where c.id_publicacion= %s",
 				$conexion->antiInyeccion($this->id_publicacion));
 
             $resultado = $conexion->ejecutarConsulta($sql);
@@ -84,17 +84,17 @@
         }
 
         public function insertarNuevoComentario($conexion){
-            $sql = sprintf("INSERT INTO tbl_comentarios
+            $sql = sprintf("insert into tbl_comentarios
 				(id_comentario, 
 				id_usuario, 
 				id_publicacion, 
 				comentario, 
 				`fecha_comentario`) 
-			VALUES (null,
+			values (null,
 				%s,
 				%s,
 				'%s',
-				CURDATE())",
+				curdate())",
 			$conexion->antiInyeccion($this->id_usuario),
 			$conexion->antiInyeccion($this->id_publicacion),
 			$conexion->antiInyeccion($this->comentario));
