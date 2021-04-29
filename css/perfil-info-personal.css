@@ -71,6 +71,14 @@ fieldset {
   padding: 30px;
   border: 3px solid #a6c;
 }
+.wave {
+  opacity: 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  z-index: -1;
+}
 .oculto {
   visibility: hidden; /* Al alterar las márgenes y el height no es necesaria esta propiedad */
   opacity: 0;
@@ -83,6 +91,12 @@ fieldset {
   height: 100vh;
   padding: 15px 0px;
   transition: width 1s linear;
+}
+.fade-in {
+  -webkit-transition: opacity 2.0s ease-in;
+  -moz-transition: opacity 2.0s ease-in;
+  -o-transition: opacity 2.0s ease-in;
+  opacity: 1;
 }
 .grid-section {
   display: grid;
@@ -108,6 +122,7 @@ fieldset {
 .card-edicion {
   width: 500px;
   border: 2px solid #a6c;
+  background: white;
 }
 .input-edicion {
   border: 1px solid #33b5e5;
@@ -287,10 +302,10 @@ input[type="file"] {
   color: white;
   border: 1px solid red;
 }
-.ocultar-respuesta{
+.ocultar-respuesta {
   display: none;
 }
-.mostrar-respuesta{
+.mostrar-respuesta {
   display: block;
 }
 /* ---------------------------------------Fin Section Editar----------------------------------*/
@@ -302,7 +317,7 @@ input[type="file"] {
   width: 300px;
   padding: 20px;
   text-align: center;
-  opacity: .9;
+  opacity: 0.9;
 }
 .respuesta-error {
   background: crimson;
@@ -322,10 +337,10 @@ input[type="file"] {
   .card-edicion {
     width: 350px;
   }
-  .btn-publicacion{
+  .btn-publicacion {
     width: 150px;
   }
-  .input-edicion > input{
+  .input-edicion > input {
     width: inherit;
   }
   .chk-tecnologia {

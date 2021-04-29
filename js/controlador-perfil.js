@@ -29,11 +29,31 @@ const obtenerUsuario = () => {
         // console.log('Es freelancer');
         document.getElementById("navPagos").style.display = "none";
         document.getElementById("navPublicaciones").style.display = "none";
-        document.getElementById("navPub").style.display = "none";
+        document.getElementById("navPublicarProyecto").style.display = "none";
+        document.getElementById("navMisPub").style.display = "none";
       } else if (tipoUsuario == 2){
         // console.log('Es una empresa');
+        const ul = document.querySelector('.grid-navbar');
+        const fragment = document.createDocumentFragment();
+        const li = document.createElement('li');
+        li.classList.add('navLogout2', 'navBtn');
+        li.setAttribute('id', 'cerrar');
+        fragment.appendChild(li);
+        ul.appendChild(fragment);
+
+        const ulLogout = document.getElementById('cerrar');
+        const anchor = document.createElement('a');
+        anchor.textContent = 'Cerrar Sesión';
+        anchor.setAttribute('href', 'ajax/logout.php');
+        fragment.appendChild(anchor);
+        ulLogout.appendChild(fragment);
+        // ul.children[0]insertAdjacentElement('beforebegin', fragment)
+
+        document.getElementById("navPub").style.display = "none";
         document.getElementById("cardExperienciaLaboral").style.display = "none";
         document.getElementById("divApellido").style.display = "none";
+        document.getElementById("navLogout").style.display = "none";
+        document.querySelector('.navPublicarProyecto')
       } else {
         console.log('Debe loguearse para utilizar estas funciones');
       }
@@ -63,7 +83,13 @@ const llenarInfo = () => {
       // console.info(infoUsuario);
 
       // Datos para el navbar
-      document.getElementById('navNombre').innerHTML = `${response[0].info[0].nombre} ${response[0].info[0].apellido}`;
+      let nombre;
+      (tipoUsuario == 2) ? (
+        nombre = `${response[0].info[0].nombre}`
+      ): (
+        nombre = `${response[0].info[0].nombre} ${response[0].info[0].apellido}`
+      );
+      document.getElementById('navNombre').innerHTML = nombre;
       document.getElementById('navImgPerfil').src = `./img/${response[0].info[0].rutaImgPerfil}${response[0].info[0].nombreImgPerfil}?y=${Date.now()}`;
 
       // Informacion Basica
@@ -192,6 +218,8 @@ const esconderSection = () => {
   document.getElementById('section').classList.remove('grid-section');
   document.getElementById('section').classList.add('oculto');
 
+  document.querySelector('.wave').classList.remove('fade-in');
+
   document.getElementById('cardSeccion').classList.add('ocultar-respuesta');
   document.getElementById('cardSeccion').classList.remove('mostrar-respuesta');
   document.getElementById('cardSeccion').classList.remove('card-edicion');
@@ -224,6 +252,8 @@ const mostrarSection = (atributo) => {
   document.getElementById('section').classList.remove('oculto');
   document.getElementById('section').classList.add('visible');
   document.getElementById('section').classList.add('grid-section');
+
+  document.querySelector('.wave').classList.add('fade-in')
 
   document.getElementById('cardSeccion').classList.remove('ocultar-respuesta');
   document.getElementById('cardSeccion').classList.add('mostrar-respuesta');
