@@ -175,10 +175,8 @@ $(document).ready(function () {
             response[i].nombre +
             " " +
             response[i].apellido +
-            "</h3>"
-        );
-        $("#div-contacto").append(
-          '<span class="text-muted">Correo: ' +
+            "</h3>" +
+            '<span class="text-muted">Correo: ' +
             response[i].correo +
             "</span><br>" +
             '<span class="text-muted">Telefono: ' +

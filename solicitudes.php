@@ -123,8 +123,6 @@
           <div class="col-12">
           <div class="card-header" id="div-nombre-apellido">
             </div>
-            <div class="card-body" id="div-contacto">
-            </div>
           </div>
         </div>
       </div>
