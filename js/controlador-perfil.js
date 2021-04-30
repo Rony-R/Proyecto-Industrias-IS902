@@ -16,6 +16,8 @@ let newpass2;
 let resError;
 let resServer = document.getElementById('resServer');
 
+let nombreImagen;
+
 const obtenerUsuario = () => {
   fetch('ajax/perfil.php?accion=7')
     .then(response => (response.ok) ? Promise.resolve(response) : Promise.reject(new Error('Fail to load')))
@@ -31,8 +33,10 @@ const obtenerUsuario = () => {
         document.getElementById("navPublicaciones").style.display = "none";
         document.getElementById("navPublicarProyecto").style.display = "none";
         document.getElementById("navMisPub").style.display = "none";
+        nombreImagen = 'user.webp';
       } else if (tipoUsuario == 2){
         // console.log('Es una empresa');
+        nombreImagen = 'user-empresa.png';
         const ul = document.querySelector('.grid-navbar');
         const fragment = document.createDocumentFragment();
         const li = document.createElement('li');
@@ -53,7 +57,7 @@ const obtenerUsuario = () => {
         document.getElementById("cardExperienciaLaboral").style.display = "none";
         document.getElementById("divApellido").style.display = "none";
         document.getElementById("navLogout").style.display = "none";
-        document.querySelector('.navPublicarProyecto')
+        document.querySelector('.navPublicarProyecto');
       } else {
         console.log('Debe loguearse para utilizar estas funciones');
       }
@@ -80,30 +84,41 @@ const llenarInfo = () => {
         tecnologias = response[0].tecnologias; // Guardamos las tecnologias que ya tiene el usuario
       } 
       tecnologiasAuxiliar = tecnologias; // Guardamos las tecnologias en la variable auxiliar
-      // console.info(infoUsuario);
+      console.info(infoUsuario);
 
       // Datos para el navbar
       let nombre;
       (tipoUsuario == 2) ? (
-        nombre = `${response[0].info[0].nombre}`
+        nombre = `${infoUsuario.nombre}`
       ): (
-        nombre = `${response[0].info[0].nombre} ${response[0].info[0].apellido}`
+        nombre = `${infoUsuario.nombre} ${infoUsuario.apellido}`
       );
       document.getElementById('navNombre').innerHTML = nombre;
-      document.getElementById('navImgPerfil').src = `./img/${response[0].info[0].rutaImgPerfil}${response[0].info[0].nombreImgPerfil}?y=${Date.now()}`;
+     
 
       // Informacion Basica
       // document.getElementById('imagenPerfil').src = '';
-      document.getElementById('imagenPerfil').src = `./img/${response[0].info[0].rutaImgPerfil}${response[0].info[0].nombreImgPerfil}?h=${Date.now()}`;
-      document.getElementById('nombre').innerHTML = `${response[0].info[0].nombre}`;
-      document.getElementById('apellido').innerHTML = `${response[0].info[0].apellido}`;
+      if (!infoUsuario.rutaImgPerfil) {
+        infoUsuario.rutaImgPerfil = 'perfil/';
+        infoUsuario.nombreImgPerfil = nombreImagen;
+      }
+      
+      document.getElementById('imagenPerfil').src = `./img/${infoUsuario.rutaImgPerfil}${infoUsuario.nombreImgPerfil}?h=${Date.now()}`,
+      document.getElementById('navImgPerfil').src = `./img/${infoUsuario.rutaImgPerfil}${infoUsuario.nombreImgPerfil}?y=${Date.now()}`
+
+      document.getElementById('nombre').innerHTML = `${infoUsuario.nombre}`;
+      document.getElementById('apellido').innerHTML = `${infoUsuario.apellido}`;
       document.getElementById('contrasenia').innerHTML = `••••••••`;
-      document.getElementById('pais').innerHTML = `${response[0].info[0].pais}`;
+      document.getElementById('pais').innerHTML = `${infoUsuario.pais}`;
 
       // Informacion de contacto
-      document.getElementById('direccion').innerHTML = `${response[0].info[0].direccion}`;
-      document.getElementById('correo').innerHTML = `${response[0].info[0].correo}`;
-      document.getElementById('telefono').innerHTML = `${response[0].info[0].telefono}`;
+      if (infoUsuario.direccion) {
+        document.getElementById('direccion').innerHTML = `${infoUsuario.direccion}`;
+      } else {
+        document.getElementById('direccion').innerHTML = `*Ingrese una direccion de contacto*`;
+      }
+      document.getElementById('correo').innerHTML = `${infoUsuario.correo}`;
+      document.getElementById('telefono').innerHTML = `${infoUsuario.telefono}`;
 
       // Experiencia laboral
         // Habilidades
@@ -119,7 +134,7 @@ const llenarInfo = () => {
         hTecnologias.innerHTML = `${cadenaTecnologia.slice(0,-2)}`;
       } catch (error) {
         // console.log('catch del las tecnologias');
-        document.getElementById('hTec').textContent = 'Selecciona las habilidades que posees para que las empresas sepan de tí';
+        document.getElementById('hTec').textContent = '<<Selecciona las habilidades que posees para que las empresas sepan de tí>>';
         
       }
         // Proyectos en DevFinder
