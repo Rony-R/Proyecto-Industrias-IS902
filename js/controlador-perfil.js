@@ -16,6 +16,8 @@ let newpass2;
 let resError;
 let resServer = document.getElementById('resServer');
 
+let nombreImagen;
+
 const obtenerUsuario = () => {
   fetch('ajax/perfil.php?accion=7')
     .then(response => (response.ok) ? Promise.resolve(response) : Promise.reject(new Error('Fail to load')))
@@ -29,11 +31,33 @@ const obtenerUsuario = () => {
         // console.log('Es freelancer');
         document.getElementById("navPagos").style.display = "none";
         document.getElementById("navPublicaciones").style.display = "none";
-        document.getElementById("navPub").style.display = "none";
+        document.getElementById("navPublicarProyecto").style.display = "none";
+        document.getElementById("navMisPub").style.display = "none";
+        nombreImagen = 'user.webp';
       } else if (tipoUsuario == 2){
         // console.log('Es una empresa');
+        nombreImagen = 'user-empresa.png';
+        const ul = document.querySelector('.grid-navbar');
+        const fragment = document.createDocumentFragment();
+        const li = document.createElement('li');
+        li.classList.add('navLogout2', 'navBtn');
+        li.setAttribute('id', 'cerrar');
+        fragment.appendChild(li);
+        ul.appendChild(fragment);
+
+        const ulLogout = document.getElementById('cerrar');
+        const anchor = document.createElement('a');
+        anchor.textContent = 'Cerrar Sesión';
+        anchor.setAttribute('href', 'ajax/logout.php');
+        fragment.appendChild(anchor);
+        ulLogout.appendChild(fragment);
+        // ul.children[0]insertAdjacentElement('beforebegin', fragment)
+
+        document.getElementById("navPub").style.display = "none";
         document.getElementById("cardExperienciaLaboral").style.display = "none";
         document.getElementById("divApellido").style.display = "none";
+        document.getElementById("navLogout").style.display = "none";
+        document.querySelector('.navPublicarProyecto');
       } else {
         console.log('Debe loguearse para utilizar estas funciones');
       }
@@ -60,24 +84,41 @@ const llenarInfo = () => {
         tecnologias = response[0].tecnologias; // Guardamos las tecnologias que ya tiene el usuario
       } 
       tecnologiasAuxiliar = tecnologias; // Guardamos las tecnologias en la variable auxiliar
-      // console.info(infoUsuario);
+      console.info(infoUsuario);
 
       // Datos para el navbar
-      document.getElementById('navNombre').innerHTML = `${response[0].info[0].nombre} ${response[0].info[0].apellido}`;
-      document.getElementById('navImgPerfil').src = `./img/${response[0].info[0].rutaImgPerfil}${response[0].info[0].nombreImgPerfil}?y=${Date.now()}`;
+      let nombre;
+      (tipoUsuario == 2) ? (
+        nombre = `${infoUsuario.nombre}`
+      ): (
+        nombre = `${infoUsuario.nombre} ${infoUsuario.apellido}`
+      );
+      document.getElementById('navNombre').innerHTML = nombre;
+     
 
       // Informacion Basica
       // document.getElementById('imagenPerfil').src = '';
-      document.getElementById('imagenPerfil').src = `./img/${response[0].info[0].rutaImgPerfil}${response[0].info[0].nombreImgPerfil}?h=${Date.now()}`;
-      document.getElementById('nombre').innerHTML = `${response[0].info[0].nombre}`;
-      document.getElementById('apellido').innerHTML = `${response[0].info[0].apellido}`;
+      if (!infoUsuario.rutaImgPerfil) {
+        infoUsuario.rutaImgPerfil = 'perfil/';
+        infoUsuario.nombreImgPerfil = nombreImagen;
+      }
+      
+      document.getElementById('imagenPerfil').src = `./img/${infoUsuario.rutaImgPerfil}${infoUsuario.nombreImgPerfil}?h=${Date.now()}`,
+      document.getElementById('navImgPerfil').src = `./img/${infoUsuario.rutaImgPerfil}${infoUsuario.nombreImgPerfil}?y=${Date.now()}`
+
+      document.getElementById('nombre').innerHTML = `${infoUsuario.nombre}`;
+      document.getElementById('apellido').innerHTML = `${infoUsuario.apellido}`;
       document.getElementById('contrasenia').innerHTML = `••••••••`;
-      document.getElementById('pais').innerHTML = `${response[0].info[0].pais}`;
+      document.getElementById('pais').innerHTML = `${infoUsuario.pais}`;
 
       // Informacion de contacto
-      document.getElementById('direccion').innerHTML = `${response[0].info[0].direccion}`;
-      document.getElementById('correo').innerHTML = `${response[0].info[0].correo}`;
-      document.getElementById('telefono').innerHTML = `${response[0].info[0].telefono}`;
+      if (infoUsuario.direccion) {
+        document.getElementById('direccion').innerHTML = `${infoUsuario.direccion}`;
+      } else {
+        document.getElementById('direccion').innerHTML = `*Ingrese una direccion de contacto*`;
+      }
+      document.getElementById('correo').innerHTML = `${infoUsuario.correo}`;
+      document.getElementById('telefono').innerHTML = `${infoUsuario.telefono}`;
 
       // Experiencia laboral
         // Habilidades
@@ -93,7 +134,7 @@ const llenarInfo = () => {
         hTecnologias.innerHTML = `${cadenaTecnologia.slice(0,-2)}`;
       } catch (error) {
         // console.log('catch del las tecnologias');
-        document.getElementById('hTec').textContent = 'Selecciona las habilidades que posees para que las empresas sepan de tí';
+        document.getElementById('hTec').textContent = '<<Selecciona las habilidades que posees para que las empresas sepan de tí>>';
         
       }
         // Proyectos en DevFinder
@@ -192,6 +233,8 @@ const esconderSection = () => {
   document.getElementById('section').classList.remove('grid-section');
   document.getElementById('section').classList.add('oculto');
 
+  document.querySelector('.wave').classList.remove('fade-in');
+
   document.getElementById('cardSeccion').classList.add('ocultar-respuesta');
   document.getElementById('cardSeccion').classList.remove('mostrar-respuesta');
   document.getElementById('cardSeccion').classList.remove('card-edicion');
@@ -224,6 +267,8 @@ const mostrarSection = (atributo) => {
   document.getElementById('section').classList.remove('oculto');
   document.getElementById('section').classList.add('visible');
   document.getElementById('section').classList.add('grid-section');
+
+  document.querySelector('.wave').classList.add('fade-in')
 
   document.getElementById('cardSeccion').classList.remove('ocultar-respuesta');
   document.getElementById('cardSeccion').classList.add('mostrar-respuesta');

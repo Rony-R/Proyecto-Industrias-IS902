@@ -16,6 +16,7 @@
   <body class="grid-container">
     <!-- Ventana de editar -->
     <section id="section" class="section oculto">
+      <img class="wave" src="img/logos/wave.png">
       <a
         class="ocultar-respuesta"
         id="atras"
@@ -55,6 +56,12 @@
         <li id="navLogout" class="navLogout navBtn itemLogout">
           <a href="ajax/logout.php">Cerrar Sesión</a>
         </li>
+        <li id="navMisPub" class="navLogout navBtn itemLogout">
+          <a href="mis-publicaciones.php">Mis Publicaciones</a>
+        </li>
+        <li id="navPublicarProyecto" class="navPublic navBtn itemPub">
+          <a href="pubProyecto.php">Publicar un Proyecto</a>
+        </li>
         <li id="navPub" class="navPublic navBtn itemPub">
           <a href="publicaciones.php"> Publicaciones </a>
         </li>
@@ -88,15 +95,16 @@
             >
           </li>
           <li id="navPublicaciones">
-            <a href="perfil-publicaciones.html"
+            <a href="mis-publicaciones.php"
               ><i class="fas fa-user-cog"></i>
               <div class="cont-nav">Publicaciones Propias</div></a
             >
           </li>
           <li id="navPagos">
-            <a href="perfil-pagos.html"
+            <a href="#"
+              disa
               ><i class="fas fa-credit-card"></i>
-              <div class="cont-nav">Pagos</div></a
+              <div class="cont-nav">Pagos (Proximamente) </div></a
             >
           </li>
           <div class="line"></div>
@@ -204,13 +212,13 @@
                 <i class="fas fa-chevron-right"></i>
               </a>
             </div>
-            <div class="form-info">
+            <!-- <div class="form-info">
               <a href="javascript:mostrarSection('proyectos');">
                 <label>Proyectos en DevFinder:</label>
                 <h4 id="experiencia">5 proyectos</h4>
                 <i class="fas fa-chevron-right"></i>
               </a>
-            </div>
+            </div> -->
           </fieldset>
         </div>
       </div>
