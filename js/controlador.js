@@ -171,7 +171,8 @@ $(document).ready(function () {
     success: function (response) {
       for (var i = 0; i < response.length; i++) {
         $("#div-nombre-apellido").append(
-          '<h3 class="card-title fw-bold">' +
+          '<div class="card card-pub col-lg-3 col-md-4 col-sm-12 mb-4">' +
+          '<h3 class="fw-bold">' +
             response[i].nombre +
             " " +
             response[i].apellido +
@@ -187,7 +188,8 @@ $(document).ready(function () {
             "</span><br>" +
             '<span class="text-muted">Fecha de la solicitud: ' +
             response[i].fecha_solicitud +
-            "</span>"
+            "</span>"+
+            "</div>"
         );
       }
     },

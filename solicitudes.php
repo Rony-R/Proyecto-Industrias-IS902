@@ -121,7 +121,7 @@
       <div class="container">
         <div id="row">
           <div class="col-12">
-          <div class="card-header" id="div-nombre-apellido">
+          <div id="div-nombre-apellido">
             </div>
           </div>
         </div>
